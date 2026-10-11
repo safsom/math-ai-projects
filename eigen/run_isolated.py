@@ -18,7 +18,7 @@ for attempt in range(200):
             open(dp, 'w').writelines(keep)
     with open(runlog, 'a') as f:
         f.write(f'== attempt {attempt} {time.strftime("%H:%M:%S")}\n')
-    rc = subprocess.call(['zsh', '-c', f'{HERE}/run_driver2.sh {job_path} {runlog}.cur; cat {runlog}.cur >> {runlog}'])
+    rc = subprocess.call(['zsh', '-c', f'{HERE}/{os.environ.get("DRIVER", "run_driver2.sh")} {job_path} {runlog}.cur; cat {runlog}.cur >> {runlog}'])
     if 'theorems extracted' in open(f'{runlog}.cur').read().split('project ')[-1]:
         print('finished', flush=True)
         break

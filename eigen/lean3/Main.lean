@@ -1,4 +1,5 @@
 import Gestures
+import Terms
 /-!
 Driver: import Mathlib once; (1) extract gestures for mathlib's source theorems; (2) elaborate each
 OpenAI project module by module on top of the Mathlib environment (one process, one import) and
@@ -60,7 +61,18 @@ def opts : Options := ({} : Options)
 /-- Gesture record of one theorem, with cut statistics when `GESTURE_CUTS=1`. -/
 def record (cx : Gestures.Ctx) (n : Name) (v : Expr) (extra : List (String × Json)) : IO Json := do
   let cuts := (← IO.getEnv "GESTURE_CUTS") == some "1"
-  return Gestures.analyse cx n v (extra ++ if cuts then Gestures.Cuts.stats cx v else [])
+  let terms := (← IO.getEnv "GESTURE_TERMS") == some "1"
+  let debug := (← IO.getEnv "TERMS_DEBUG") == some n.toString
+  return Gestures.analyse cx n v (extra ++ (if cuts then Gestures.Cuts.stats cx v else [])
+    ++ (if terms then Gestures.Terms.stats cx v debug else []))
+
+/-- Saves a module's theorems when `TERMS_DIR` is set. -/
+def saveTermsFor (env : Environment) (mod : Name) (names : Array Name) : IO Unit := do
+  let some dir ← IO.getEnv "TERMS_DIR" | return
+  let cis := names.filterMap fun n => match env.find? n with
+    | some ci@(.thmInfo _) => some ci
+    | _ => none
+  Gestures.Terms.saveTerms dir mod cis
 
 def mathlibPass (env : Environment) (namesPath out : String) : IO Unit := do
   let lines ← IO.FS.lines namesPath
@@ -145,6 +157,10 @@ def projectPass (env0 : Environment) (out : String) (p : ProjJob) (traceNames : 
         [("m", toJson m), ("p", toJson (projKey m.toName))]).compress
       k := k + 1
   h.flush
+  let byMod := owner.toList.foldl (fun (acc : Std.HashMap String (Array Name)) (n, m) =>
+    acc.insert m ((acc.getD m #[]).push n)) {}
+  for (m, ns) in byMod.toList do
+    saveTermsFor env m.toName ns
   let th ← IO.FS.Handle.mk (out ++ "/" ++ p.name ++ ".trace.jsonl") .write
   for s in traceNames do
     if let some (.thmInfo tv) := env.find? s.toName then
@@ -179,6 +195,7 @@ def streamingPass (env0 : Environment) (out : String) (p : ProjJob) (o : Options
             h.putStrLn (← record cx n tv.value [("m", toJson mj.mod), ("p", toJson p.name)]).compress
             k := k + 1
         h.flush
+        saveTermsFor env mj.mod.toName fresh
       let dt := (← IO.monoMsNow) - t0
       unless mj.replay do
         logH.putStrLn (Json.mkObj [("module", toJson mj.mod), ("errors", toJson nerr),
