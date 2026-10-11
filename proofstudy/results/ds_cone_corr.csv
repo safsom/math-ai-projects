@@ -1,0 +1,197 @@
+a,a_label,b,b_label,rho
+concepts_per_100_thm,Concepts per 100 theorems,concepts_per_100_thm,Concepts per 100 theorems,1.0
+concepts_per_100_thm,Concepts per 100 theorems,live_concept_share,Live concepts,-0.75
+concepts_per_100_thm,Concepts per 100 theorems,single_use_lemma_share,Single-use lemmas,-0.123
+concepts_per_100_thm,Concepts per 100 theorems,cert_token_share,Certificate mass,0.194
+concepts_per_100_thm,Concepts per 100 theorems,casebash_token_share,Case-bash mass,0.149
+concepts_per_100_thm,Concepts per 100 theorems,auto_per_1k,Closing automation / 1k tokens,-0.174
+concepts_per_100_thm,Concepts per 100 theorems,struct_per_1k,Structural steps / 1k tokens,0.015
+concepts_per_100_thm,Concepts per 100 theorems,numbered_share,Numbered names,0.073
+concepts_per_100_thm,Concepts per 100 theorems,uninformative_share,Placeholder names,0.075
+concepts_per_100_thm,Concepts per 100 theorems,grounding,Name grounding,0.03
+concepts_per_100_thm,Concepts per 100 theorems,propagation,Concept-name propagation,-0.158
+concepts_per_100_thm,Concepts per 100 theorems,skel_dup_share,Template proofs,0.199
+concepts_per_100_thm,Concepts per 100 theorems,library_ref_share,Library references,-0.598
+concepts_per_100_thm,Concepts per 100 theorems,proof_to_statement,Proof / statement length,-0.2
+live_concept_share,Live concepts,concepts_per_100_thm,Concepts per 100 theorems,-0.75
+live_concept_share,Live concepts,live_concept_share,Live concepts,1.0
+live_concept_share,Live concepts,single_use_lemma_share,Single-use lemmas,0.051
+live_concept_share,Live concepts,cert_token_share,Certificate mass,-0.145
+live_concept_share,Live concepts,casebash_token_share,Case-bash mass,-0.154
+live_concept_share,Live concepts,auto_per_1k,Closing automation / 1k tokens,0.243
+live_concept_share,Live concepts,struct_per_1k,Structural steps / 1k tokens,-0.014
+live_concept_share,Live concepts,numbered_share,Numbered names,-0.111
+live_concept_share,Live concepts,uninformative_share,Placeholder names,-0.047
+live_concept_share,Live concepts,grounding,Name grounding,0.149
+live_concept_share,Live concepts,propagation,Concept-name propagation,0.229
+live_concept_share,Live concepts,skel_dup_share,Template proofs,-0.138
+live_concept_share,Live concepts,library_ref_share,Library references,0.367
+live_concept_share,Live concepts,proof_to_statement,Proof / statement length,0.051
+single_use_lemma_share,Single-use lemmas,concepts_per_100_thm,Concepts per 100 theorems,-0.123
+single_use_lemma_share,Single-use lemmas,live_concept_share,Live concepts,0.051
+single_use_lemma_share,Single-use lemmas,single_use_lemma_share,Single-use lemmas,1.0
+single_use_lemma_share,Single-use lemmas,cert_token_share,Certificate mass,0.108
+single_use_lemma_share,Single-use lemmas,casebash_token_share,Case-bash mass,0.07
+single_use_lemma_share,Single-use lemmas,auto_per_1k,Closing automation / 1k tokens,0.236
+single_use_lemma_share,Single-use lemmas,struct_per_1k,Structural steps / 1k tokens,0.001
+single_use_lemma_share,Single-use lemmas,numbered_share,Numbered names,-0.114
+single_use_lemma_share,Single-use lemmas,uninformative_share,Placeholder names,0.05
+single_use_lemma_share,Single-use lemmas,grounding,Name grounding,-0.174
+single_use_lemma_share,Single-use lemmas,propagation,Concept-name propagation,0.423
+single_use_lemma_share,Single-use lemmas,skel_dup_share,Template proofs,-0.028
+single_use_lemma_share,Single-use lemmas,library_ref_share,Library references,0.215
+single_use_lemma_share,Single-use lemmas,proof_to_statement,Proof / statement length,-0.159
+cert_token_share,Certificate mass,concepts_per_100_thm,Concepts per 100 theorems,0.194
+cert_token_share,Certificate mass,live_concept_share,Live concepts,-0.145
+cert_token_share,Certificate mass,single_use_lemma_share,Single-use lemmas,0.108
+cert_token_share,Certificate mass,cert_token_share,Certificate mass,1.0
+cert_token_share,Certificate mass,casebash_token_share,Case-bash mass,0.342
+cert_token_share,Certificate mass,auto_per_1k,Closing automation / 1k tokens,-0.042
+cert_token_share,Certificate mass,struct_per_1k,Structural steps / 1k tokens,-0.013
+cert_token_share,Certificate mass,numbered_share,Numbered names,0.323
+cert_token_share,Certificate mass,uninformative_share,Placeholder names,0.026
+cert_token_share,Certificate mass,grounding,Name grounding,-0.084
+cert_token_share,Certificate mass,propagation,Concept-name propagation,-0.133
+cert_token_share,Certificate mass,skel_dup_share,Template proofs,0.237
+cert_token_share,Certificate mass,library_ref_share,Library references,-0.371
+cert_token_share,Certificate mass,proof_to_statement,Proof / statement length,-0.294
+casebash_token_share,Case-bash mass,concepts_per_100_thm,Concepts per 100 theorems,0.149
+casebash_token_share,Case-bash mass,live_concept_share,Live concepts,-0.154
+casebash_token_share,Case-bash mass,single_use_lemma_share,Single-use lemmas,0.07
+casebash_token_share,Case-bash mass,cert_token_share,Certificate mass,0.342
+casebash_token_share,Case-bash mass,casebash_token_share,Case-bash mass,1.0
+casebash_token_share,Case-bash mass,auto_per_1k,Closing automation / 1k tokens,-0.011
+casebash_token_share,Case-bash mass,struct_per_1k,Structural steps / 1k tokens,-0.144
+casebash_token_share,Case-bash mass,numbered_share,Numbered names,0.307
+casebash_token_share,Case-bash mass,uninformative_share,Placeholder names,-0.09
+casebash_token_share,Case-bash mass,grounding,Name grounding,0.158
+casebash_token_share,Case-bash mass,propagation,Concept-name propagation,-0.178
+casebash_token_share,Case-bash mass,skel_dup_share,Template proofs,0.304
+casebash_token_share,Case-bash mass,library_ref_share,Library references,-0.288
+casebash_token_share,Case-bash mass,proof_to_statement,Proof / statement length,-0.104
+auto_per_1k,Closing automation / 1k tokens,concepts_per_100_thm,Concepts per 100 theorems,-0.174
+auto_per_1k,Closing automation / 1k tokens,live_concept_share,Live concepts,0.243
+auto_per_1k,Closing automation / 1k tokens,single_use_lemma_share,Single-use lemmas,0.236
+auto_per_1k,Closing automation / 1k tokens,cert_token_share,Certificate mass,-0.042
+auto_per_1k,Closing automation / 1k tokens,casebash_token_share,Case-bash mass,-0.011
+auto_per_1k,Closing automation / 1k tokens,auto_per_1k,Closing automation / 1k tokens,1.0
+auto_per_1k,Closing automation / 1k tokens,struct_per_1k,Structural steps / 1k tokens,0.001
+auto_per_1k,Closing automation / 1k tokens,numbered_share,Numbered names,-0.144
+auto_per_1k,Closing automation / 1k tokens,uninformative_share,Placeholder names,0.328
+auto_per_1k,Closing automation / 1k tokens,grounding,Name grounding,-0.095
+auto_per_1k,Closing automation / 1k tokens,propagation,Concept-name propagation,0.325
+auto_per_1k,Closing automation / 1k tokens,skel_dup_share,Template proofs,-0.064
+auto_per_1k,Closing automation / 1k tokens,library_ref_share,Library references,0.17
+auto_per_1k,Closing automation / 1k tokens,proof_to_statement,Proof / statement length,0.088
+struct_per_1k,Structural steps / 1k tokens,concepts_per_100_thm,Concepts per 100 theorems,0.015
+struct_per_1k,Structural steps / 1k tokens,live_concept_share,Live concepts,-0.014
+struct_per_1k,Structural steps / 1k tokens,single_use_lemma_share,Single-use lemmas,0.001
+struct_per_1k,Structural steps / 1k tokens,cert_token_share,Certificate mass,-0.013
+struct_per_1k,Structural steps / 1k tokens,casebash_token_share,Case-bash mass,-0.144
+struct_per_1k,Structural steps / 1k tokens,auto_per_1k,Closing automation / 1k tokens,0.001
+struct_per_1k,Structural steps / 1k tokens,struct_per_1k,Structural steps / 1k tokens,1.0
+struct_per_1k,Structural steps / 1k tokens,numbered_share,Numbered names,-0.238
+struct_per_1k,Structural steps / 1k tokens,uninformative_share,Placeholder names,0.006
+struct_per_1k,Structural steps / 1k tokens,grounding,Name grounding,-0.228
+struct_per_1k,Structural steps / 1k tokens,propagation,Concept-name propagation,0.146
+struct_per_1k,Structural steps / 1k tokens,skel_dup_share,Template proofs,-0.074
+struct_per_1k,Structural steps / 1k tokens,library_ref_share,Library references,0.189
+struct_per_1k,Structural steps / 1k tokens,proof_to_statement,Proof / statement length,0.15
+numbered_share,Numbered names,concepts_per_100_thm,Concepts per 100 theorems,0.073
+numbered_share,Numbered names,live_concept_share,Live concepts,-0.111
+numbered_share,Numbered names,single_use_lemma_share,Single-use lemmas,-0.114
+numbered_share,Numbered names,cert_token_share,Certificate mass,0.323
+numbered_share,Numbered names,casebash_token_share,Case-bash mass,0.307
+numbered_share,Numbered names,auto_per_1k,Closing automation / 1k tokens,-0.144
+numbered_share,Numbered names,struct_per_1k,Structural steps / 1k tokens,-0.238
+numbered_share,Numbered names,numbered_share,Numbered names,1.0
+numbered_share,Numbered names,uninformative_share,Placeholder names,-0.019
+numbered_share,Numbered names,grounding,Name grounding,0.096
+numbered_share,Numbered names,propagation,Concept-name propagation,-0.195
+numbered_share,Numbered names,skel_dup_share,Template proofs,0.357
+numbered_share,Numbered names,library_ref_share,Library references,-0.301
+numbered_share,Numbered names,proof_to_statement,Proof / statement length,-0.007
+uninformative_share,Placeholder names,concepts_per_100_thm,Concepts per 100 theorems,0.075
+uninformative_share,Placeholder names,live_concept_share,Live concepts,-0.047
+uninformative_share,Placeholder names,single_use_lemma_share,Single-use lemmas,0.05
+uninformative_share,Placeholder names,cert_token_share,Certificate mass,0.026
+uninformative_share,Placeholder names,casebash_token_share,Case-bash mass,-0.09
+uninformative_share,Placeholder names,auto_per_1k,Closing automation / 1k tokens,0.328
+uninformative_share,Placeholder names,struct_per_1k,Structural steps / 1k tokens,0.006
+uninformative_share,Placeholder names,numbered_share,Numbered names,-0.019
+uninformative_share,Placeholder names,uninformative_share,Placeholder names,1.0
+uninformative_share,Placeholder names,grounding,Name grounding,-0.24
+uninformative_share,Placeholder names,propagation,Concept-name propagation,0.062
+uninformative_share,Placeholder names,skel_dup_share,Template proofs,-0.08
+uninformative_share,Placeholder names,library_ref_share,Library references,-0.057
+uninformative_share,Placeholder names,proof_to_statement,Proof / statement length,0.068
+grounding,Name grounding,concepts_per_100_thm,Concepts per 100 theorems,0.03
+grounding,Name grounding,live_concept_share,Live concepts,0.149
+grounding,Name grounding,single_use_lemma_share,Single-use lemmas,-0.174
+grounding,Name grounding,cert_token_share,Certificate mass,-0.084
+grounding,Name grounding,casebash_token_share,Case-bash mass,0.158
+grounding,Name grounding,auto_per_1k,Closing automation / 1k tokens,-0.095
+grounding,Name grounding,struct_per_1k,Structural steps / 1k tokens,-0.228
+grounding,Name grounding,numbered_share,Numbered names,0.096
+grounding,Name grounding,uninformative_share,Placeholder names,-0.24
+grounding,Name grounding,grounding,Name grounding,1.0
+grounding,Name grounding,propagation,Concept-name propagation,0.135
+grounding,Name grounding,skel_dup_share,Template proofs,0.221
+grounding,Name grounding,library_ref_share,Library references,-0.147
+grounding,Name grounding,proof_to_statement,Proof / statement length,-0.235
+propagation,Concept-name propagation,concepts_per_100_thm,Concepts per 100 theorems,-0.158
+propagation,Concept-name propagation,live_concept_share,Live concepts,0.229
+propagation,Concept-name propagation,single_use_lemma_share,Single-use lemmas,0.423
+propagation,Concept-name propagation,cert_token_share,Certificate mass,-0.133
+propagation,Concept-name propagation,casebash_token_share,Case-bash mass,-0.178
+propagation,Concept-name propagation,auto_per_1k,Closing automation / 1k tokens,0.325
+propagation,Concept-name propagation,struct_per_1k,Structural steps / 1k tokens,0.146
+propagation,Concept-name propagation,numbered_share,Numbered names,-0.195
+propagation,Concept-name propagation,uninformative_share,Placeholder names,0.062
+propagation,Concept-name propagation,grounding,Name grounding,0.135
+propagation,Concept-name propagation,propagation,Concept-name propagation,1.0
+propagation,Concept-name propagation,skel_dup_share,Template proofs,-0.106
+propagation,Concept-name propagation,library_ref_share,Library references,0.257
+propagation,Concept-name propagation,proof_to_statement,Proof / statement length,-0.219
+skel_dup_share,Template proofs,concepts_per_100_thm,Concepts per 100 theorems,0.199
+skel_dup_share,Template proofs,live_concept_share,Live concepts,-0.138
+skel_dup_share,Template proofs,single_use_lemma_share,Single-use lemmas,-0.028
+skel_dup_share,Template proofs,cert_token_share,Certificate mass,0.237
+skel_dup_share,Template proofs,casebash_token_share,Case-bash mass,0.304
+skel_dup_share,Template proofs,auto_per_1k,Closing automation / 1k tokens,-0.064
+skel_dup_share,Template proofs,struct_per_1k,Structural steps / 1k tokens,-0.074
+skel_dup_share,Template proofs,numbered_share,Numbered names,0.357
+skel_dup_share,Template proofs,uninformative_share,Placeholder names,-0.08
+skel_dup_share,Template proofs,grounding,Name grounding,0.221
+skel_dup_share,Template proofs,propagation,Concept-name propagation,-0.106
+skel_dup_share,Template proofs,skel_dup_share,Template proofs,1.0
+skel_dup_share,Template proofs,library_ref_share,Library references,-0.245
+skel_dup_share,Template proofs,proof_to_statement,Proof / statement length,-0.152
+library_ref_share,Library references,concepts_per_100_thm,Concepts per 100 theorems,-0.598
+library_ref_share,Library references,live_concept_share,Live concepts,0.367
+library_ref_share,Library references,single_use_lemma_share,Single-use lemmas,0.215
+library_ref_share,Library references,cert_token_share,Certificate mass,-0.371
+library_ref_share,Library references,casebash_token_share,Case-bash mass,-0.288
+library_ref_share,Library references,auto_per_1k,Closing automation / 1k tokens,0.17
+library_ref_share,Library references,struct_per_1k,Structural steps / 1k tokens,0.189
+library_ref_share,Library references,numbered_share,Numbered names,-0.301
+library_ref_share,Library references,uninformative_share,Placeholder names,-0.057
+library_ref_share,Library references,grounding,Name grounding,-0.147
+library_ref_share,Library references,propagation,Concept-name propagation,0.257
+library_ref_share,Library references,skel_dup_share,Template proofs,-0.245
+library_ref_share,Library references,library_ref_share,Library references,1.0
+library_ref_share,Library references,proof_to_statement,Proof / statement length,0.32
+proof_to_statement,Proof / statement length,concepts_per_100_thm,Concepts per 100 theorems,-0.2
+proof_to_statement,Proof / statement length,live_concept_share,Live concepts,0.051
+proof_to_statement,Proof / statement length,single_use_lemma_share,Single-use lemmas,-0.159
+proof_to_statement,Proof / statement length,cert_token_share,Certificate mass,-0.294
+proof_to_statement,Proof / statement length,casebash_token_share,Case-bash mass,-0.104
+proof_to_statement,Proof / statement length,auto_per_1k,Closing automation / 1k tokens,0.088
+proof_to_statement,Proof / statement length,struct_per_1k,Structural steps / 1k tokens,0.15
+proof_to_statement,Proof / statement length,numbered_share,Numbered names,-0.007
+proof_to_statement,Proof / statement length,uninformative_share,Placeholder names,0.068
+proof_to_statement,Proof / statement length,grounding,Name grounding,-0.235
+proof_to_statement,Proof / statement length,propagation,Concept-name propagation,-0.219
+proof_to_statement,Proof / statement length,skel_dup_share,Template proofs,-0.152
+proof_to_statement,Proof / statement length,library_ref_share,Library references,0.32
+proof_to_statement,Proof / statement length,proof_to_statement,Proof / statement length,1.0

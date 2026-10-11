@@ -1,0 +1,97 @@
+metric,label,definition,group,n,median,lo,hi
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),mathlib,465,5.154332556733335,5.05963990259082,5.233028256123188
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),openai,524,7.003534656018642,6.9375805006853986,7.096414854424564
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),human,24,6.672368318904103,5.9307234654396055,6.861597351826351
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),human-upstream,5,5.15078741580717,5.07707247642855,6.3831446778697645
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),openai-ten,11,8.292527477408555,7.663692702946329,9.292191553970016
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),strongpnt,1,6.596082737867519,,
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),openai-core,510,6.989376105299736,6.92278832661928,7.0598992172365245
+e_tok,Specific energy,bits per token under mathlib's 5-gram model (long numerals excluded),openai-certificate,14,9.316383358220698,8.88380156940475,10.333508377597253
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,mathlib,465,0.0,-0.032335177371696666,0.029068568366726666
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,openai,524,1.533694921899896,1.4490651840961952,1.5726026666240922
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,human,24,1.5180357621707676,0.7763909087062704,1.7072647950930158
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,human-upstream,5,-0.003545140926164869,-0.07726008030478493,1.2288121211364293
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,openai-ten,11,3.13819492067522,2.5093601462129937,4.13785899723668
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,strongpnt,1,1.441750181134184,,
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,openai-core,510,1.5111327990725467,1.4351108938963655,1.5635322642126934
+d_e_tok,Area-matched excess energy,bits per token above the median held-out mathlib project in the same area,openai-certificate,14,3.8472479637962644,3.230587900664546,4.77055284162147
+e_name,Name energy,bits per identifier piece,mathlib,465,6.302557474473114,6.208924703192416,6.455922822150913
+e_name,Name energy,bits per identifier piece,openai,524,8.78158531891413,8.714408301676492,8.850782927727787
+e_name,Name energy,bits per identifier piece,human,24,8.068031697133522,7.032941086837961,8.261869264012994
+e_name,Name energy,bits per identifier piece,human-upstream,5,6.383526454121877,6.223813191400554,7.566404445740434
+e_name,Name energy,bits per identifier piece,openai-ten,11,10.077584184807224,9.310685808746447,10.758238373120376
+e_name,Name energy,bits per identifier piece,strongpnt,1,8.1279094483733,,
+e_name,Name energy,bits per identifier piece,openai-core,510,8.759739764491176,8.692817743367451,8.835689209426805
+e_name,Name energy,bits per identifier piece,openai-certificate,14,11.627859887498737,9.855246054649967,12.427984558666042
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",mathlib,465,2.9618436650760844,2.928745091248716,2.998099712842864
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",openai,524,3.4889074179849846,3.4575963311908007,3.5236947937031116
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",human,24,3.5373233841744582,3.258188330880835,3.689799484827423
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",human-upstream,5,3.0535902998557614,2.932630090434915,4.088731015859396
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",openai-ten,11,3.639061483193429,3.483227354154066,3.9166357303420165
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",strongpnt,1,3.791040641909237,,
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",openai-core,510,3.479556004990555,3.4520455097026956,3.5151283528931447
+e_op,Syntax energy,"bits per operator, keyword-symbol or bracket",openai-certificate,14,4.178211580101855,3.7916019929186766,4.670909407524112
+e_proof,Proof energy,bits per token in proofs only,mathlib,465,5.248961428502107,5.181609680135799,5.311203355759582
+e_proof,Proof energy,bits per token in proofs only,openai,524,6.535860778903643,6.483163915056257,6.586403776477278
+e_proof,Proof energy,bits per token in proofs only,human,24,6.129802758595069,5.57735952905906,6.479433313490481
+e_proof,Proof energy,bits per token in proofs only,human-upstream,5,5.298792238169735,5.137603139310059,6.146502049035755
+e_proof,Proof energy,bits per token in proofs only,openai-ten,11,7.658699971357648,6.983861127373512,8.284364802129458
+e_proof,Proof energy,bits per token in proofs only,strongpnt,1,6.373122280336057,,
+e_proof,Proof energy,bits per token in proofs only,openai-core,510,6.52969590771918,6.472528102096965,6.578871213442666
+e_proof,Proof energy,bits per token in proofs only,openai-certificate,14,7.597386232994461,7.120378593562816,7.9736204706961376
+oov,Coined words,share of tokens outside mathlib's vocabulary,mathlib,465,0.003383242153757558,0.00291161870648505,0.004015168414008476
+oov,Coined words,share of tokens outside mathlib's vocabulary,openai,524,0.028796783877143704,0.027410732740904116,0.029997706391548334
+oov,Coined words,share of tokens outside mathlib's vocabulary,human,24,0.018479924775365496,0.012386523949559691,0.02841599832075356
+oov,Coined words,share of tokens outside mathlib's vocabulary,human-upstream,5,0.005079962370649106,0.002777777777777778,0.017702461996437546
+oov,Coined words,share of tokens outside mathlib's vocabulary,openai-ten,11,0.058266166573564225,0.047024278327569086,0.07439490764791667
+oov,Coined words,share of tokens outside mathlib's vocabulary,strongpnt,1,0.016297879734696354,,
+oov,Coined words,share of tokens outside mathlib's vocabulary,openai-core,510,0.028380520404319817,0.027080212468740504,0.029744084406743455
+oov,Coined words,share of tokens outside mathlib's vocabulary,openai-certificate,14,0.07302691760234416,0.03779008252803837,0.10738099953786229
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",mathlib,465,281.8731192177272,270.3864197199216,294.26753464991367
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",openai,524,856.8364835412326,824.9939663879697,878.0501125601029
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",human,24,666.2606561037962,546.3095841438867,925.153576156603
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",human-upstream,5,471.6727265265846,368.59260216899804,688.4038484648012
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",openai-ten,11,1358.7436466227473,1240.5181912833434,1450.2806515042423
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",strongpnt,1,925.1609927277474,,
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",openai-core,510,861.462399742303,828.3702597705121,885.0345674366488
+E_thm_struct,Energy per theorem,"median bits to write one theorem, statement and proof (numeral digits excluded)",openai-certificate,14,523.8379693204591,443.62005129410085,683.1218022787501
+tok_per_thm,Theorem length,median tokens per theorem,mathlib,465,55.0,54.0,57.5
+tok_per_thm,Theorem length,median tokens per theorem,openai,524,123.25,119.0,127.0
+tok_per_thm,Theorem length,median tokens per theorem,human,24,106.25,87.0,153.0
+tok_per_thm,Theorem length,median tokens per theorem,human-upstream,5,89.0,74.0,110.0
+tok_per_thm,Theorem length,median tokens per theorem,openai-ten,11,165.0,118.0,183.5
+tok_per_thm,Theorem length,median tokens per theorem,strongpnt,1,144.0,,
+tok_per_thm,Theorem length,median tokens per theorem,openai-core,510,124.0,120.5,128.75
+tok_per_thm,Theorem length,median tokens per theorem,openai-certificate,14,45.5,36.0,70.0
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,mathlib,465,0.0,0.0,0.0
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,openai,524,0.0,0.0,1.5071883876806346e-05
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,human,24,0.0,0.0,0.0
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,human-upstream,5,0.0,0.0,0.00018074015939609954
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,openai-ten,11,0.0,0.0,0.0003086685848342785
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,strongpnt,1,6.629242085142272e-05,,
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,openai-core,510,0.0,0.0,0.0
+lit_share,Literal share,share of all bits spent spelling numerals of 4+ digits,openai-certificate,14,0.1588698705889085,0.07433949626019323,0.42545876174469777
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,mathlib,465,12.243711499167437,12.09598798911725,12.339570630148003
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,openai,524,14.440670552104983,14.332998776996765,14.549090467866069
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,human,24,12.749732085577584,12.452260892909546,13.061255389894423
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,human-upstream,5,13.343734057727968,12.619075410596919,13.595038760495592
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,openai-ten,11,12.414239797790632,11.78675137997135,13.076811938617743
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,strongpnt,1,13.407394103182254,,
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,openai-core,510,14.42980611819539,14.327058698958213,14.547239837476376
+e_prem,Premise energy,bits per resolved constant reference under mathlib's reference distribution,openai-certificate,14,14.633527323610263,13.717112057669087,16.891706798836495
+bespoke_share,Bespoke references,share of references to constants not in mathlib,mathlib,465,0.4195121951219512,0.4072593540134314,0.43373493975903615
+bespoke_share,Bespoke references,share of references to constants not in mathlib,openai,524,0.5772791484057416,0.5678749623989746,0.5873627094910953
+bespoke_share,Bespoke references,share of references to constants not in mathlib,human,24,0.34541370028957985,0.28117237573868903,0.3910997004706889
+bespoke_share,Bespoke references,share of references to constants not in mathlib,human-upstream,5,0.24603174603174602,0.16685627607129314,0.34960323401706844
+bespoke_share,Bespoke references,share of references to constants not in mathlib,openai-ten,11,0.49142149969061144,0.37692476902771666,0.5666742303910446
+bespoke_share,Bespoke references,share of references to constants not in mathlib,strongpnt,1,0.21619863385015722,,
+bespoke_share,Bespoke references,share of references to constants not in mathlib,openai-core,510,0.5744893527906327,0.5641399416909622,0.5838722449518279
+bespoke_share,Bespoke references,share of references to constants not in mathlib,openai-certificate,14,0.7576291573269199,0.6945290959222173,0.8646367062434999
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),mathlib,465,14.295312170334313,14.20461591710188,14.432763675297256
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),openai,524,13.364453324794184,13.319766433755982,13.41281255562178
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),human,24,14.223810075363874,14.002562283812603,14.63424528546097
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),human-upstream,5,14.268636239837456,13.640515053846876,14.525705281487589
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),openai-ten,11,12.540119665610485,11.988782872465015,13.252213148135834
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),strongpnt,1,13.99965313423069,,
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),openai-core,510,13.376177389724148,13.32845232106286,13.42502807078218
+lib_surp,Library surprisal,bits per mathlib constant referenced (rarely used lemmas cost more),openai-certificate,14,12.49304854323898,11.593370379406991,13.312953588953842

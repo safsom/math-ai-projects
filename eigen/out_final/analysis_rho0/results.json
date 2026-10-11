@@ -1,0 +1,4771 @@
+{
+ "sizes": [
+  {
+   "group": "human",
+   "theorems": 1288,
+   "projects": 11
+  },
+  {
+   "group": "mathlib",
+   "theorems": 165276,
+   "projects": 1172
+  },
+  {
+   "group": "openai",
+   "theorems": 18220,
+   "projects": 96
+  }
+ ],
+ "n_projects": {
+  "human": 10,
+  "mathlib": 692,
+  "openai": 91
+ },
+ "groups": [
+  {
+   "metric": "e_ir",
+   "label": "Compiled energy",
+   "definition": "bits per inference step under mathlib's gesture grammar (names erased)",
+   "group": "mathlib",
+   "n": 692,
+   "median": 3.127535651234835,
+   "lo": 3.072544657962194,
+   "hi": 3.1965941216505342
+  },
+  {
+   "metric": "e_ir",
+   "label": "Compiled energy",
+   "definition": "bits per inference step under mathlib's gesture grammar (names erased)",
+   "group": "openai",
+   "n": 91,
+   "median": 3.3727132380637572,
+   "lo": 3.3065412899755495,
+   "hi": 3.440092763623372
+  },
+  {
+   "metric": "e_ir",
+   "label": "Compiled energy",
+   "definition": "bits per inference step under mathlib's gesture grammar (names erased)",
+   "group": "human",
+   "n": 10,
+   "median": 3.2052414865669707,
+   "lo": 2.7749600551481395,
+   "hi": 4.511283806336526
+  },
+  {
+   "metric": "e_ir",
+   "label": "Compiled energy",
+   "definition": "bits per inference step under mathlib's gesture grammar (names erased)",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "nodes_med",
+   "label": "Proof size",
+   "definition": "median inference steps per theorem",
+   "group": "mathlib",
+   "n": 692,
+   "median": 16.0,
+   "lo": 16.0,
+   "hi": 17.0
+  },
+  {
+   "metric": "nodes_med",
+   "label": "Proof size",
+   "definition": "median inference steps per theorem",
+   "group": "openai",
+   "n": 91,
+   "median": 19.5,
+   "lo": 18.0,
+   "hi": 22.0
+  },
+  {
+   "metric": "nodes_med",
+   "label": "Proof size",
+   "definition": "median inference steps per theorem",
+   "group": "human",
+   "n": 10,
+   "median": 22.5,
+   "lo": 19.0,
+   "hi": 34.5
+  },
+  {
+   "metric": "nodes_med",
+   "label": "Proof size",
+   "definition": "median inference steps per theorem",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "weakening",
+   "label": "Unused hypotheses",
+   "definition": "share of introduced hypotheses never used (weakening)",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.057709147480355674,
+   "lo": 0.05263157894736842,
+   "hi": 0.06408989634796086
+  },
+  {
+   "metric": "weakening",
+   "label": "Unused hypotheses",
+   "definition": "share of introduced hypotheses never used (weakening)",
+   "group": "openai",
+   "n": 91,
+   "median": 0.12941176470588237,
+   "lo": 0.10843373493975904,
+   "hi": 0.1570841889117043
+  },
+  {
+   "metric": "weakening",
+   "label": "Unused hypotheses",
+   "definition": "share of introduced hypotheses never used (weakening)",
+   "group": "human",
+   "n": 10,
+   "median": 0.10176950998185118,
+   "lo": 0.02100840336134454,
+   "hi": 0.13849016480595427
+  },
+  {
+   "metric": "weakening",
+   "label": "Unused hypotheses",
+   "definition": "share of introduced hypotheses never used (weakening)",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "linear",
+   "label": "Linear hypotheses",
+   "definition": "share of introduced hypotheses used exactly once",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.6902320447656616,
+   "lo": 0.6774193548387096,
+   "hi": 0.7066503036330167
+  },
+  {
+   "metric": "linear",
+   "label": "Linear hypotheses",
+   "definition": "share of introduced hypotheses used exactly once",
+   "group": "openai",
+   "n": 91,
+   "median": 0.6331417624521073,
+   "lo": 0.5954198473282443,
+   "hi": 0.6645962732919255
+  },
+  {
+   "metric": "linear",
+   "label": "Linear hypotheses",
+   "definition": "share of introduced hypotheses used exactly once",
+   "group": "human",
+   "n": 10,
+   "median": 0.6346610905434434,
+   "lo": 0.5727994227994228,
+   "hi": 0.6871280671720877
+  },
+  {
+   "metric": "linear",
+   "label": "Linear hypotheses",
+   "definition": "share of introduced hypotheses used exactly once",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "contraction",
+   "label": "Reused hypotheses",
+   "definition": "share of introduced hypotheses used more than once (contraction)",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.22085889570552147,
+   "lo": 0.2084717607973422,
+   "hi": 0.23128326273487565
+  },
+  {
+   "metric": "contraction",
+   "label": "Reused hypotheses",
+   "definition": "share of introduced hypotheses used more than once (contraction)",
+   "group": "openai",
+   "n": 91,
+   "median": 0.19844082211197733,
+   "lo": 0.17165668662674652,
+   "hi": 0.21514342895263508
+  },
+  {
+   "metric": "contraction",
+   "label": "Reused hypotheses",
+   "definition": "share of introduced hypotheses used more than once (contraction)",
+   "group": "human",
+   "n": 10,
+   "median": 0.22969754703500833,
+   "lo": 0.1927710843373494,
+   "hi": 0.321858510846199
+  },
+  {
+   "metric": "contraction",
+   "label": "Reused hypotheses",
+   "definition": "share of introduced hypotheses used more than once (contraction)",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "cuts_per_100",
+   "label": "Intermediate claims",
+   "definition": "have/let cuts per 100 inference steps",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "metric": "cuts_per_100",
+   "label": "Intermediate claims",
+   "definition": "have/let cuts per 100 inference steps",
+   "group": "openai",
+   "n": 91,
+   "median": 0.03278688524590164,
+   "lo": 0.021043771043771045,
+   "hi": 0.04640012373366329
+  },
+  {
+   "metric": "cuts_per_100",
+   "label": "Intermediate claims",
+   "definition": "have/let cuts per 100 inference steps",
+   "group": "human",
+   "n": 10,
+   "median": 0.033679390068761146,
+   "lo": 0.0,
+   "hi": 0.06084575600851841
+  },
+  {
+   "metric": "cuts_per_100",
+   "label": "Intermediate claims",
+   "definition": "have/let cuts per 100 inference steps",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "single_use_cut",
+   "label": "Single-use claims",
+   "definition": "share of have-cuts used exactly once",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "metric": "single_use_cut",
+   "label": "Single-use claims",
+   "definition": "share of have-cuts used exactly once",
+   "group": "openai",
+   "n": 91,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "metric": "single_use_cut",
+   "label": "Single-use claims",
+   "definition": "share of have-cuts used exactly once",
+   "group": "human",
+   "n": 10,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.5
+  },
+  {
+   "metric": "single_use_cut",
+   "label": "Single-use claims",
+   "definition": "share of have-cuts used exactly once",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "dead_cut",
+   "label": "Unused claims",
+   "definition": "share of have-cuts never used",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "metric": "dead_cut",
+   "label": "Unused claims",
+   "definition": "share of have-cuts never used",
+   "group": "openai",
+   "n": 91,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "metric": "dead_cut",
+   "label": "Unused claims",
+   "definition": "share of have-cuts never used",
+   "group": "human",
+   "n": 10,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "metric": "dead_cut",
+   "label": "Unused claims",
+   "definition": "share of have-cuts never used",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:apply a lemma",
+   "label": "Apply a lemma",
+   "definition": "share of inference steps that apply a lemma",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.18152112551087746,
+   "lo": 0.1779291186894372,
+   "hi": 0.18622848200312989
+  },
+  {
+   "metric": "share:apply a lemma",
+   "label": "Apply a lemma",
+   "definition": "share of inference steps that apply a lemma",
+   "group": "openai",
+   "n": 91,
+   "median": 0.20544281893975144,
+   "lo": 0.19101762498468783,
+   "hi": 0.21537726838586438
+  },
+  {
+   "metric": "share:apply a lemma",
+   "label": "Apply a lemma",
+   "definition": "share of inference steps that apply a lemma",
+   "group": "human",
+   "n": 10,
+   "median": 0.1936905567226842,
+   "lo": 0.0440359127832407,
+   "hi": 0.21921921921921922
+  },
+  {
+   "metric": "share:apply a lemma",
+   "label": "Apply a lemma",
+   "definition": "share of inference steps that apply a lemma",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:argue by contradiction",
+   "label": "Argue by contradiction",
+   "definition": "share of inference steps that argue by contradiction",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.000639724174931742,
+   "lo": 0.0005108424366486231,
+   "hi": 0.0008023228282673665
+  },
+  {
+   "metric": "share:argue by contradiction",
+   "label": "Argue by contradiction",
+   "definition": "share of inference steps that argue by contradiction",
+   "group": "openai",
+   "n": 91,
+   "median": 0.0012992285830288265,
+   "lo": 0.0008216926869350862,
+   "hi": 0.0016570008285004142
+  },
+  {
+   "metric": "share:argue by contradiction",
+   "label": "Argue by contradiction",
+   "definition": "share of inference steps that argue by contradiction",
+   "group": "human",
+   "n": 10,
+   "median": 0.0007740552497357627,
+   "lo": 0.00021376656690893543,
+   "hi": 0.001092677374777999
+  },
+  {
+   "metric": "share:argue by contradiction",
+   "label": "Argue by contradiction",
+   "definition": "share of inference steps that argue by contradiction",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:assume a hypothesis",
+   "label": "Assume a hypothesis",
+   "definition": "share of inference steps that assume a hypothesis",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.0787795426013864,
+   "lo": 0.07469512195121951,
+   "hi": 0.08217528608933414
+  },
+  {
+   "metric": "share:assume a hypothesis",
+   "label": "Assume a hypothesis",
+   "definition": "share of inference steps that assume a hypothesis",
+   "group": "openai",
+   "n": 91,
+   "median": 0.06921967633392084,
+   "lo": 0.06341154090044387,
+   "hi": 0.07463976945244957
+  },
+  {
+   "metric": "share:assume a hypothesis",
+   "label": "Assume a hypothesis",
+   "definition": "share of inference steps that assume a hypothesis",
+   "group": "human",
+   "n": 10,
+   "median": 0.05330742470455112,
+   "lo": 0.03733776180050753,
+   "hi": 0.0719394194362642
+  },
+  {
+   "metric": "share:assume a hypothesis",
+   "label": "Assume a hypothesis",
+   "definition": "share of inference steps that assume a hypothesis",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:automation certificate",
+   "label": "Automation certificate",
+   "definition": "share of inference steps that automation certificate",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.0018428947113760337,
+   "lo": 0.00101648598865429,
+   "hi": 0.002773538537308905
+  },
+  {
+   "metric": "share:automation certificate",
+   "label": "Automation certificate",
+   "definition": "share of inference steps that automation certificate",
+   "group": "openai",
+   "n": 91,
+   "median": 0.1434114927344782,
+   "lo": 0.11279304074310709,
+   "hi": 0.17391304347826086
+  },
+  {
+   "metric": "share:automation certificate",
+   "label": "Automation certificate",
+   "definition": "share of inference steps that automation certificate",
+   "group": "human",
+   "n": 10,
+   "median": 0.12634617912987245,
+   "lo": 0.07823856348867037,
+   "hi": 0.23005668463984516
+  },
+  {
+   "metric": "share:automation certificate",
+   "label": "Automation certificate",
+   "definition": "share of inference steps that automation certificate",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:close by reflexivity",
+   "label": "Close by reflexivity",
+   "definition": "share of inference steps that close by reflexivity",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.02013606989548339,
+   "lo": 0.019141418078442145,
+   "hi": 0.021286634228153675
+  },
+  {
+   "metric": "share:close by reflexivity",
+   "label": "Close by reflexivity",
+   "definition": "share of inference steps that close by reflexivity",
+   "group": "openai",
+   "n": 91,
+   "median": 0.03951890034364261,
+   "lo": 0.03677172874880611,
+   "hi": 0.04069860599262939
+  },
+  {
+   "metric": "share:close by reflexivity",
+   "label": "Close by reflexivity",
+   "definition": "share of inference steps that close by reflexivity",
+   "group": "human",
+   "n": 10,
+   "median": 0.03758587527982113,
+   "lo": 0.027901043841022204,
+   "hi": 0.05461081155813632
+  },
+  {
+   "metric": "share:close by reflexivity",
+   "label": "Close by reflexivity",
+   "definition": "share of inference steps that close by reflexivity",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:decide by computation",
+   "label": "Decide by computation",
+   "definition": "share of inference steps that decide by computation",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "metric": "share:decide by computation",
+   "label": "Decide by computation",
+   "definition": "share of inference steps that decide by computation",
+   "group": "openai",
+   "n": 91,
+   "median": 0.0004407875404055245,
+   "lo": 0.00029175784099197665,
+   "hi": 0.0009368080395162664
+  },
+  {
+   "metric": "share:decide by computation",
+   "label": "Decide by computation",
+   "definition": "share of inference steps that decide by computation",
+   "group": "human",
+   "n": 10,
+   "median": 0.0,
+   "lo": 0.0,
+   "hi": 0.00013352917612498332
+  },
+  {
+   "metric": "share:decide by computation",
+   "label": "Decide by computation",
+   "definition": "share of inference steps that decide by computation",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:generalize a variable",
+   "label": "Generalize a variable",
+   "definition": "share of inference steps that generalize a variable",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.32155423375890513,
+   "lo": 0.3076580407218446,
+   "hi": 0.3352710408697967
+  },
+  {
+   "metric": "share:generalize a variable",
+   "label": "Generalize a variable",
+   "definition": "share of inference steps that generalize a variable",
+   "group": "openai",
+   "n": 91,
+   "median": 0.15802509907529722,
+   "lo": 0.1391548365797293,
+   "hi": 0.1877076411960133
+  },
+  {
+   "metric": "share:generalize a variable",
+   "label": "Generalize a variable",
+   "definition": "share of inference steps that generalize a variable",
+   "group": "human",
+   "n": 10,
+   "median": 0.2785047276363459,
+   "lo": 0.19056822574410515,
+   "hi": 0.3255570131245016
+  },
+  {
+   "metric": "share:generalize a variable",
+   "label": "Generalize a variable",
+   "definition": "share of inference steps that generalize a variable",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:induct or pattern-match",
+   "label": "Induct or pattern-match",
+   "definition": "share of inference steps that induct or pattern-match",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.009498049629620219,
+   "lo": 0.008436102859086973,
+   "hi": 0.010279889426399447
+  },
+  {
+   "metric": "share:induct or pattern-match",
+   "label": "Induct or pattern-match",
+   "definition": "share of inference steps that induct or pattern-match",
+   "group": "openai",
+   "n": 91,
+   "median": 0.007839623698062494,
+   "lo": 0.0066555740432612314,
+   "hi": 0.009904258831297457
+  },
+  {
+   "metric": "share:induct or pattern-match",
+   "label": "Induct or pattern-match",
+   "definition": "share of inference steps that induct or pattern-match",
+   "group": "human",
+   "n": 10,
+   "median": 0.003855593440565264,
+   "lo": 0.003248997649661275,
+   "hi": 0.005087978320780954
+  },
+  {
+   "metric": "share:induct or pattern-match",
+   "label": "Induct or pattern-match",
+   "definition": "share of inference steps that induct or pattern-match",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:introduce or eliminate a connective",
+   "label": "Introduce or eliminate a connective",
+   "definition": "share of inference steps that introduce or eliminate a connective",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.014823494673592716,
+   "lo": 0.013621409294469746,
+   "hi": 0.01610804617832071
+  },
+  {
+   "metric": "share:introduce or eliminate a connective",
+   "label": "Introduce or eliminate a connective",
+   "definition": "share of inference steps that introduce or eliminate a connective",
+   "group": "openai",
+   "n": 91,
+   "median": 0.013025707628251651,
+   "lo": 0.010123239436619719,
+   "hi": 0.017322712860567628
+  },
+  {
+   "metric": "share:introduce or eliminate a connective",
+   "label": "Introduce or eliminate a connective",
+   "definition": "share of inference steps that introduce or eliminate a connective",
+   "group": "human",
+   "n": 10,
+   "median": 0.012589481668152262,
+   "lo": 0.009187279151943463,
+   "hi": 0.014112955081322126
+  },
+  {
+   "metric": "share:introduce or eliminate a connective",
+   "label": "Introduce or eliminate a connective",
+   "definition": "share of inference steps that introduce or eliminate a connective",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:other",
+   "label": "Other",
+   "definition": "share of inference steps that other",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.002957902564925123,
+   "lo": 0.0024655207858489975,
+   "hi": 0.0031923383878691143
+  },
+  {
+   "metric": "share:other",
+   "label": "Other",
+   "definition": "share of inference steps that other",
+   "group": "openai",
+   "n": 91,
+   "median": 0.0037753657385559227,
+   "lo": 0.002976871994504236,
+   "hi": 0.004684108305723752
+  },
+  {
+   "metric": "share:other",
+   "label": "Other",
+   "definition": "share of inference steps that other",
+   "group": "human",
+   "n": 10,
+   "median": 0.007744789191991548,
+   "lo": 0.004996309684160477,
+   "hi": 0.07706385221835198
+  },
+  {
+   "metric": "share:other",
+   "label": "Other",
+   "definition": "share of inference steps that other",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:rewrite along an equation",
+   "label": "Rewrite along an equation",
+   "definition": "share of inference steps that rewrite along an equation",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.24269492603570317,
+   "lo": 0.23397046210095976,
+   "hi": 0.25156967182629253
+  },
+  {
+   "metric": "share:rewrite along an equation",
+   "label": "Rewrite along an equation",
+   "definition": "share of inference steps that rewrite along an equation",
+   "group": "openai",
+   "n": 91,
+   "median": 0.23322240709927897,
+   "lo": 0.2237686070434467,
+   "hi": 0.25062266500622665
+  },
+  {
+   "metric": "share:rewrite along an equation",
+   "label": "Rewrite along an equation",
+   "definition": "share of inference steps that rewrite along an equation",
+   "group": "human",
+   "n": 10,
+   "median": 0.19049810536617168,
+   "lo": 0.16065959952885747,
+   "hi": 0.23941781279209506
+  },
+  {
+   "metric": "share:rewrite along an equation",
+   "label": "Rewrite along an equation",
+   "definition": "share of inference steps that rewrite along an equation",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:split into cases",
+   "label": "Split into cases",
+   "definition": "share of inference steps that split into cases",
+   "group": "mathlib",
+   "n": 692,
+   "median": 7.635529500143423e-05,
+   "lo": 0.0,
+   "hi": 0.0002236715693871909
+  },
+  {
+   "metric": "share:split into cases",
+   "label": "Split into cases",
+   "definition": "share of inference steps that split into cases",
+   "group": "openai",
+   "n": 91,
+   "median": 0.0016181229773462784,
+   "lo": 0.0011595547309833025,
+   "hi": 0.0018832391713747645
+  },
+  {
+   "metric": "share:split into cases",
+   "label": "Split into cases",
+   "definition": "share of inference steps that split into cases",
+   "group": "human",
+   "n": 10,
+   "median": 0.0007203710655540508,
+   "lo": 0.0,
+   "hi": 0.0017870819504723003
+  },
+  {
+   "metric": "share:split into cases",
+   "label": "Split into cases",
+   "definition": "share of inference steps that split into cases",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:state an intermediate claim",
+   "label": "State an intermediate claim",
+   "definition": "share of inference steps that state an intermediate claim",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.0038777538133826397,
+   "lo": 0.0035118607331753805,
+   "hi": 0.004354834004317638
+  },
+  {
+   "metric": "share:state an intermediate claim",
+   "label": "State an intermediate claim",
+   "definition": "share of inference steps that state an intermediate claim",
+   "group": "openai",
+   "n": 91,
+   "median": 0.0032762629465229337,
+   "lo": 0.0028743625405656,
+   "hi": 0.0038818201423334053
+  },
+  {
+   "metric": "share:state an intermediate claim",
+   "label": "State an intermediate claim",
+   "definition": "share of inference steps that state an intermediate claim",
+   "group": "human",
+   "n": 10,
+   "median": 0.004310016872830943,
+   "lo": 0.0018645845472555647,
+   "hi": 0.00620575156834173
+  },
+  {
+   "metric": "share:state an intermediate claim",
+   "label": "State an intermediate claim",
+   "definition": "share of inference steps that state an intermediate claim",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "metric": "share:use a hypothesis",
+   "label": "Use a hypothesis",
+   "definition": "share of inference steps that use a hypothesis",
+   "group": "mathlib",
+   "n": 692,
+   "median": 0.06105517682993578,
+   "lo": 0.058532128468521585,
+   "hi": 0.0649480832522134
+  },
+  {
+   "metric": "share:use a hypothesis",
+   "label": "Use a hypothesis",
+   "definition": "share of inference steps that use a hypothesis",
+   "group": "openai",
+   "n": 91,
+   "median": 0.05198076482711243,
+   "lo": 0.04568000922828469,
+   "hi": 0.054892407632967925
+  },
+  {
+   "metric": "share:use a hypothesis",
+   "label": "Use a hypothesis",
+   "definition": "share of inference steps that use a hypothesis",
+   "group": "human",
+   "n": 10,
+   "median": 0.043823681797774974,
+   "lo": 0.02705836876691148,
+   "hi": 0.056304256585366336
+  },
+  {
+   "metric": "share:use a hypothesis",
+   "label": "Use a hypothesis",
+   "definition": "share of inference steps that use a hypothesis",
+   "group": "human-upstream",
+   "n": 0,
+   "median": null,
+   "lo": null,
+   "hi": null
+  }
+ ],
+ "tests": [
+  {
+   "vs": "mathlib",
+   "metric": "e_ir",
+   "label": "Compiled energy",
+   "diff": 0.24517758682892232,
+   "lo": 0.14553402230566137,
+   "hi": 0.3369303444389325,
+   "auc": 0.6277234326367275,
+   "p": 7.337705415728651e-05,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.0003587322647689563
+  },
+  {
+   "vs": "mathlib",
+   "metric": "nodes_med",
+   "label": "Proof size",
+   "diff": 3.5,
+   "lo": 2.0,
+   "hi": 6.0,
+   "auc": 0.687464269834212,
+   "p": 5.717018325299571e-09,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 3.144360078914764e-08
+  },
+  {
+   "vs": "mathlib",
+   "metric": "weakening",
+   "label": "Unused hypotheses",
+   "diff": 0.07170261722552669,
+   "lo": 0.05138411885027471,
+   "hi": 0.09920002220028214,
+   "auc": 0.7559882146838669,
+   "p": 1.7994495677127236e-15,
+   "n_openai": 91,
+   "n_ref": 690,
+   "q": 1.3195963496559973e-14
+  },
+  {
+   "vs": "mathlib",
+   "metric": "linear",
+   "label": "Linear hypotheses",
+   "diff": -0.057090282313554286,
+   "lo": -0.09936433771064929,
+   "hi": -0.02170768305280244,
+   "auc": 0.3976827520305781,
+   "p": 0.0014943452163172588,
+   "n_openai": 91,
+   "n_ref": 690,
+   "q": 0.005977380865269035
+  },
+  {
+   "vs": "mathlib",
+   "metric": "contraction",
+   "label": "Reused hypotheses",
+   "diff": -0.02241807359354414,
+   "lo": -0.04748944639761124,
+   "hi": -0.0013169091915629675,
+   "auc": 0.44765886287625417,
+   "p": 0.10427108579930168,
+   "n_openai": 91,
+   "n_ref": 690,
+   "q": 0.17305696853016936
+  },
+  {
+   "vs": "mathlib",
+   "metric": "cuts_per_100",
+   "label": "Intermediate claims",
+   "diff": 0.03278688524590164,
+   "lo": 0.021043771043771045,
+   "hi": 0.04640012373366329,
+   "auc": 0.7174855491329479,
+   "p": 1.7484480753393558e-14,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 1.0990245044990237e-13
+  },
+  {
+   "vs": "mathlib",
+   "metric": "single_use_cut",
+   "label": "Single-use claims",
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "auc": 0.45120600541471817,
+   "p": 0.020673676635930806,
+   "n_openai": 68,
+   "n_ref": 239,
+   "q": 0.045482088599047774
+  },
+  {
+   "vs": "mathlib",
+   "metric": "dead_cut",
+   "label": "Unused claims",
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "auc": 0.497907949790795,
+   "p": 0.5991947186307282,
+   "n_openai": 68,
+   "n_ref": 239,
+   "q": 0.6938044110461062
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:apply a lemma",
+   "label": "Apply a lemma",
+   "diff": 0.023921693428873986,
+   "lo": 0.00871197563300476,
+   "hi": 0.03449265189264164,
+   "auc": 0.6003382455694595,
+   "p": 0.0018403243784595913,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.006747856054351835
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:argue by contradiction",
+   "label": "Argue by contradiction",
+   "diff": 0.0006595044080970845,
+   "lo": 0.0001158775752852148,
+   "hi": 0.0010173166551378226,
+   "auc": 0.5914930445277267,
+   "p": 0.0036776059554086736,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.011558190145570118
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:assume a hypothesis",
+   "label": "Assume a hypothesis",
+   "diff": -0.00955986626746555,
+   "lo": -0.015955876797458482,
+   "hi": -0.0028276719405034073,
+   "auc": 0.42426792860318874,
+   "p": 0.018726298115209768,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.043366164056275254
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:automation certificate",
+   "label": "Automation certificate",
+   "diff": 0.14156859802310218,
+   "lo": 0.11060149426045106,
+   "hi": 0.1721789394320181,
+   "auc": 0.8714508035317284,
+   "p": 1.8323597070819426e-32,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 8.062382711160547e-31
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:close by reflexivity",
+   "label": "Close by reflexivity",
+   "diff": 0.019382830448159222,
+   "lo": 0.016205979513332105,
+   "hi": 0.02143271048689085,
+   "auc": 0.7826811916407292,
+   "p": 1.695556599424021e-18,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 1.8651122593664232e-17
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:decide by computation",
+   "label": "Decide by computation",
+   "diff": 0.0004407875404055245,
+   "lo": 0.00029175784099197665,
+   "hi": 0.0009368080395162664,
+   "auc": 0.7743917931779204,
+   "p": 8.859426663776742e-28,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 1.9490738660308833e-26
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:generalize a variable",
+   "label": "Generalize a variable",
+   "diff": -0.1635291346836079,
+   "lo": -0.187877868220535,
+   "hi": -0.1304094075553842,
+   "auc": 0.16135742869846917,
+   "p": 7.504753723438317e-26,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 1.1006972127709531e-24
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:induct or pattern-match",
+   "label": "Induct or pattern-match",
+   "diff": -0.0016584259315577249,
+   "lo": -0.003179720586870254,
+   "hi": 0.0010169561023110221,
+   "auc": 0.47174934891697895,
+   "p": 0.38050804022164275,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.4924221696985965
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:introduce or eliminate a connective",
+   "label": "Introduce or eliminate a connective",
+   "diff": -0.0017977870453410646,
+   "lo": -0.00484743484745658,
+   "hi": 0.003116481897905966,
+   "auc": 0.4699390205170552,
+   "p": 0.3507800328797932,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.4677067105063909
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:other",
+   "label": "Other",
+   "diff": 0.0008174631736307999,
+   "lo": -2.4185817037931834e-05,
+   "hi": 0.0018711756830819294,
+   "auc": 0.5695785428444388,
+   "p": 0.030543064320981476,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.06399499191062785
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:rewrite along an equation",
+   "label": "Rewrite along an equation",
+   "diff": -0.009472518936424201,
+   "lo": -0.023270289390909336,
+   "hi": 0.011037835694415184,
+   "auc": 0.5023978911262148,
+   "p": 0.9408524080258517,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.9856549036461304
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:split into cases",
+   "label": "Split into cases",
+   "diff": 0.0015417676823448441,
+   "lo": 0.0010146167652039712,
+   "hi": 0.0018163804491413474,
+   "auc": 0.7492298164263482,
+   "p": 4.336583111944617e-16,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 3.816193138511264e-15
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:state an intermediate claim",
+   "label": "State an intermediate claim",
+   "diff": -0.0006014908668597061,
+   "lo": -0.0012188484634123255,
+   "hi": 5.037216754394536e-05,
+   "auc": 0.4493028647652925,
+   "p": 0.1145815020490014,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.173847796212278
+  },
+  {
+   "vs": "mathlib",
+   "metric": "share:use a hypothesis",
+   "label": "Use a hypothesis",
+   "diff": -0.00907441200282335,
+   "lo": -0.016491204667046663,
+   "hi": -0.004884132663886792,
+   "auc": 0.3819475322365496,
+   "p": 0.00024751617591294294,
+   "n_openai": 91,
+   "n_ref": 692,
+   "q": 0.001089071174016949
+  },
+  {
+   "vs": "human",
+   "metric": "e_ir",
+   "label": "Compiled energy",
+   "diff": 0.1674717514967865,
+   "lo": -1.4548463598886152,
+   "hi": 0.6274389044042863,
+   "auc": 0.5802197802197803,
+   "p": 0.4097448076607886,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.5151077582021342
+  },
+  {
+   "vs": "human",
+   "metric": "nodes_med",
+   "label": "Proof size",
+   "diff": -3.0,
+   "lo": -15.5,
+   "hi": 1.5,
+   "auc": 0.3412087912087912,
+   "p": 0.10110546426953658,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.17305696853016936
+  },
+  {
+   "vs": "human",
+   "metric": "weakening",
+   "label": "Unused hypotheses",
+   "diff": 0.027642254724031187,
+   "lo": -0.010319270279919551,
+   "hi": 0.11132875521491722,
+   "auc": 0.654945054945055,
+   "p": 0.11012716179192597,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.17305696853016936
+  },
+  {
+   "vs": "human",
+   "metric": "linear",
+   "label": "Linear hypotheses",
+   "diff": -0.0015193280913361473,
+   "lo": -0.06878161548659556,
+   "hi": 0.059951532730589285,
+   "auc": 0.512087912087912,
+   "p": 0.9049683026097396,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.9711854954836231
+  },
+  {
+   "vs": "human",
+   "metric": "contraction",
+   "label": "Reused hypotheses",
+   "diff": -0.031256724923031,
+   "lo": -0.1209881814922827,
+   "hi": 0.016395412739855918,
+   "auc": 0.3708791208791209,
+   "p": 0.18340690227099898,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.2689967899974652
+  },
+  {
+   "vs": "human",
+   "metric": "cuts_per_100",
+   "label": "Intermediate claims",
+   "diff": -0.000892504822859505,
+   "lo": -0.030133225295987696,
+   "hi": 0.03293807641633729,
+   "auc": 0.528021978021978,
+   "p": 0.7743353414550236,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.8736091031800266
+  },
+  {
+   "vs": "human",
+   "metric": "single_use_cut",
+   "label": "Single-use claims",
+   "diff": 0.0,
+   "lo": -0.5,
+   "hi": 0.0,
+   "auc": 0.36764705882352944,
+   "p": 0.003464471764286469,
+   "n_openai": 68,
+   "n_ref": 7,
+   "q": 0.011558190145570118
+  },
+  {
+   "vs": "human",
+   "metric": "dead_cut",
+   "label": "Unused claims",
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0,
+   "auc": 0.5,
+   "p": 1.0,
+   "n_openai": 68,
+   "n_ref": 7,
+   "q": 1.0
+  },
+  {
+   "vs": "human",
+   "metric": "share:apply a lemma",
+   "label": "Apply a lemma",
+   "diff": 0.011752262217067239,
+   "lo": -0.021334397367632988,
+   "hi": 0.16702812889569754,
+   "auc": 0.6175824175824176,
+   "p": 0.225921795520304,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.3206631936417218
+  },
+  {
+   "vs": "human",
+   "metric": "share:argue by contradiction",
+   "label": "Argue by contradiction",
+   "diff": 0.0005251733332930638,
+   "lo": -0.00012776546787766994,
+   "hi": 0.0012291472234455627,
+   "auc": 0.654945054945055,
+   "p": 0.10956951708252309,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.17305696853016936
+  },
+  {
+   "vs": "human",
+   "metric": "share:assume a hypothesis",
+   "label": "Assume a hypothesis",
+   "diff": 0.015912251629369725,
+   "lo": -0.0028757327298654777,
+   "hi": 0.03138120595411122,
+   "auc": 0.6692307692307692,
+   "p": 0.08092697637093124,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.1548168243617815
+  },
+  {
+   "vs": "human",
+   "metric": "share:automation certificate",
+   "label": "Automation certificate",
+   "diff": 0.017065313604605753,
+   "lo": -0.09169711546006057,
+   "hi": 0.07402152509698999,
+   "auc": 0.5186813186813187,
+   "p": 0.851159140308989,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.9362750543398878
+  },
+  {
+   "vs": "human",
+   "metric": "share:close by reflexivity",
+   "label": "Close by reflexivity",
+   "diff": 0.0019330250638214808,
+   "lo": -0.015569243771257346,
+   "hi": 0.0112437925108324,
+   "auc": 0.4956043956043956,
+   "p": 0.9682558775200156,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.9907734560669927
+  },
+  {
+   "vs": "human",
+   "metric": "share:decide by computation",
+   "label": "Decide by computation",
+   "diff": 0.0004407875404055245,
+   "lo": 0.000224993252929485,
+   "hi": 0.0009368080395162664,
+   "auc": 0.7494505494505495,
+   "p": 0.008755754225134657,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.021402954772551382
+  },
+  {
+   "vs": "human",
+   "metric": "share:generalize a variable",
+   "label": "Generalize a variable",
+   "diff": -0.12047962856104866,
+   "lo": -0.17785083674638422,
+   "hi": -0.02514605457810859,
+   "auc": 0.22637362637362637,
+   "p": 0.0047206003715295425,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.012218024491017639
+  },
+  {
+   "vs": "human",
+   "metric": "share:induct or pattern-match",
+   "label": "Induct or pattern-match",
+   "diff": 0.00398403025749723,
+   "lo": 0.002250555763148766,
+   "hi": 0.0063572517604743774,
+   "auc": 0.7736263736263737,
+   "p": 0.004720115427260211,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.012218024491017639
+  },
+  {
+   "vs": "human",
+   "metric": "share:introduce or eliminate a connective",
+   "label": "Introduce or eliminate a connective",
+   "diff": 0.00043622596009938903,
+   "lo": -0.0027250874792873036,
+   "hi": 0.0062974621753384245,
+   "auc": 0.5516483516483517,
+   "p": 0.5970021885046708,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.6938044110461062
+  },
+  {
+   "vs": "human",
+   "metric": "share:other",
+   "label": "Other",
+   "diff": -0.0039694234534356256,
+   "lo": -0.07328848647979605,
+   "hi": -0.0011129934805977617,
+   "auc": 0.22417582417582418,
+   "p": 0.004394940411272982,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.012218024491017639
+  },
+  {
+   "vs": "human",
+   "metric": "share:rewrite along an equation",
+   "label": "Rewrite along an equation",
+   "diff": 0.04272430173310729,
+   "lo": -0.008113195979783577,
+   "hi": 0.07989017655742325,
+   "auc": 0.7043956043956044,
+   "p": 0.03492900131217116,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.06985800262434232
+  },
+  {
+   "vs": "human",
+   "metric": "share:split into cases",
+   "label": "Split into cases",
+   "diff": 0.0008977519117922276,
+   "lo": -0.0003674190898909637,
+   "hi": 0.0016181229773462784,
+   "auc": 0.6593406593406593,
+   "p": 0.09982834693326911,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.17305696853016936
+  },
+  {
+   "vs": "human",
+   "metric": "share:state an intermediate claim",
+   "label": "State an intermediate claim",
+   "diff": -0.0010337539263080091,
+   "lo": -0.0031905805719875595,
+   "hi": 0.0016253702648362633,
+   "auc": 0.42417582417582417,
+   "p": 0.4360557746133865,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.5329570578608057
+  },
+  {
+   "vs": "human",
+   "metric": "share:use a hypothesis",
+   "label": "Use a hypothesis",
+   "diff": 0.008157083029337459,
+   "lo": -0.005803401588632049,
+   "hi": 0.02492459503208977,
+   "auc": 0.5989010989010989,
+   "p": 0.3088505111039084,
+   "n_openai": 91,
+   "n_ref": 10,
+   "q": 0.42466945276787404
+  }
+ ],
+ "text_vs_ir": {
+  "mathlib": {
+   "rho": 0.12804055383695026,
+   "p": 0.008300244402929261,
+   "n": 424
+  },
+  "openai": {
+   "rho": 0.1488294314381271,
+   "p": 0.159139728385944,
+   "n": 91
+  },
+  "text_gap_raw": 1.7791472270462227,
+  "text_gap_given_ir": 1.6153200928303595
+ },
+ "kl_bits": {
+  "openai": 307.7822264253159,
+  "human": 421.3618307650885,
+  "openai_top8_share": 0.4618039432246496,
+  "human_top8_share": 0.5591269958734908
+ },
+ "spectrum": {
+  "openai": [
+   {
+    "rank": 1,
+    "lam": 67.72630312431087,
+    "shift": -1.3229451596704718,
+    "bits": 46.354521949220825
+   },
+   {
+    "rank": 2,
+    "lam": 37.88819577515465,
+    "shift": 0.4381195802615909,
+    "bits": 24.12583205509784
+   },
+   {
+    "rank": 3,
+    "lam": 27.873403385013525,
+    "shift": 0.2850352020331713,
+    "bits": 17.043260193205178
+   },
+   {
+    "rank": 4,
+    "lam": 26.077332129119007,
+    "shift": 0.8846926600611812,
+    "bits": 16.301694235750727
+   },
+   {
+    "rank": 5,
+    "lam": 21.87108455613899,
+    "shift": -0.6594704114273351,
+    "bits": 13.143543583676133
+   },
+   {
+    "rank": 6,
+    "lam": 17.67129642693655,
+    "shift": 0.18490927936274482,
+    "bits": 9.978794261921388
+   },
+   {
+    "rank": 7,
+    "lam": 14.438333640648986,
+    "shift": 0.3707200754406089,
+    "bits": 7.866929703309822
+   },
+   {
+    "rank": 8,
+    "lam": 13.653203684312292,
+    "shift": -0.330297692418829,
+    "bits": 7.320469835490941
+   },
+   {
+    "rank": 9,
+    "lam": 11.646682347290872,
+    "shift": 0.2838663815803336,
+    "bits": 5.967160611402452
+   },
+   {
+    "rank": 10,
+    "lam": 11.286093824845853,
+    "shift": 0.44356434140300954,
+    "bits": 5.813535741719206
+   },
+   {
+    "rank": 11,
+    "lam": 10.659311010653425,
+    "shift": 0.08194724820029871,
+    "bits": 5.265543006856254
+   },
+   {
+    "rank": 12,
+    "lam": 10.07716425853123,
+    "shift": -0.4511749348751036,
+    "bits": 5.028117675710608
+   },
+   {
+    "rank": 13,
+    "lam": 8.901545197523719,
+    "shift": -0.5637550665721096,
+    "bits": 4.351990646754207
+   },
+   {
+    "rank": 14,
+    "lam": 9.222851889937484,
+    "shift": -0.07365206486018691,
+    "bits": 4.332840397901939
+   },
+   {
+    "rank": 15,
+    "lam": 8.526165590235351,
+    "shift": 0.5164685519928843,
+    "bits": 4.07544441782061
+   },
+   {
+    "rank": 16,
+    "lam": 8.711253011302372,
+    "shift": -0.07257698743753277,
+    "bits": 4.004852754701131
+   },
+   {
+    "rank": 17,
+    "lam": 8.621105167260689,
+    "shift": -0.24924773295108532,
+    "bits": 3.9883422082586986
+   },
+   {
+    "rank": 18,
+    "lam": 8.290697256863702,
+    "shift": -0.07346910432959874,
+    "bits": 3.737273293222399
+   },
+   {
+    "rank": 19,
+    "lam": 8.089776648547941,
+    "shift": -0.010924566931953058,
+    "bits": 3.606228960146988
+   },
+   {
+    "rank": 20,
+    "lam": 8.060527769712955,
+    "shift": -0.13000018217106124,
+    "bits": 3.5998478552260367
+   },
+   {
+    "rank": 21,
+    "lam": 7.608082295156798,
+    "shift": 0.18248657628925344,
+    "bits": 3.326979199315405
+   },
+   {
+    "rank": 22,
+    "lam": 7.271365854259857,
+    "shift": 0.12588434752879935,
+    "bits": 3.104152115589098
+   },
+   {
+    "rank": 23,
+    "lam": 7.06633920385591,
+    "shift": -0.08508853757327786,
+    "bits": 2.9706798395228686
+   },
+   {
+    "rank": 24,
+    "lam": 7.009389262987034,
+    "shift": -0.2103461098663517,
+    "bits": 2.9621300428842368
+   },
+   {
+    "rank": 25,
+    "lam": 6.803067972569665,
+    "shift": -0.04019719785113564,
+    "bits": 2.8041015050175684
+   },
+   {
+    "rank": 26,
+    "lam": 6.618499824282998,
+    "shift": 0.0346212202880926,
+    "bits": 2.6905034213237706
+   },
+   {
+    "rank": 27,
+    "lam": 6.552069221395127,
+    "shift": -0.02589034590391899,
+    "bits": 2.649479593221506
+   },
+   {
+    "rank": 28,
+    "lam": 6.168884459278213,
+    "shift": -0.40104807713856927,
+    "bits": 2.5320783933749254
+   },
+   {
+    "rank": 29,
+    "lam": 5.922529026269672,
+    "shift": 0.1902316886170206,
+    "bits": 2.29385161820877
+   },
+   {
+    "rank": 30,
+    "lam": 5.573756002128924,
+    "shift": 0.3441536673183669,
+    "bits": 2.145380287516674
+   },
+   {
+    "rank": 31,
+    "lam": 5.391656848369929,
+    "shift": -0.4435169759620073,
+    "bits": 2.094440767462242
+   },
+   {
+    "rank": 32,
+    "lam": 5.474375120276481,
+    "shift": 0.06776171617530095,
+    "bits": 2.0045444261236134
+   },
+   {
+    "rank": 33,
+    "lam": 5.381473224363249,
+    "shift": 0.1156400566640196,
+    "bits": 1.9562105660336526
+   },
+   {
+    "rank": 34,
+    "lam": 5.06776883598728,
+    "shift": 0.09168487694670668,
+    "bits": 1.769663335945826
+   },
+   {
+    "rank": 35,
+    "lam": 4.92830726838111,
+    "shift": 0.29761271707098597,
+    "bits": 1.7470207553619392
+   },
+   {
+    "rank": 36,
+    "lam": 0.03461775945429396,
+    "shift": -0.09718547650424765,
+    "bits": 1.7366089723744402
+   },
+   {
+    "rank": 37,
+    "lam": 0.038051234815378344,
+    "shift": 0.06475430253702755,
+    "bits": 1.6670817988508169
+   },
+   {
+    "rank": 38,
+    "lam": 0.039313507038541945,
+    "shift": -0.17002692276455517,
+    "bits": 1.6622802881839625
+   },
+   {
+    "rank": 39,
+    "lam": 4.833144100075644,
+    "shift": -0.06526244536732789,
+    "bits": 1.6316203412529555
+   },
+   {
+    "rank": 40,
+    "lam": 4.665326495145965,
+    "shift": -0.0028691405205339103,
+    "bits": 1.5329910923859638
+   }
+  ],
+  "human": [
+   {
+    "rank": 1,
+    "lam": 109.80567807410428,
+    "shift": 3.4796402404325857,
+    "bits": 83.8313025687004
+   },
+   {
+    "rank": 2,
+    "lam": 121.95529400320896,
+    "shift": -0.2258985592182708,
+    "bits": 83.82250760467186
+   },
+   {
+    "rank": 3,
+    "lam": 33.00179435315682,
+    "shift": -1.0338091425883935,
+    "bits": 21.333127069952926
+   },
+   {
+    "rank": 4,
+    "lam": 19.71921894712933,
+    "shift": 0.8590978528010379,
+    "bits": 11.884686823122165
+   },
+   {
+    "rank": 5,
+    "lam": 18.07491228347059,
+    "shift": 0.05620457209004027,
+    "bits": 10.231265970687122
+   },
+   {
+    "rank": 6,
+    "lam": 16.492014941712835,
+    "shift": 0.1814667017700938,
+    "bits": 9.17703277278356
+   },
+   {
+    "rank": 7,
+    "lam": 14.416007550051877,
+    "shift": 0.29443855760982324,
+    "bits": 7.815340445382625
+   },
+   {
+    "rank": 8,
+    "lam": 13.631452900689677,
+    "shift": -0.6143754872235121,
+    "bits": 7.499511356137509
+   },
+   {
+    "rank": 9,
+    "lam": 12.617935383506317,
+    "shift": 0.8727600243628795,
+    "bits": 7.101324563364355
+   },
+   {
+    "rank": 10,
+    "lam": 10.571831277999323,
+    "shift": -0.47705155538375527,
+    "bits": 5.367703018855273
+   },
+   {
+    "rank": 11,
+    "lam": 9.547130314701976,
+    "shift": 0.43682265944760956,
+    "bits": 4.675560915175024
+   },
+   {
+    "rank": 12,
+    "lam": 9.038107423425018,
+    "shift": -0.047522099707817005,
+    "bits": 4.211887561887306
+   },
+   {
+    "rank": 13,
+    "lam": 8.686310268862194,
+    "shift": -0.2416805347726006,
+    "bits": 4.027262645140114
+   },
+   {
+    "rank": 14,
+    "lam": 8.452647899104504,
+    "shift": 0.10160508902856782,
+    "bits": 3.843694304428889
+   },
+   {
+    "rank": 15,
+    "lam": 7.559331746396114,
+    "shift": -0.6870184440354837,
+    "bits": 3.612900287529356
+   },
+   {
+    "rank": 16,
+    "lam": 7.966879214164961,
+    "shift": -0.3401249413321689,
+    "bits": 3.6119827655653087
+   },
+   {
+    "rank": 17,
+    "lam": 7.494032869651336,
+    "shift": -0.6096513198974671,
+    "bits": 3.499690001691871
+   },
+   {
+    "rank": 18,
+    "lam": 6.543102455174404,
+    "shift": -0.09723036975913364,
+    "bits": 2.6503352163236924
+   },
+   {
+    "rank": 19,
+    "lam": 6.288407271556179,
+    "shift": -0.07423137421239347,
+    "bits": 2.4924069827445985
+   },
+   {
+    "rank": 20,
+    "lam": 5.805720493515108,
+    "shift": -0.030968871752494163,
+    "bits": 2.1985488266714315
+   },
+   {
+    "rank": 21,
+    "lam": 0.020332756102469297,
+    "shift": -0.24984833359466121,
+    "bits": 2.1483741993869163
+   },
+   {
+    "rank": 22,
+    "lam": 5.528715895196012,
+    "shift": -0.04624636091567105,
+    "bits": 2.0348485275970702
+   },
+   {
+    "rank": 23,
+    "lam": 0.024104220801859973,
+    "shift": 0.11283330527973415,
+    "bits": 1.9925089287418025
+   },
+   {
+    "rank": 24,
+    "lam": 0.026648345138019308,
+    "shift": 0.13139634246361928,
+    "bits": 1.9252343840073565
+   },
+   {
+    "rank": 25,
+    "lam": 0.02810592886908561,
+    "shift": -0.012036820465641576,
+    "bits": 1.8755219814436055
+   },
+   {
+    "rank": 26,
+    "lam": 5.204420001937493,
+    "shift": 0.035790050645001896,
+    "bits": 1.8439032404946496
+   },
+   {
+    "rank": 27,
+    "lam": 0.02993014668353317,
+    "shift": 0.05730615333657835,
+    "bits": 1.8337398386899677
+   },
+   {
+    "rank": 28,
+    "lam": 4.986683879787001,
+    "shift": -0.0587309997914674,
+    "bits": 1.7192323227059414
+   },
+   {
+    "rank": 29,
+    "lam": 4.835480690478128,
+    "shift": 0.2671579361748005,
+    "bits": 1.6813698272370141
+   },
+   {
+    "rank": 30,
+    "lam": 0.03981251718894171,
+    "shift": 0.06638973125905606,
+    "bits": 1.6358675986217595
+   },
+   {
+    "rank": 31,
+    "lam": 0.04088675933761891,
+    "shift": 0.03768147903941835,
+    "bits": 1.6152815137428078
+   },
+   {
+    "rank": 32,
+    "lam": 0.04177448931129287,
+    "shift": -0.05014303210411709,
+    "bits": 1.601217104069252
+   },
+   {
+    "rank": 33,
+    "lam": 0.04593836976150854,
+    "shift": -0.2167706727176667,
+    "bits": 1.5677640506022934
+   },
+   {
+    "rank": 34,
+    "lam": 0.044094136954202286,
+    "shift": -0.07321438088748526,
+    "bits": 1.565961023617928
+   },
+   {
+    "rank": 35,
+    "lam": 0.04522514445307631,
+    "shift": 0.05200449030161721,
+    "bits": 1.5465919253545832
+   },
+   {
+    "rank": 36,
+    "lam": 4.622963272735595,
+    "shift": -0.06122305901692073,
+    "bits": 1.5117104230944787
+   },
+   {
+    "rank": 37,
+    "lam": 4.510970383649806,
+    "shift": 0.292335650391879,
+    "bits": 1.5075573281632142
+   },
+   {
+    "rank": 38,
+    "lam": 0.04902635017976668,
+    "shift": 0.14386388410252288,
+    "bits": 1.5040965270071507
+   },
+   {
+    "rank": 39,
+    "lam": 4.575376484871063,
+    "shift": 0.16888688471226065,
+    "bits": 1.5027185682982918
+   },
+   {
+    "rank": 40,
+    "lam": 0.04985517752714709,
+    "shift": 0.1380935584226537,
+    "bits": 1.4914277892416727
+   }
+  ]
+ },
+ "modes": [
+  {
+   "rank": 1,
+   "lam": 67.72630312431087,
+   "shift": 1.3229451596704718,
+   "bits": 46.354521949220825,
+   "pos": [
+    {
+     "gesture": "core:Eq.rec(∀,=)⇒∀",
+     "desc": "Eq.rec from (∀,=) ⇒ ∀",
+     "loading": 0.4355922280831003
+    },
+    {
+     "gesture": "λh:=:1",
+     "desc": "assume a = hypothesis, used once",
+     "loading": 0.40829469460897305
+    },
+    {
+     "gesture": "hyp()⇒=",
+     "desc": "use a hypothesis ⇒ =",
+     "loading": 0.39474503054635657
+    },
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": 0.31724853106196627
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.1802273731649315
+    },
+    {
+     "gesture": "core:Eq.rec(=,=)⇒=",
+     "desc": "Eq.rec from (=,=) ⇒ =",
+     "loading": 0.17391408977803102
+    },
+    {
+     "gesture": "lemma(∀)⇒P",
+     "desc": "apply a lemma from (∀) ⇒ P",
+     "loading": 0.08239212696026876
+    },
+    {
+     "gesture": "λh:P:ω",
+     "desc": "assume a predicate hypothesis, used repeatedly",
+     "loading": 0.06606969637245147
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "core:congrArg(=)⇒=",
+     "desc": "apply a function to both sides from (=) ⇒ =",
+     "loading": -0.2709602012079878
+    },
+    {
+     "gesture": "lemma()⇒=",
+     "desc": "apply a lemma ⇒ =",
+     "loading": -0.21080738933624743
+    },
+    {
+     "gesture": "(other gestures)",
+     "desc": "all rarer gestures together",
+     "loading": -0.19523931048462725
+    },
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": -0.164915736147586
+    },
+    {
+     "gesture": "core:id(=)⇒=",
+     "desc": "restate the goal (show) from (=) ⇒ =",
+     "loading": -0.14709579287663369
+    },
+    {
+     "gesture": "lemma(P)⇒P",
+     "desc": "apply a lemma from (P) ⇒ P",
+     "loading": -0.13442522929724002
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": -2.7907363919776884e-16,
+     "sd": 0.7542382468202481,
+     "beyond2": 0.0021452873003520276
+    },
+    "openai": {
+     "mean": 1.3229451596704718,
+     "sd": 8.232605810303042,
+     "beyond2": 0.03204608534221779
+    },
+    "human": {
+     "mean": 2.3000436569314844,
+     "sd": 10.73114097112232,
+     "beyond2": 0.05100779729634431
+    }
+   },
+   "ex_openai": [],
+   "ex_mathlib": [
+    {
+     "name": "Multiset.eq_zero_iff_forall_notMem",
+     "project": "Mathlib/Data/Multiset",
+     "score": 48.73274319447493,
+     "nodes": 10,
+     "text": "theorem eq_zero_iff_forall_notMem {s : Multiset α} : s = 0 ↔ ∀ a, a ∉ s :=\n  ⟨fun h => h.symm ▸ fun _ => notMem_zero _, eq_zero_of_forall_notMem⟩"
+    },
+    {
+     "name": "Ordinal.toType_noMax_of_succ_lt",
+     "project": "Mathlib/SetTheory/Ordinal",
+     "score": 42.50828146655748,
+     "nodes": 13,
+     "text": "theorem toType_noMax_of_succ_lt {o : Ordinal} (ho : ∀ a < o, succ a < o) : NoMaxOrder o.ToType :=\n  ⟨has_succ_of_type_succ_lt (type_toType _ ▸ ho)⟩"
+    }
+   ],
+   "ex_human": []
+  },
+  {
+   "rank": 2,
+   "lam": 37.88819577515465,
+   "shift": 0.4381195802615909,
+   "bits": 24.12583205509784,
+   "pos": [
+    {
+     "gesture": "tac:NormNum()⇒P",
+     "desc": "norm_num numeral evaluation ⇒ P",
+     "loading": 0.4063867882129052
+    },
+    {
+     "gesture": "tac:NormNum(P,P)⇒P",
+     "desc": "norm_num numeral evaluation from (P,P) ⇒ P",
+     "loading": 0.32603736086844876
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.322134869742008
+    },
+    {
+     "gesture": "tac:NormNum(=)⇒P",
+     "desc": "norm_num numeral evaluation from (=) ⇒ P",
+     "loading": 0.2557035677548437
+    },
+    {
+     "gesture": "tac:NormNum(=,P,P,=)⇒P",
+     "desc": "norm_num numeral evaluation from (=,P,P,=) ⇒ P",
+     "loading": 0.2309696540803033
+    },
+    {
+     "gesture": "tac:NormNum(P,=)⇒=",
+     "desc": "norm_num numeral evaluation from (P,=) ⇒ =",
+     "loading": 0.2274698995901934
+    },
+    {
+     "gesture": "tac:NormNum(P)⇒=",
+     "desc": "norm_num numeral evaluation from (P) ⇒ =",
+     "loading": 0.20273209094563235
+    },
+    {
+     "gesture": "lemma(=)⇒=",
+     "desc": "apply a lemma from (=) ⇒ =",
+     "loading": 0.16935170985567996
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": -0.46646231019714296
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": -0.11861698927690338
+    },
+    {
+     "gesture": "lemma(P)⇒P",
+     "desc": "apply a lemma from (P) ⇒ P",
+     "loading": -0.1083348528287539
+    },
+    {
+     "gesture": "core:id(=)⇒=",
+     "desc": "restate the goal (show) from (=) ⇒ =",
+     "loading": -0.102384926351612
+    },
+    {
+     "gesture": "hyp()⇒P",
+     "desc": "use a hypothesis ⇒ P",
+     "loading": -0.0892302061691371
+    },
+    {
+     "gesture": "tac:NormNum(P)⇒P",
+     "desc": "norm_num numeral evaluation from (P) ⇒ P",
+     "loading": -0.08360704705607803
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": -3.768469911125116e-15,
+     "sd": 0.5338173826671253,
+     "beyond2": 0.0044463833032420685
+    },
+    "openai": {
+     "mean": 0.43811958026159087,
+     "sd": 6.08712896297187,
+     "beyond2": 0.041027372231355726
+    },
+    "human": {
+     "mean": 0.1813248233837395,
+     "sd": 3.398762282841998,
+     "beyond2": 0.031726173085785875
+    }
+   },
+   "ex_openai": [
+    {
+     "name": "OAI.PixtonChow.ColorBudget.block_scale",
+     "project": "OAI/Combinatorics/StableGraphs",
+     "score": 105.32119054852178,
+     "nodes": 48,
+     "text": "theorem block_scale : (10 ^ 40 : ℕ) ^ 3 = genus ^ 2 := by\n  norm_num [genus]"
+    },
+    {
+     "name": "OAI.C0Absorption.abs_realSign",
+     "project": "OAI/Analysis/C0Absorption",
+     "score": 36.91312408579149,
+     "nodes": 31,
+     "text": "@[simp] theorem abs_realSign (b : Bool) : |realSign b| = 1 := by cases b <;> norm_num"
+    },
+    {
+     "name": "OAI.MatchingInterpolation.sum_abs_specialCoeff",
+     "project": "OAI/Combinatorics/MatchingPSD",
+     "score": 36.75198130982122,
+     "nodes": 102,
+     "text": "lemma sum_abs_specialCoeff : (∑ j, |specialCoeff j|) = 6 := by\n  norm_num [specialCoeff, Fin.sum_univ_succ]"
+    }
+   ],
+   "ex_mathlib": [
+    {
+     "name": "Real.exp_one_gt_two",
+     "project": "Mathlib/Analysis/Complex",
+     "score": 44.2715201591488,
+     "nodes": 36,
+     "text": "theorem exp_one_gt_two : 2 < exp 1 :=\n  lt_trans (by norm_num) exp_one_gt_d9"
+    },
+    {
+     "name": "Real.sigmoid_zero",
+     "project": "Mathlib/Analysis/SpecialFunctions",
+     "score": 29.501554761894088,
+     "nodes": 42,
+     "text": "lemma sigmoid_zero : sigmoid 0 = 2⁻¹ := by norm_num [sigmoid]"
+    }
+   ],
+   "ex_human": [
+    {
+     "name": "Hilbert_strong_2_2",
+     "project": "Carleson/Classical",
+     "score": 71.90276647758547,
+     "nodes": 47,
+     "text": "lemma Hilbert_strong_2_2 ⦃r : ℝ⦄ (hr : 0 < r) :\n    HasBoundedStrongType (czOperator K r) 2 2 volume volume (C_Ts 4) := by\n  intro g hg\n  refine ⟨czOperator_aestronglyMeasurable' Hilbert_kernel_measurable hg.aestronglyMeasurable, ?_⟩\n  apply (eLpNorm_czOperator hr hg.memLp_top).trans\n  gcongr\n  simp [C_Ts]\n  norm_num"
+    }
+   ]
+  },
+  {
+   "rank": 3,
+   "lam": 27.873403385013525,
+   "shift": 0.2850352020331713,
+   "bits": 17.043260193205178,
+   "pos": [
+    {
+     "gesture": "λx:1",
+     "desc": "take an arbitrary element, used once",
+     "loading": 0.6249969393660191
+    },
+    {
+     "gesture": "proj:struct",
+     "desc": "project a field out of a structure",
+     "loading": 0.3519383978224456
+    },
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": 0.28934533055831113
+    },
+    {
+     "gesture": "hyp()⇒P",
+     "desc": "use a hypothesis ⇒ P",
+     "loading": 0.2653502437953883
+    },
+    {
+     "gesture": "λh:P:1",
+     "desc": "assume a predicate hypothesis, used once",
+     "loading": 0.12155696148642287
+    },
+    {
+     "gesture": "core:Eq.rec(∀,=)⇒∀",
+     "desc": "Eq.rec from (∀,=) ⇒ ∀",
+     "loading": 0.002535794310646395
+    },
+    {
+     "gesture": "core:Eq.ndrec(∀,=)⇒∀",
+     "desc": "transport along an equation (▸) from (∀,=) ⇒ ∀",
+     "loading": 0.000761882021350835
+    },
+    {
+     "gesture": "core:Eq.rec(=,=)⇒=",
+     "desc": "Eq.rec from (=,=) ⇒ =",
+     "loading": 0.0004572240346617053
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "core:congrArg(=)⇒=",
+     "desc": "apply a function to both sides from (=) ⇒ =",
+     "loading": -0.21957539429442743
+    },
+    {
+     "gesture": "lemma()⇒=",
+     "desc": "apply a lemma ⇒ =",
+     "loading": -0.20048149140378935
+    },
+    {
+     "gesture": "(other gestures)",
+     "desc": "all rarer gestures together",
+     "loading": -0.18317548056465463
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": -0.18074093154428636
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": -0.17723151580984944
+    },
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": -0.16234602656279187
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": -9.172350379227368e-16,
+     "sd": 0.7617041509901921,
+     "beyond2": 0.0006461352140489622
+    },
+    "openai": {
+     "mean": 0.2850352020331718,
+     "sd": 5.247521205707694,
+     "beyond2": 0.015504910801120042
+    },
+    "human": {
+     "mean": 2.5974982035230836,
+     "sd": 10.422969916434983,
+     "beyond2": 0.06894918288000934
+    }
+   },
+   "ex_openai": [
+    {
+     "name": "OAI.EilenbergGanea.CubeRealization.ones_subset",
+     "project": "OAI/AlgebraicTopology/Cubical",
+     "score": 44.49389329862934,
+     "nodes": 11,
+     "text": "theorem ones_subset (c : Cell (G := G) L) (x : Coordinates c) :\n    ones c x ⊆ c.directions := by\n  intro v hv\n  exact ((mem_ones c x v).mp hv).1"
+    },
+    {
+     "name": "OAI.PixtonChow.parameters_stable",
+     "project": "OAI/Combinatorics/StableGraphs",
+     "score": 2.8414466044651228,
+     "nodes": 25,
+     "text": "theorem parameters_stable : 2 < 2 * genus + markingCount :=\n  (parameter_bounds genus entryCount (by norm_num [genus])).1"
+    },
+    {
+     "name": "OAI.Paper092.dimension_twenty_strict",
+     "project": "OAI/Geometry/ProjectionVolume",
+     "score": 2.5612884346945504,
+     "nodes": 109,
+     "text": "theorem dimension_twenty_strict :\n    simplexConstant 20 < simplexConstant 10 * simplexConstant 10 := by\n  norm_num [simplexConstant, Nat.factorial]"
+    }
+   ],
+   "ex_mathlib": [
+    {
+     "name": "Part.mul_mem_mul",
+     "project": "Mathlib/Data/Part",
+     "score": 60.52367841884603,
+     "nodes": 24,
+     "text": "theorem mul_mem_mul [Mul α] (a b : Part α) (ma mb : α) (ha : ma ∈ a) (hb : mb ∈ b) :\n    ma * mb ∈ a * b := ⟨⟨ha.1, hb.1⟩, by simp only [← ha.2, ← hb.2]; rfl⟩"
+    },
+    {
+     "name": "IntermediateField.Lifts.lt_iff",
+     "project": "Mathlib/FieldTheory/Extension",
+     "score": 48.366785657192366,
+     "nodes": 36,
+     "text": "theorem lt_iff : L₁ < L₂ ↔\n    ∃ h : L₁.carrier < L₂.carrier, L₂.emb.comp (inclusion h.le) = L₁.emb := by\n  rw [lt_iff_le_carrier_ne, le_iff]\n  exact ⟨fun h ↦ ⟨h.1.1.lt_of_ne h.2, h.1.2⟩, fun h ↦ ⟨⟨h.1.le, h.2⟩, h.1.ne⟩⟩"
+    }
+   ],
+   "ex_human": []
+  },
+  {
+   "rank": 4,
+   "lam": 26.077332129119007,
+   "shift": 0.8846926600611812,
+   "bits": 16.301694235750727,
+   "pos": [
+    {
+     "gesture": "tac:NormNum(=)⇒P",
+     "desc": "norm_num numeral evaluation from (=) ⇒ P",
+     "loading": 0.5118116418486675
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.38375134126311494
+    },
+    {
+     "gesture": "tac:NormNum(P)⇒P",
+     "desc": "norm_num numeral evaluation from (P) ⇒ P",
+     "loading": 0.2657948483382389
+    },
+    {
+     "gesture": "tac:NormNum(P,P,P,=)⇒≤",
+     "desc": "norm_num numeral evaluation from (P,P,P,=) ⇒ ≤",
+     "loading": 0.24721324450118998
+    },
+    {
+     "gesture": "tac:NormNum(P,=)⇒=",
+     "desc": "norm_num numeral evaluation from (P,=) ⇒ =",
+     "loading": 0.19500164612602336
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": 0.13388443060968333
+    },
+    {
+     "gesture": "tac:NormNum(=,P,P,=)⇒P",
+     "desc": "norm_num numeral evaluation from (=,P,P,=) ⇒ P",
+     "loading": 0.13216592755320475
+    },
+    {
+     "gesture": "λx:1",
+     "desc": "take an arbitrary element, used once",
+     "loading": 0.12101109795751834
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": -0.3760107616701485
+    },
+    {
+     "gesture": "core:id(=)⇒=",
+     "desc": "restate the goal (show) from (=) ⇒ =",
+     "loading": -0.17032235125118791
+    },
+    {
+     "gesture": "core:Eq.mpr(=,=)⇒=",
+     "desc": "rewrite the goal along an equation from (=,=) ⇒ =",
+     "loading": -0.1461765919619709
+    },
+    {
+     "gesture": "tac:Ring(=,=,=)⇒=",
+     "desc": "ring-normalization certificate from (=,=,=) ⇒ =",
+     "loading": -0.09644381937659804
+    },
+    {
+     "gesture": "core:Eq.symm(=)⇒=",
+     "desc": "flip an equation from (=) ⇒ =",
+     "loading": -0.09490234584268219
+    },
+    {
+     "gesture": "tac:Ring(=)⇒=",
+     "desc": "ring-normalization certificate from (=) ⇒ =",
+     "loading": -0.09009094199387153
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": -1.218643241873707e-15,
+     "sd": 0.7000671341084477,
+     "beyond2": 0.00551645522952598
+    },
+    "openai": {
+     "mean": 0.8846926600611801,
+     "sd": 5.12474212789398,
+     "beyond2": 0.07848892144323473
+    },
+    "human": {
+     "mean": 1.0902265842014054,
+     "sd": 3.78167106789551,
+     "beyond2": 0.12257647370005773
+    }
+   },
+   "ex_openai": [
+    {
+     "name": "OAI.MainGap.prospectiveDefect_norm",
+     "project": "OAI/Analysis/CStarAlgebra",
+     "score": 50.723187567899934,
+     "nodes": 12,
+     "text": "lemma prospectiveDefect_norm (X B : A) : ‖prospectiveDefect X B‖ ≤ 1 :=\n  norm_ramp_le_one _ (by norm_num)"
+    },
+    {
+     "name": "OAI.BackwardIntertwiners.explicitBeta_le_one",
+     "project": "OAI/Analysis/BackwardIntertwiners",
+     "score": 50.1629328113343,
+     "nodes": 18,
+     "text": "lemma explicitBeta_le_one (x : Base) (j : ℤ) : explicitBeta x j ≤ 1 :=\n  (explicitBeta_le x j).trans (Real.exp_le_one_iff.mpr (by norm_num))"
+    },
+    {
+     "name": "OAI.LeanBlast.CourtadeKumar.Rearrangement_rearrangement_sign_bounds",
+     "project": "OAI/InformationTheory/SoftChannel",
+     "score": 49.26028104436949,
+     "nodes": 42,
+     "text": "theorem Rearrangement_rearrangement_sign_bounds {F : Cube n → ℝ} (hF : IsSignValued F) :\n    ∀ y, -1 ≤ F y ∧ F y ≤ 1 := by\n  intro y\n  rcases hF y with h | h <;> rw [h] <;> norm_num"
+    }
+   ],
+   "ex_mathlib": [
+    {
+     "name": "Polynomial.supNorm_nonneg",
+     "project": "Mathlib/Analysis/Polynomial",
+     "score": 46.90382862411144,
+     "nodes": 14,
+     "text": "lemma supNorm_nonneg : 0 ≤ p.supNorm := by\n  apply gaussNorm_nonneg\n  norm_num"
+    },
+    {
+     "name": "Mathlib.Meta.NormNum.isNat_lt_false",
+     "project": "Mathlib/Tactic/NormNum",
+     "score": 33.07056261066621,
+     "nodes": 17,
+     "text": "theorem isNat_lt_false [Semiring α] [PartialOrder α] [IsOrderedRing α] {a b : α} {a' b' : ℕ}\n    (ha : IsNat a a') (hb : IsNat b b') (h : Nat.ble b' a' = true) : ¬a < b :=\n  not_lt_of_ge (isNat_le_true hb ha h)"
+    }
+   ],
+   "ex_human": [
+    {
+     "name": "first_exception",
+     "project": "Carleson/Discrete",
+     "score": 41.926847397657454,
+     "nodes": 35,
+     "text": "lemma first_exception : volume (G₁ : Set X) ≤ 2 ^ (- 4 : ℤ) * volume G := by\n  calc volume G₁ ≤ 2 ^ (-5 : ℤ) * volume G := first_exception'\n    _ ≤ 2 ^ (-4 : ℤ) * volume G := by gcongr <;> norm_num"
+    }
+   ]
+  },
+  {
+   "rank": 5,
+   "lam": 21.87108455613899,
+   "shift": 0.6594704114273351,
+   "bits": 13.143543583676133,
+   "pos": [
+    {
+     "gesture": "tac:IntArith(=,=)⇒=",
+     "desc": "integer-arithmetic certificate (omega or lia) from (=,=) ⇒ =",
+     "loading": 0.3722068337574915
+    },
+    {
+     "gesture": "tac:IntArith()⇒=",
+     "desc": "integer-arithmetic certificate (omega or lia) ⇒ =",
+     "loading": 0.36984256813333605
+    },
+    {
+     "gesture": "core:Eq.symm(=)⇒=",
+     "desc": "flip an equation from (=) ⇒ =",
+     "loading": 0.33250210802830454
+    },
+    {
+     "gesture": "tac:IntArith(≤)⇒=",
+     "desc": "integer-arithmetic certificate (omega or lia) from (≤) ⇒ =",
+     "loading": 0.23922169922818473
+    },
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": 0.2385042448637319
+    },
+    {
+     "gesture": "lemma(≤,=)⇒≤",
+     "desc": "apply a lemma from (≤,=) ⇒ ≤",
+     "loading": 0.22912107114944427
+    },
+    {
+     "gesture": "tac:IntArith(=)⇒=",
+     "desc": "integer-arithmetic certificate (omega or lia) from (=) ⇒ =",
+     "loading": 0.2146228552208466
+    },
+    {
+     "gesture": "lemma(≤)⇒≤",
+     "desc": "apply a lemma from (≤) ⇒ ≤",
+     "loading": 0.203590295360364
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": -0.21255828449009695
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": -0.16617555432513334
+    },
+    {
+     "gesture": "lemma(P)⇒P",
+     "desc": "apply a lemma from (P) ⇒ P",
+     "loading": -0.14952007086589558
+    },
+    {
+     "gesture": "core:congrArg(=)⇒=",
+     "desc": "apply a function to both sides from (=) ⇒ =",
+     "loading": -0.1440994433734407
+    },
+    {
+     "gesture": "core:Eq.mpr(=,=)⇒=",
+     "desc": "rewrite the goal along an equation from (=,=) ⇒ =",
+     "loading": -0.06161598047747406
+    },
+    {
+     "gesture": "tac:Ring(=,=,=)⇒=",
+     "desc": "ring-normalization certificate from (=,=,=) ⇒ =",
+     "loading": -0.061473428675195715
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": -1.5178830414797062e-16,
+     "sd": 0.9141301604844747,
+     "beyond2": 0.007558110371520669
+    },
+    "openai": {
+     "mean": 0.6594704114273352,
+     "sd": 4.827985002435802,
+     "beyond2": 0.04958471800635296
+    },
+    "human": {
+     "mean": 0.2225077242393094,
+     "sd": 1.7198081788054098,
+     "beyond2": 0.07276037736912502
+    }
+   },
+   "ex_openai": [
+    {
+     "name": "OAI.BinaryMatching.Algorithm.q_pos",
+     "project": "OAI/Combinatorics/PerfectMatching",
+     "score": 43.3211307561983,
+     "nodes": 88,
+     "text": "lemma q_pos {n : ℕ} (hn : 2 ≤ n) : 0 < q n := by\n  apply Fintype.card_pos_iff.mpr\n  exact ⟨⟨(⟨0, by omega⟩, ⟨1, by omega⟩), by change 0 < 1; omega⟩⟩"
+    },
+    {
+     "name": "OAI.PeriodicLattice.RecursiveArithmetic.intLE",
+     "project": "OAI/Analysis/PeriodicLattice",
+     "score": 41.88167871780102,
+     "nodes": 79,
+     "text": "theorem intLE : PrimrecRel (fun a b : ℤ => a ≤ b) := by\n  exact (intNegative.comp (intSub.comp Primrec.snd Primrec.fst)).not.of_eq (fun p => by dsimp only; omega)"
+    },
+    {
+     "name": "OAI.NCHitting.denominator_pos",
+     "project": "OAI/Algebra/FormulaHitting",
+     "score": 41.66892208222003,
+     "nodes": 67,
+     "text": "theorem denominator_pos {i r q : ℕ} (hi : 0 < i) (hq : q < r) :\n    0 < r * i ^ (r - q) := Nat.mul_pos (by omega) (pow_pos hi _)"
+    }
+   ],
+   "ex_mathlib": [
+    {
+     "name": "Fin.coe_int_add_eq_mod",
+     "project": "Mathlib/Data/Fin",
+     "score": 40.27049560398362,
+     "nodes": 50,
+     "text": "theorem coe_int_add_eq_mod {n : Nat} (u v : Fin n) :\n    ((u + v : Fin n) : Int) = ((u : Int) + (v : Int)) % n := by\n  omega"
+    },
+    {
+     "name": "List.getElem_fin_surjective_iff",
+     "project": "Mathlib/Data/List",
+     "score": 36.361738663680896,
+     "nodes": 54,
+     "text": "theorem getElem_fin_surjective_iff {l : List α} :\n    (fun (n : Fin l.length) ↦ l[n.val]).Surjective ↔ (∀ x, x ∈ l) :=\n  get_surjective_iff"
+    }
+   ],
+   "ex_human": [
+    {
+     "name": "Grid.le_topCube",
+     "project": "Carleson/_root",
+     "score": 4.96907051895489,
+     "nodes": 17,
+     "text": "lemma le_topCube : i ≤ topCube :=\n  ⟨subset_topCube, scale_mem_Icc.2.trans_eq s_topCube.symm⟩"
+    }
+   ]
+  },
+  {
+   "rank": 6,
+   "lam": 17.67129642693655,
+   "shift": 0.18490927936274482,
+   "bits": 9.978794261921388,
+   "pos": [
+    {
+     "gesture": "tac:NormNum(P,P)⇒P",
+     "desc": "norm_num numeral evaluation from (P,P) ⇒ P",
+     "loading": 0.2624359221641167
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.20409142282134599
+    },
+    {
+     "gesture": "tac:NormNum(=,P,P,=,=)⇒P",
+     "desc": "norm_num numeral evaluation from (=,P,P,=,=) ⇒ P",
+     "loading": 0.20183080731325864
+    },
+    {
+     "gesture": "tac:NormNum(P)⇒P",
+     "desc": "norm_num numeral evaluation from (P) ⇒ P",
+     "loading": 0.1987756800593721
+    },
+    {
+     "gesture": "tac:NormNum(=)⇒P",
+     "desc": "norm_num numeral evaluation from (=) ⇒ P",
+     "loading": 0.1947987305593758
+    },
+    {
+     "gesture": "tac:NormNum(P,P,P,=)⇒≤",
+     "desc": "norm_num numeral evaluation from (P,P,P,=) ⇒ ≤",
+     "loading": 0.18964683699750118
+    },
+    {
+     "gesture": "tac:Ring(=,=,=)⇒=",
+     "desc": "ring-normalization certificate from (=,=,=) ⇒ =",
+     "loading": 0.1847598389912837
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": 0.17869179879516944
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": -0.42148428299158425
+    },
+    {
+     "gesture": "tac:NormNum(P,=)⇒=",
+     "desc": "norm_num numeral evaluation from (P,=) ⇒ =",
+     "loading": -0.19507816136964384
+    },
+    {
+     "gesture": "core:congrArg(=)⇒=",
+     "desc": "apply a function to both sides from (=) ⇒ =",
+     "loading": -0.19347650943570174
+    },
+    {
+     "gesture": "core:congr(=,=)⇒=",
+     "desc": "equal functions at equal arguments from (=,=) ⇒ =",
+     "loading": -0.17269151666826632
+    },
+    {
+     "gesture": "core:eq_true(⊤)⇒=",
+     "desc": "P is True from (⊤) ⇒ =",
+     "loading": -0.17053648322791454
+    },
+    {
+     "gesture": "core:of_eq_true(=)⇒=",
+     "desc": "close a goal that simp reduced to True from (=) ⇒ =",
+     "loading": -0.1616255643802974
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": 1.3111256871867205e-15,
+     "sd": 0.701857449241125,
+     "beyond2": 0.004314514454481657
+    },
+    "openai": {
+     "mean": 0.18490927936274504,
+     "sd": 4.143014006460018,
+     "beyond2": 0.057630726989697956
+    },
+    "human": {
+     "mean": 0.4168394143866595,
+     "sd": 3.0764730557267974,
+     "beyond2": 0.046182633532678666
+    }
+   },
+   "ex_openai": [
+    {
+     "name": "OAI.LipschitzCounterexample.CompactWSC.halfWeight_le_one",
+     "project": "OAI/Analysis/LipschitzEquivalence",
+     "score": 44.13960941799781,
+     "nodes": 30,
+     "text": "theorem halfWeight_le_one (j : ℕ) : halfWeight j ≤ 1 := by\n  unfold halfWeight\n  exact pow_le_one₀ (by norm_num) (by norm_num)"
+    },
+    {
+     "name": "OAI.MainGap.firstK_mem",
+     "project": "OAI/Analysis/CStarAlgebra",
+     "score": 43.9778869874281,
+     "nodes": 44,
+     "text": "lemma firstK_mem {X : A} (hX : 0 ≤ X) : firstK X ∈ fourHer X := by\n  exact Her_mono_of_mem (cut_mem_cutHer hX (by norm_num : (0:ℝ) ≤ 1/32)\n    (by norm_num : (1/32:ℝ) ≤ 3/64)) (ramp_mem_Her_cut hX (by norm_num))"
+    },
+    {
+     "name": "OAI.DoublingHilbert.scale_antitone",
+     "project": "OAI/Geometry/DoublingHilbert",
+     "score": 38.2870279064247,
+     "nodes": 26,
+     "text": "theorem scale_antitone : Antitone scale := by\n  intro i j hij\n  exact pow_le_pow_of_le_one (by norm_num) (by norm_num) (Nat.add_le_add_right hij 1)"
+    }
+   ],
+   "ex_mathlib": [
+    {
+     "name": "quarters_mem_preCantorSet",
+     "project": "Mathlib/Topology/Instances",
+     "score": 40.41982411826436,
+     "nodes": 87,
+     "text": "lemma quarters_mem_preCantorSet (n : ℕ) : 1 / 4 ∈ preCantorSet n ∧ 3 / 4 ∈ preCantorSet n := by\n  induction n with\n  | zero =>\n    simp only [preCantorSet_zero]\n    refine ⟨⟨ ?_, ?_⟩, ?_, ?_⟩ <;> norm_num\n  | succ n ih =>\n    apply And.intro\n    · \n      \n      exact Or.inl ⟨3 / 4, ih.2, by norm_num⟩\n    · \n      \n      exact Or.inr ⟨1 / 4, ih.1, by norm_num⟩"
+    },
+    {
+     "name": "Derivative.serreDerivative_E₄",
+     "project": "Mathlib/NumberTheory/ModularForms",
+     "score": 35.354504657095895,
+     "nodes": 59,
+     "text": "theorem serreDerivative_E₄ : serreDerivative 4 E₄ = (-3⁻¹ : ℂ) • E₆ :=\n  serreDerivative_eq_smul (F := serreDerivativeMF 4 E₄) rfl levelOne_weight_six_rank_one\n    E₄.holo' tendsto_E_atImInfty tendsto_E_atImInfty (by norm_num)"
+    }
+   ],
+   "ex_human": [
+    {
+     "name": "Hilbert_strong_2_2",
+     "project": "Carleson/Classical",
+     "score": 39.26122766137969,
+     "nodes": 47,
+     "text": "lemma Hilbert_strong_2_2 ⦃r : ℝ⦄ (hr : 0 < r) :\n    HasBoundedStrongType (czOperator K r) 2 2 volume volume (C_Ts 4) := by\n  intro g hg\n  refine ⟨czOperator_aestronglyMeasurable' Hilbert_kernel_measurable hg.aestronglyMeasurable, ?_⟩\n  apply (eLpNorm_czOperator hr hg.memLp_top).trans\n  gcongr\n  simp [C_Ts]\n  norm_num"
+    }
+   ]
+  },
+  {
+   "rank": 7,
+   "lam": 14.438333640648986,
+   "shift": 0.3707200754406089,
+   "bits": 7.866929703309822,
+   "pos": [
+    {
+     "gesture": "tac:NormNum(P)⇒P",
+     "desc": "norm_num numeral evaluation from (P) ⇒ P",
+     "loading": 0.3772175018858342
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.3005894828283141
+    },
+    {
+     "gesture": "tac:Ring(=,=)⇒=",
+     "desc": "ring-normalization certificate from (=,=) ⇒ =",
+     "loading": 0.2788139543936202
+    },
+    {
+     "gesture": "tac:Ring(=,=,=)⇒=",
+     "desc": "ring-normalization certificate from (=,=,=) ⇒ =",
+     "loading": 0.2541382829569023
+    },
+    {
+     "gesture": "tac:Ring(=)⇒=",
+     "desc": "ring-normalization certificate from (=) ⇒ =",
+     "loading": 0.24424603734223685
+    },
+    {
+     "gesture": "tac:Ring()⇒=",
+     "desc": "ring-normalization certificate ⇒ =",
+     "loading": 0.24299690335068516
+    },
+    {
+     "gesture": "tac:NormNum(=,P,P,=)⇒P",
+     "desc": "norm_num numeral evaluation from (=,P,P,=) ⇒ P",
+     "loading": 0.19106764324272477
+    },
+    {
+     "gesture": "tac:NormNum()⇒P",
+     "desc": "norm_num numeral evaluation ⇒ P",
+     "loading": 0.17626263857344018
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": -0.3869860527391041
+    },
+    {
+     "gesture": "lemma(P)⇒P",
+     "desc": "apply a lemma from (P) ⇒ P",
+     "loading": -0.19488104079423665
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": -0.14359187422890005
+    },
+    {
+     "gesture": "λh:∈:0",
+     "desc": "assume a ∈ hypothesis, never used",
+     "loading": -0.05999615107803351
+    },
+    {
+     "gesture": "lemma(P,≤,≤)⇒≤",
+     "desc": "apply a lemma from (P,≤,≤) ⇒ ≤",
+     "loading": -0.05552938167692796
+    },
+    {
+     "gesture": "hyp()⇒P",
+     "desc": "use a hypothesis ⇒ P",
+     "loading": -0.053434579902353486
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": 1.130606025467884e-15,
+     "sd": 0.8750417300272394,
+     "beyond2": 0.006796186153799409
+    },
+    "openai": {
+     "mean": 0.37072007544060964,
+     "sd": 3.7628691460424117,
+     "beyond2": 0.08090744396875617
+    },
+    "human": {
+     "mean": 0.5500748635512187,
+     "sd": 3.7722936621238405,
+     "beyond2": 0.06346311586455354
+    }
+   },
+   "ex_openai": [
+    {
+     "name": "OAI.LipschitzCounterexample.RadialBudget.cutoff_lt_one",
+     "project": "OAI/Analysis/LipschitzEquivalence",
+     "score": 28.580515845717198,
+     "nodes": 22,
+     "text": "theorem cutoff_lt_one : cutoff < 1 := by\n  rw [cutoff, Real.exp_lt_one_iff]\n  norm_num"
+    },
+    {
+     "name": "OAI.BaumConnesCounterexample.Partial.Heisenberg.commutator_x_y",
+     "project": "OAI/GroupTheory/Heisenberg",
+     "score": 22.726079968829843,
+     "nodes": 118,
+     "text": "lemma commutator_x_y : x * y * x⁻¹ * y⁻¹ = z := by\n  ext <;> norm_num [x, y, z]"
+    },
+    {
+     "name": "OAI.Problem326.compact_convex_invariant_polytope",
+     "project": "OAI/Analysis/MassAction",
+     "score": 22.239820368831733,
+     "nodes": 29,
+     "text": "theorem compact_convex_invariant_polytope :\n    ∀ (d : ℕ) (N : ReactionNetwork d) (κ : Reaction N → ℝ),\n      0 < d → WeaklyReversible N → (∀ e, 0 < κ e) →\n      ∀ x0 : Fin d → ℝ, PositiveState x0 →\n      ∃ K : Set (Fin d → ℝ),\n        IsCompact K ∧ Convex ℝ K ∧ IsFinitePolyhedron K ∧\n        x0 ∈ K ∧ K ⊆ {x | PositiveState x} ∧ IsForwardInvariant N κ K := by\n  intro d N κ _ hweak hκ x0 hx0\n  apply BarrierConstruction.compact_convex_invariant_polytope_of_uniform ?_\n    N κ hweak hκ x0 hx0\n  exact Affine.uniform_affine_data_of_full_certificates\n    (fun E hE => Affine.exists_fullCertificate d (-1) 1 E (by norm_num)\n      (fun r _ => hE r))"
+    }
+   ],
+   "ex_mathlib": [
+    {
+     "name": "Real.exp_one_gt_two",
+     "project": "Mathlib/Analysis/Complex",
+     "score": 23.1644585724972,
+     "nodes": 36,
+     "text": "theorem exp_one_gt_two : 2 < exp 1 :=\n  lt_trans (by norm_num) exp_one_gt_d9"
+    },
+    {
+     "name": "ProbabilityTheory.tendsto_defaultRatCDF_atBot",
+     "project": "Mathlib/Probability/Kernel",
+     "score": 20.927377446662,
+     "nodes": 76,
+     "text": "lemma tendsto_defaultRatCDF_atBot : Tendsto defaultRatCDF atBot (𝓝 0) := by\n  refine (tendsto_congr' ?_).mp tendsto_const_nhds\n  rw [EventuallyEq, eventually_atBot]\n  refine ⟨-1, fun q hq => (ite_eq_left (hq.trans_lt ?_)).symm⟩\n  linarith"
+    }
+   ],
+   "ex_human": [
+    {
+     "name": "five_le_realD",
+     "project": "Carleson/_root",
+     "score": 22.23415338654046,
+     "nodes": 110,
+     "text": "lemma five_le_realD : (5 : ℝ) ≤ defaultD a := by linarith [twentyfive_le_realD X]"
+    }
+   ]
+  },
+  {
+   "rank": 8,
+   "lam": 13.653203684312292,
+   "shift": 0.330297692418829,
+   "bits": 7.320469835490941,
+   "pos": [
+    {
+     "gesture": "tac:NormNum(=)⇒P",
+     "desc": "norm_num numeral evaluation from (=) ⇒ P",
+     "loading": 0.38817298887065416
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": 0.3366424274282554
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.2521249187153401
+    },
+    {
+     "gesture": "lemma(P)⇒P",
+     "desc": "apply a lemma from (P) ⇒ P",
+     "loading": 0.21045776320594517
+    },
+    {
+     "gesture": "tac:Ring(=,=)⇒=",
+     "desc": "ring-normalization certificate from (=,=) ⇒ =",
+     "loading": 0.20366397559584395
+    },
+    {
+     "gesture": "(other gestures)",
+     "desc": "all rarer gestures together",
+     "loading": 0.20003020794352808
+    },
+    {
+     "gesture": "tac:NormNum(P,P,P,P,=)⇒<",
+     "desc": "norm_num numeral evaluation from (P,P,P,P,=) ⇒ <",
+     "loading": 0.19875164593954578
+    },
+    {
+     "gesture": "tac:Ring(=,=,=)⇒=",
+     "desc": "ring-normalization certificate from (=,=,=) ⇒ =",
+     "loading": 0.1830149340100221
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": -0.2921163336439016
+    },
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": -0.22833655873064604
+    },
+    {
+     "gesture": "core:congrArg(=)⇒=",
+     "desc": "apply a function to both sides from (=) ⇒ =",
+     "loading": -0.1728613470778106
+    },
+    {
+     "gesture": "lemma(=)⇒=",
+     "desc": "apply a lemma from (=) ⇒ =",
+     "loading": -0.1237781966688396
+    },
+    {
+     "gesture": "core:of_eq_true(=)⇒=",
+     "desc": "close a goal that simp reduced to True from (=) ⇒ =",
+     "loading": -0.12101357658228908
+    },
+    {
+     "gesture": "core:eq_self()⇒=",
+     "desc": "a = a is True ⇒ =",
+     "loading": -0.11948674925490904
+    }
+   ],
+   "prevalence": {
+    "mathlib": {
+     "mean": -1.2457482961858446e-16,
+     "sd": 0.7525205772193647,
+     "beyond2": 0.007880141826939201
+    },
+    "openai": {
+     "mean": 0.3302976924188279,
+     "sd": 3.577792493695618,
+     "beyond2": 0.06736294629531939
+    },
+    "human": {
+     "mean": 1.0303227920579694,
+     "sd": 4.767082596037507,
+     "beyond2": 0.09584334001621359
+    }
+   },
+   "ex_openai": [
+    {
+     "name": "OAI.RepeatedLocalization.FiniteEntropy.entropySlope_pos",
+     "project": "OAI/Probability/Localization",
+     "score": 54.497352979873966,
+     "nodes": 25,
+     "text": "lemma entropySlope_pos {n : ℕ} (hn : 0 < n) : 0 < entropySlope n := by\n  unfold entropySlope\n  exact div_pos (mul_pos (Nat.cast_pos.mpr hn) (Real.log_pos (by norm_num))) (by norm_num)"
+    },
+    {
+     "name": "OAI.LeanBlast.CourtadeKumar.ell_lt_347_div_500",
+     "project": "OAI/InformationTheory/BooleanNoise",
+     "score": 52.536447987448085,
+     "nodes": 11,
+     "text": "theorem ell_lt_347_div_500 : ell < 347 / 500 :=\n  (Real.log_lt_iff_lt_exp (by norm_num : (0 : ℝ) < 2)).mpr two_lt_exp_347_div_500"
+    },
+    {
+     "name": "OAI.PolynomialVacuumBridge.Corridor.recursion_coefficients_positive",
+     "project": "OAI/Combinatorics/HoneycombCorridor",
+     "score": 49.86135371941712,
+     "nodes": 35,
+     "text": "theorem recursion_coefficients_positive (P : Polygon) :\n    0 < 2 * criticalActivity ^ P.length ∧ ∀ v ∈ P.vertices,\n      0 < 2 * criticalActivity ^ (P.length - 1) *\n        (-Real.cos ((3 / 8 : ℝ) * (2 * Real.pi - P.ccwTurn v))) := by\n  constructor\n  · exact mul_pos (by norm_num) (pow_pos criticalActivity_pos _)\n  · intro v hv\n    exact mul_pos (mul_pos (by norm_num) (pow_pos criticalActivity_pos _)) (through_cos_pos P v hv)"
+    }
+   ],
+   "ex_mathlib": [
+    {
+     "name": "Real.goldenRatio_pos",
+     "project": "Mathlib/NumberTheory/Real",
+     "score": 49.14650918540633,
+     "nodes": 32,
+     "text": "theorem goldenRatio_pos : 0 < φ :=\n  mul_pos (by apply add_pos <;> norm_num) <| inv_pos.2 zero_lt_two"
+    },
+    {
+     "name": "ae_not_liouville",
+     "project": "Mathlib/NumberTheory/Transcendental",
+     "score": 41.75682307221311,
+     "nodes": 16,
+     "text": "theorem ae_not_liouville : ∀ᵐ x, ¬Liouville x :=\n  ae_not_liouvilleWith.mono fun _ h₁ h₂ => h₁ 3 (by norm_num) (h₂.liouvilleWith 3)"
+    }
+   ],
+   "ex_human": [
+    {
+     "name": "C_K_pos",
+     "project": "Carleson/_root",
+     "score": 54.15865311157493,
+     "nodes": 10,
+     "text": "lemma C_K_pos {a : ℝ} : 0 < C_K a := NNReal.rpow_pos (by norm_num)"
+    }
+   ]
+  }
+ ],
+ "stability": [
+  0.9944525271731213,
+  0.8196478854117402,
+  0.9104898059437995,
+  0.830535049675371,
+  0.880557537305808,
+  0.6715335910978895,
+  0.8311643677009103,
+  0.6720561594662927
+ ],
+ "normal_modes": [
+  {
+   "rank": 1,
+   "var_share": 0.1732987916339479,
+   "pos": [
+    {
+     "gesture": "core:congrArg(=)⇒=",
+     "desc": "apply a function to both sides from (=) ⇒ =",
+     "loading": 0.4962406822615679
+    },
+    {
+     "gesture": "lemma()⇒=",
+     "desc": "apply a lemma ⇒ =",
+     "loading": 0.4279729014211302
+    },
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": 0.3182495959761137
+    },
+    {
+     "gesture": "core:id(=)⇒=",
+     "desc": "restate the goal (show) from (=) ⇒ =",
+     "loading": 0.24440331571566679
+    },
+    {
+     "gesture": "lemma(=)⇒=",
+     "desc": "apply a lemma from (=) ⇒ =",
+     "loading": 0.19645788928307492
+    },
+    {
+     "gesture": "core:Eq.mpr(=,=)⇒=",
+     "desc": "rewrite the goal along an equation from (=,=) ⇒ =",
+     "loading": 0.16537875548078065
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": -0.35184617537107815
+    },
+    {
+     "gesture": "λh:P:1",
+     "desc": "assume a predicate hypothesis, used once",
+     "loading": -0.23566814326212646
+    },
+    {
+     "gesture": "hyp()⇒P",
+     "desc": "use a hypothesis ⇒ P",
+     "loading": -0.2233432555364567
+    },
+    {
+     "gesture": "λx:1",
+     "desc": "take an arbitrary element, used once",
+     "loading": -0.15209578285500255
+    },
+    {
+     "gesture": "λh:P:ω",
+     "desc": "assume a predicate hypothesis, used repeatedly",
+     "loading": -0.056578232041990646
+    }
+   ],
+   "openai_shift": 0.3821959905869471,
+   "openai_var_ratio": 0.9972219539312138,
+   "excess_bits": 0.10336601891404436,
+   "ex_mathlib": [
+    {
+     "name": "Complex.det_conjAe",
+     "project": "Mathlib/LinearAlgebra/Complex",
+     "score": 2.770444860314117,
+     "nodes": 27,
+     "text": "theorem det_conjAe : conjAe.toLinearEquiv.toLinearMap.det = -1 := by\n  rw [← LinearMap.det_toMatrix basisOneI, toMatrix_conjAe, Matrix.det_fin_two_of]\n  simp"
+    },
+    {
+     "name": "Complex.sqrt_I",
+     "project": "Mathlib/Analysis/RCLike",
+     "score": 2.7263093350730796,
+     "nodes": 66,
+     "text": "theorem Complex.sqrt_I : sqrt (I : ℂ) = √2⁻¹ * (1 + I) := by\n  rw [sqrt, ← re_add_im (I ^ 2⁻¹), cpow_inv_two_im_eq_sqrt (by simp), cpow_inv_two_re]\n  simp [mul_add]"
+    }
+   ]
+  },
+  {
+   "rank": 2,
+   "var_share": 0.09406853878186017,
+   "pos": [
+    {
+     "gesture": "(other gestures)",
+     "desc": "all rarer gestures together",
+     "loading": 0.446039711837894
+    },
+    {
+     "gesture": "hyp()⇒P",
+     "desc": "use a hypothesis ⇒ P",
+     "loading": 0.3827400293233459
+    },
+    {
+     "gesture": "λh:P:1",
+     "desc": "assume a predicate hypothesis, used once",
+     "loading": 0.2706220239102529
+    },
+    {
+     "gesture": "lemma(P)⇒P",
+     "desc": "apply a lemma from (P) ⇒ P",
+     "loading": 0.20233789418123818
+    },
+    {
+     "gesture": "core:id(=)⇒=",
+     "desc": "restate the goal (show) from (=) ⇒ =",
+     "loading": 0.1954934207754123
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": 0.13497434744504122
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "λx:ω",
+     "desc": "take an arbitrary element, used repeatedly",
+     "loading": -0.5119275265010157
+    },
+    {
+     "gesture": "λx:1",
+     "desc": "take an arbitrary element, used once",
+     "loading": -0.24622635456670605
+    },
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": -0.13014004861840367
+    },
+    {
+     "gesture": "lemma(=)⇒=",
+     "desc": "apply a lemma from (=) ⇒ =",
+     "loading": -0.11972313186445413
+    },
+    {
+     "gesture": "lemma()⇒=",
+     "desc": "apply a lemma ⇒ =",
+     "loading": -0.11539219344157381
+    }
+   ],
+   "openai_shift": 0.18607347797181986,
+   "openai_var_ratio": 0.7717352134691333,
+   "excess_bits": -0.13968277788413416,
+   "ex_mathlib": [
+    {
+     "name": "ZFSet.isOrdinal_iff_trichotomous",
+     "project": "Mathlib/SetTheory/ZFC",
+     "score": 2.6922503509658364,
+     "nodes": 50,
+     "text": "theorem _root_.ZFSet.isOrdinal_iff_trichotomous :\n    x.IsOrdinal ↔ x.IsTransitive ∧ Std.Trichotomous (Subrel (· ∈ ·) (· ∈ x)) where\n  mp h := ⟨h.isTransitive, h.trichotomous⟩\n  mpr := by\n    rintro ⟨h₁, h₂⟩\n    rw [isOrdinal_iff_isTrans]\n    refine ⟨h₁, ⟨@fun y z w hyz hzw ↦ ?_⟩⟩\n    obtain hyw | rfl | hwy := trichotomous_of (Subrel (· ∈ ·) (· ∈ x)) y w\n    · exact hyw\n    · cases asymm hyz hzw\n    · cases mem_wf.asymmetric₃ _ _ _ hyz hzw hwy"
+    },
+    {
+     "name": "Nat.Prime.eq_two_or_odd",
+     "project": "Mathlib/Data/Nat",
+     "score": 2.5361710723090223,
+     "nodes": 14,
+     "text": "theorem Prime.eq_two_or_odd {p : ℕ} (hp : Prime p) : p = 2 ∨ p % 2 = 1 :=\n  p.mod_two_eq_zero_or_one.imp_left fun h =>\n    ((hp.eq_one_or_self_of_dvd 2 (dvd_of_mod_eq_zero h)).resolve_left (by decide)).symm"
+    }
+   ]
+  },
+  {
+   "rank": 3,
+   "var_share": 0.0672540270250164,
+   "pos": [
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": 0.44293635762201755
+    },
+    {
+     "gesture": "hyp()⇒P",
+     "desc": "use a hypothesis ⇒ P",
+     "loading": 0.2948109657418432
+    },
+    {
+     "gesture": "lemma(=)⇒=",
+     "desc": "apply a lemma from (=) ⇒ =",
+     "loading": 0.25861752747457245
+    },
+    {
+     "gesture": "λh:P:1",
+     "desc": "assume a predicate hypothesis, used once",
+     "loading": 0.23538314488628143
+    },
+    {
+     "gesture": "core:eq_self()⇒=",
+     "desc": "a = a is True ⇒ =",
+     "loading": 0.22022812830694466
+    },
+    {
+     "gesture": "core:of_eq_true(=)⇒=",
+     "desc": "close a goal that simp reduced to True from (=) ⇒ =",
+     "loading": 0.20644217467989112
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "core:id(=)⇒=",
+     "desc": "restate the goal (show) from (=) ⇒ =",
+     "loading": -0.43906474267524687
+    },
+    {
+     "gesture": "core:Eq.mpr(=,=)⇒=",
+     "desc": "rewrite the goal along an equation from (=,=) ⇒ =",
+     "loading": -0.2649521477206293
+    },
+    {
+     "gesture": "lemma()⇒↔",
+     "desc": "apply a lemma ⇒ ↔",
+     "loading": -0.23890911955983327
+    },
+    {
+     "gesture": "core:propext(↔)⇒=",
+     "desc": "turn an iff into an equality from (↔) ⇒ =",
+     "loading": -0.19477510662525022
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": -0.14088881910527576
+    }
+   ],
+   "openai_shift": 0.07268396756612218,
+   "openai_var_ratio": 0.9532424752211965,
+   "excess_bits": -0.029917575084230937,
+   "ex_mathlib": [
+    {
+     "name": "Cardinal.add_mk_eq_self",
+     "project": "Mathlib/SetTheory/Cardinal",
+     "score": 2.964452397571924,
+     "nodes": 11,
+     "text": "theorem add_mk_eq_self {α : Type*} [Infinite α] : #α + #α = #α := by\n  simp"
+    },
+    {
+     "name": "ArithmeticFunction.abs_moebius_eq_one_of_squarefree",
+     "project": "Mathlib/NumberTheory/ArithmeticFunction",
+     "score": 2.901763156301247,
+     "nodes": 22,
+     "text": "theorem abs_moebius_eq_one_of_squarefree {l : ℕ} (hl : Squarefree l) : |μ l| = 1 := by\n  simp only [moebius_apply_of_squarefree hl, abs_pow, abs_neg, abs_one, one_pow]"
+    }
+   ]
+  },
+  {
+   "rank": 4,
+   "var_share": 0.06038925277209214,
+   "pos": [
+    {
+     "gesture": "(other gestures)",
+     "desc": "all rarer gestures together",
+     "loading": 0.5627507008711337
+    },
+    {
+     "gesture": "hyp()⇒=",
+     "desc": "use a hypothesis ⇒ =",
+     "loading": 0.18767633134490555
+    },
+    {
+     "gesture": "λh:=:1",
+     "desc": "assume a = hypothesis, used once",
+     "loading": 0.175468647675434
+    },
+    {
+     "gesture": "core:Eq.trans(=,=)⇒=",
+     "desc": "chain two equalities from (=,=) ⇒ =",
+     "loading": 0.1495883708359413
+    },
+    {
+     "gesture": "lemma()⇒↔",
+     "desc": "apply a lemma ⇒ ↔",
+     "loading": 0.12722799198570878
+    },
+    {
+     "gesture": "hyp()⇒∈",
+     "desc": "use a hypothesis ⇒ ∈",
+     "loading": 0.12561540195836435
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "hyp()⇒P",
+     "desc": "use a hypothesis ⇒ P",
+     "loading": -0.3573593047165564
+    },
+    {
+     "gesture": "λh:P:1",
+     "desc": "assume a predicate hypothesis, used once",
+     "loading": -0.30621123319691435
+    },
+    {
+     "gesture": "core:id(=)⇒=",
+     "desc": "restate the goal (show) from (=) ⇒ =",
+     "loading": -0.2846978223399198
+    },
+    {
+     "gesture": "core:Eq.mpr(=,=)⇒=",
+     "desc": "rewrite the goal along an equation from (=,=) ⇒ =",
+     "loading": -0.2585093004680244
+    },
+    {
+     "gesture": "core:congrArg(=)⇒=",
+     "desc": "apply a function to both sides from (=) ⇒ =",
+     "loading": -0.19453988404210731
+    }
+   ],
+   "openai_shift": 0.20896763143326497,
+   "openai_var_ratio": 0.896547864649386,
+   "excess_bits": -0.04312551939942199,
+   "ex_mathlib": [
+    {
+     "name": "SimplexCategory.eq_of_one_to_two'",
+     "project": "Mathlib/AlgebraicTopology/SimplexCategory",
+     "score": 3.641425301719225,
+     "nodes": 17,
+     "text": "theorem eq_of_one_to_two' (f : ⦋1⦌ ⟶ ⦋2⦌) :\n    f = (δ (n := 1) 0) ∨ f = (δ (n := 1) 1) ∨ f = (δ (n := 1) 2) ∨\n      ∃ a, f = SimplexCategory.const _ _ a :=\n  match eq_of_one_to_two f with\n  | .inl ⟨0, h⟩ => .inl h\n  | .inl ⟨1, h⟩ => .inr (.inl h)\n  | .inl ⟨2, h⟩ => .inr (.inr (.inl h))\n  | .inr h => .inr (.inr (.inr h))"
+    },
+    {
+     "name": "Decidable.List.eq_or_ne_mem_of_mem",
+     "project": "Mathlib/Data/List",
+     "score": 3.3263143776480693,
+     "nodes": 21,
+     "text": "theorem _root_.Decidable.List.eq_or_ne_mem_of_mem [DecidableEq α]\n    {a b : α} {l : List α} (h : a ∈ b :: l) : a = b ∨ a ≠ b ∧ a ∈ l := by\n  by_cases hab : a = b\n  · exact Or.inl hab\n  · exact ((List.mem_cons.1 h).elim Or.inl (fun h => Or.inr ⟨hab, h⟩))"
+    }
+   ]
+  },
+  {
+   "rank": 5,
+   "var_share": 0.04377927853899423,
+   "pos": [
+    {
+     "gesture": "core:Eq.mpr(=,=)⇒=",
+     "desc": "rewrite the goal along an equation from (=,=) ⇒ =",
+     "loading": 0.2928156620677862
+    },
+    {
+     "gesture": "core:Eq.refl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.2416737708520078
+    },
+    {
+     "gesture": "hyp()⇒=",
+     "desc": "use a hypothesis ⇒ =",
+     "loading": 0.2389935687107862
+    },
+    {
+     "gesture": "λh:=:1",
+     "desc": "assume a = hypothesis, used once",
+     "loading": 0.23193685029330202
+    },
+    {
+     "gesture": "λh:P:ω",
+     "desc": "assume a predicate hypothesis, used repeatedly",
+     "loading": 0.07557191166798266
+    },
+    {
+     "gesture": "core:rfl()⇒=",
+     "desc": "reflexivity ⇒ =",
+     "loading": 0.07360379687554944
+    }
+   ],
+   "neg": [
+    {
+     "gesture": "lemma()⇒↔",
+     "desc": "apply a lemma ⇒ ↔",
+     "loading": -0.5707733285111481
+    },
+    {
+     "gesture": "core:propext(↔)⇒=",
+     "desc": "turn an iff into an equality from (↔) ⇒ =",
+     "loading": -0.5018574735117526
+    },
+    {
+     "gesture": "core:Eq.mpr(=,↔)⇒↔",
+     "desc": "rewrite the goal along an equation from (=,↔) ⇒ ↔",
+     "loading": -0.18970132144456972
+    },
+    {
+     "gesture": "lemma()⇒P",
+     "desc": "apply a lemma ⇒ P",
+     "loading": -0.14480427566699072
+    },
+    {
+     "gesture": "lemma(P)⇒P",
+     "desc": "apply a lemma from (P) ⇒ P",
+     "loading": -0.12621310916074943
+    }
+   ],
+   "openai_shift": 0.4130358292832955,
+   "openai_var_ratio": 0.6654434149815877,
+   "excess_bits": -0.11827068863947665,
+   "ex_mathlib": [
+    {
+     "name": "jacobiSym.sq_one",
+     "project": "Mathlib/NumberTheory/LegendreSymbol",
+     "score": 2.785593545858745,
+     "nodes": 17,
+     "text": "theorem sq_one {a : ℤ} {b : ℕ} (h : a.gcd b = 1) : J(a | b) ^ 2 = 1 := by\n  rcases eq_one_or_neg_one h with h₁ | h₁ <;> rw [h₁] <;> rfl"
+    },
+    {
+     "name": "EReal.sub_add_cancel_right",
+     "project": "Mathlib/Data/EReal",
+     "score": 2.709610381896379,
+     "nodes": 22,
+     "text": "lemma sub_add_cancel_right {a : EReal} {b : Real} : b - (a + b) = -a := by\n  cases a <;> norm_cast\n  exact _root_.sub_add_cancel_right _ _"
+    }
+   ]
+  }
+ ],
+ "over": [
+  {
+   "gesture": "core:Eq.rec(∀,=)⇒∀",
+   "desc": "Eq.rec from (∀,=) ⇒ ∀",
+   "openai": 0.0027134556281911038,
+   "mathlib": 2.48857936527276e-05,
+   "human": 0.0049114136336993654,
+   "log2_ratio": 6.28665489671848
+  },
+  {
+   "gesture": "proj:struct",
+   "desc": "project a field out of a structure",
+   "openai": 0.0011444628047233955,
+   "mathlib": 2.505826751071303e-05,
+   "human": 0.005016321495860143,
+   "log2_ratio": 5.041323178308754
+  },
+  {
+   "gesture": "tac:NormNum(P,P,P,=)⇒≤",
+   "desc": "norm_num numeral evaluation from (P,P,P,=) ⇒ ≤",
+   "openai": 0.00048097574927767064,
+   "mathlib": 7.507870438988542e-06,
+   "human": 0.00030836495132461565,
+   "log2_ratio": 4.8095762493193615
+  },
+  {
+   "gesture": "tac:NormNum(P,=)⇒=",
+   "desc": "norm_num numeral evaluation from (P,=) ⇒ =",
+   "openai": 0.0007340234729631687,
+   "mathlib": 2.629389087512749e-05,
+   "human": 1.1012032761603447e-05,
+   "log2_ratio": 4.357549503296828
+  },
+  {
+   "gesture": "tac:IntArith(≤)⇒=",
+   "desc": "integer-arithmetic certificate (omega or lia) from (≤) ⇒ =",
+   "openai": 0.0005963160972089664,
+   "mathlib": 2.0082482033060692e-05,
+   "human": 5.639230245071547e-05,
+   "log2_ratio": 4.333074615021965
+  },
+  {
+   "gesture": "tac:NormNum(P,P)⇒P",
+   "desc": "norm_num numeral evaluation from (P,P) ⇒ P",
+   "openai": 0.0009596897142492379,
+   "mathlib": 4.0422450556803875e-05,
+   "human": 0.0006294134627880809,
+   "log2_ratio": 4.265385040256372
+  },
+  {
+   "gesture": "tac:NormNum(P,P,P,P,=)⇒<",
+   "desc": "norm_num numeral evaluation from (P,P,P,P,=) ⇒ <",
+   "openai": 0.00029675733824069503,
+   "mathlib": 1.0332493293723881e-05,
+   "human": 0.000761652727271638,
+   "log2_ratio": 3.9152388132477896
+  },
+  {
+   "gesture": "tac:NormNum()⇒P",
+   "desc": "norm_num numeral evaluation ⇒ P",
+   "openai": 0.002190502815684891,
+   "mathlib": 0.0001358982575391804,
+   "human": 0.0019235834502252312,
+   "log2_ratio": 3.9147986593698127
+  },
+  {
+   "gesture": "core:eq_true(⊤)⇒=",
+   "desc": "P is True from (⊤) ⇒ =",
+   "openai": 0.0003108018907638791,
+   "mathlib": 1.1495090599800905e-05,
+   "human": 1.1012032761603447e-05,
+   "log2_ratio": 3.899603548599861
+  },
+  {
+   "gesture": "tac:NormNum(P)⇒P",
+   "desc": "norm_num numeral evaluation from (P) ⇒ P",
+   "openai": 0.0037967655320802563,
+   "mathlib": 0.0002659495251717493,
+   "human": 0.0034083020882905413,
+   "log2_ratio": 3.786089405361701
+  },
+  {
+   "gesture": "tac:NormNum(=)⇒P",
+   "desc": "norm_num numeral evaluation from (=) ⇒ P",
+   "openai": 0.004288660539312632,
+   "mathlib": 0.00030201125548205183,
+   "human": 0.0041524924957741455,
+   "log2_ratio": 3.784217207849731
+  },
+  {
+   "gesture": "tac:IntArith(=,u)⇒¬+u",
+   "desc": "integer-arithmetic certificate (omega or lia) from (=,u) ⇒ ¬+u",
+   "openai": 0.0003306779388407543,
+   "mathlib": 1.529695163185045e-05,
+   "human": 2.8196151225357736e-05,
+   "log2_ratio": 3.751373075494243
+  }
+ ],
+ "under": [
+  {
+   "gesture": "match(∃,∀)⇒∃",
+   "desc": "pattern-match from (∃,∀) ⇒ ∃",
+   "openai": 0.0,
+   "mathlib": 0.0005508270805247676,
+   "human": 9.385351490614649e-05,
+   "log2_ratio": -5.809484108992524
+  },
+  {
+   "gesture": "match(∃,∀)⇒P",
+   "desc": "pattern-match from (∃,∀) ⇒ P",
+   "openai": 0.0,
+   "mathlib": 0.00044337898083238327,
+   "human": 0.0,
+   "log2_ratio": -5.502645602525817
+  },
+  {
+   "gesture": "core:id(⊥)⇒⊥",
+   "desc": "restate the goal (show) from (⊥) ⇒ ⊥",
+   "openai": 0.0,
+   "mathlib": 0.000421463478587654,
+   "human": 8.106105546060878e-05,
+   "log2_ratio": -5.431166541915307
+  },
+  {
+   "gesture": "ctor(∃)⇒P",
+   "desc": "build with a constructor from (∃) ⇒ P",
+   "openai": 8.687795385043092e-06,
+   "mathlib": 0.000492483846235118,
+   "human": 0.0,
+   "log2_ratio": -4.748908929237979
+  },
+  {
+   "gesture": "lemma(P)⇒→",
+   "desc": "apply a lemma from (P) ⇒ →",
+   "openai": 2.2761440182488513e-05,
+   "mathlib": 0.00045565246059318075,
+   "human": 0.00012950012950012948,
+   "log2_ratio": -3.8291829181044483
+  },
+  {
+   "gesture": "core:Eq.mpr(=,→)⇒→",
+   "desc": "rewrite the goal along an equation from (=,→) ⇒ →",
+   "openai": 1.1471935900418917e-05,
+   "mathlib": 0.00027282363618700553,
+   "human": 0.00016157897680274208,
+   "log2_ratio": -3.719378519419254
+  },
+  {
+   "gesture": "core:Iff.trans(↔,↔)⇒↔",
+   "desc": "Iff.trans from (↔,↔) ⇒ ↔",
+   "openai": 3.719934908540948e-05,
+   "mathlib": 0.0005866984878808891,
+   "human": 0.0,
+   "log2_ratio": -3.6601632519171554
+  },
+  {
+   "gesture": "lemma()⇒→",
+   "desc": "apply a lemma ⇒ →",
+   "openai": 6.266482506906538e-05,
+   "mathlib": 0.0007741942724845233,
+   "human": 0.0003444267669671726,
+   "log2_ratio": -3.431882033416122
+  },
+  {
+   "gesture": "ctor()⇒∃",
+   "desc": "build with a constructor ⇒ ∃",
+   "openai": 0.00011295869557612163,
+   "mathlib": 0.0009119785721451492,
+   "human": 2.5586572166926795e-05,
+   "log2_ratio": -2.906559455934839
+  },
+  {
+   "gesture": "hyp()⇒→",
+   "desc": "use a hypothesis ⇒ →",
+   "openai": 4.169493732694945e-05,
+   "mathlib": 0.0003535891291466438,
+   "human": 0.0012094932057448219,
+   "log2_ratio": -2.8142141612234144
+  },
+  {
+   "gesture": "core:Eq.rec(P,=)⇒P",
+   "desc": "Eq.rec from (P,=) ⇒ P",
+   "openai": 5.186195249304479e-05,
+   "mathlib": 0.0003974202287074314,
+   "human": 6.301170757526749e-06,
+   "log2_ratio": -2.7193933391871417
+  },
+  {
+   "gesture": "lemma()⇒∨",
+   "desc": "apply a lemma ⇒ ∨",
+   "openai": 5.518779994805286e-05,
+   "mathlib": 0.00041852455896524,
+   "human": 9.378334519628497e-05,
+   "log2_ratio": -2.7167039972895304
+  }
+ ],
+ "vocab_size": 300,
+ "n_decls_eigen": 140040,
+ "null": {
+  "n_projects": 96,
+  "total_median": 66.67138106133821,
+  "total_max": 79.45890715074655,
+  "top_median": [
+   4.716497834782433,
+   3.579777947893508,
+   2.863837770055633,
+   2.4769857374271083,
+   2.1285763231158117,
+   1.7652582412260713,
+   1.496679652964199,
+   1.3032408867507717,
+   1.1790048089698373,
+   1.0602726160873068,
+   0.9210265941454014,
+   0.8730889840927392,
+   0.8169780930869817,
+   0.7827323306573906,
+   0.7613110290750977,
+   0.7238215735779487,
+   0.693672297831802,
+   0.6704705472308692,
+   0.6525031433638413,
+   0.6213441185489899
+  ],
+  "top_max": [
+   8.112678181204632,
+   4.397221288969505,
+   3.6180803514560447,
+   2.8791743737714874,
+   2.812249600771934,
+   2.5419836204975685,
+   1.9022949546923007,
+   1.620790793034141,
+   1.6184815514785147,
+   1.52566741583921,
+   1.4670089784232014,
+   1.3902278712878786,
+   1.264320420968873,
+   1.2296604128464153,
+   1.2212236388787516,
+   1.209946136915158,
+   1.12715650974657,
+   1.040911376885209,
+   0.8216935398745655,
+   0.811650715158437
+  ],
+  "lam_median": [
+   9.803149795479863,
+   8.00883812979497,
+   6.86353821075617,
+   6.23234814860721,
+   5.623195104269267,
+   5.03776441328888,
+   4.583777720622178,
+   4.178612673333048,
+   3.9377950547053953,
+   3.4995332536678654,
+   3.4487055076609634,
+   3.2215123899321396,
+   1.662680696580532,
+   0.16226552412755246,
+   3.0040783226948795,
+   0.15824385953614134,
+   3.08201741866686,
+   1.4951957782617955,
+   1.4941485510699644,
+   1.492213935659246
+  ]
+ },
+ "null_human": {
+  "n_projects": 11,
+  "total_median": 177.46307068657816,
+  "total_max": 303.35432028204957,
+  "top_median": [
+   15.637010998988988,
+   9.734386210937478,
+   6.200580366757617,
+   5.480263806093245,
+   3.7694826957259786,
+   2.9267221285428464,
+   2.432946844605712,
+   2.3037110638344354,
+   2.117461470900661,
+   2.0020836709602694,
+   1.8445643168114625,
+   1.6490790261437787,
+   1.610945696332876,
+   1.5781882198628439,
+   1.516088741728861,
+   1.4978250315021053,
+   1.465552424290829,
+   1.4282516871320108,
+   1.391328048939961,
+   1.3534802993459496
+  ],
+  "top_max": [
+   32.817887627111084,
+   17.78718193082763,
+   14.84453698984717,
+   8.110250516325285,
+   5.198315473793914,
+   5.013836933437717,
+   4.658008317416241,
+   4.156811206888126,
+   3.8952583238869574,
+   3.836907602635935,
+   3.1379359580888986,
+   3.0472044355040144,
+   3.0462568452830476,
+   2.676840478285552,
+   2.37064331022413,
+   2.249622630689763,
+   2.219747880996637,
+   2.163061768962761,
+   2.14142574774187,
+   2.0909784140481977
+  ],
+  "lam_median": [
+   24.907547121019988,
+   17.07097126281387,
+   11.887417848575264,
+   10.583711579819843,
+   8.180608895224308,
+   6.856636981324601,
+   6.149884731483123,
+   5.9191724355507915,
+   0.04249460330261574,
+   5.438231014591132,
+   0.05139808660072732,
+   0.044642084710872415,
+   4.421741263179913,
+   2.0763665515201146,
+   0.062498030860669046,
+   0.06821054606174799,
+   0.05995376574314572,
+   0.06309974409750496,
+   0.06004290024424783,
+   0.060144130500755226
+  ]
+ },
+ "sensitivity": [
+  {
+   "alpha": 0.0,
+   "floor": 0.001,
+   "total": 569.5806718589849,
+   "top": [
+    110.13406595607464,
+    78.74544049904726,
+    44.379881128864255,
+    28.64966106047256,
+    25.541662778232897,
+    19.302416177679472,
+    18.401532288767527,
+    15.634675675090039
+   ],
+   "match_to_main": [
+    0.9991475917421013,
+    0.9828640287880095,
+    0.9818860033306546,
+    0.9376361965583264,
+    0.9948848086566084,
+    0.7748847886062102,
+    0.7495095032079948,
+    0.9032057315071959
+   ]
+  },
+  {
+   "alpha": 0.1,
+   "floor": 0.01,
+   "total": 307.7822264253159,
+   "top": [
+    46.354521949220825,
+    24.12583205509784,
+    17.043260193205178,
+    16.301694235750727,
+    13.143543583676133,
+    9.978794261921388,
+    7.866929703309822,
+    7.320469835490941
+   ],
+   "match_to_main": [
+    0.9999999999999991,
+    0.9999999999999989,
+    0.9999999999999991,
+    0.9999999999999986,
+    0.9999999999999993,
+    0.9999999999999994,
+    0.9999999999999988,
+    0.9999999999999998
+   ]
+  },
+  {
+   "alpha": 0.3,
+   "floor": 0.05,
+   "total": 146.17496853107835,
+   "top": [
+    15.881900440514098,
+    8.029558131453156,
+    6.796134021042415,
+    5.990076277109677,
+    5.675855968261102,
+    5.23377024837703,
+    3.9511706069371453,
+    3.5116707175907487
+   ],
+   "match_to_main": [
+    0.9950067814033416,
+    0.8378165530798796,
+    0.8745469146044039,
+    0.7434777312946034,
+    0.9763564472744523,
+    0.6685710642801379,
+    0.9313712949090791,
+    0.8625735271651206
+   ]
+  }
+ ],
+ "old_corr": {
+  "ep1": {
+   "concepts_per_100_thm": {
+    "rho": -0.023982637004883345,
+    "p": 0.8165876399811187,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": 0.08611398447715095,
+    "p": 0.40414581479705525,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": 0.15925230095524293,
+    "p": 0.12118561074571059,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": 0.009991170117041748,
+    "p": 0.9230336361566231,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": -0.2728032943181984,
+    "p": 0.0071642773447473905,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": -0.25006782419967444,
+    "p": 0.01400118094112637,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": -0.009061313076505696,
+    "p": 0.930177788341099,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": -0.00711249474671204,
+    "p": 0.9451679910885049,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": -0.005787514206564176,
+    "p": 0.9553709097700056,
+    "n": 96
+   },
+   "grounding": {
+    "rho": -0.0890124796527401,
+    "p": 0.3884511230021327,
+    "n": 96
+   },
+   "propagation": {
+    "rho": -0.046920781334780254,
+    "p": 0.6498606097337398,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": 0.197934079150439,
+    "p": 0.05322177848945091,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": 0.23255561584373305,
+    "p": 0.02260303513936553,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": -0.017362995116657624,
+    "p": 0.8666571985240948,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": 0.1894091415830546,
+    "p": 0.0721476431922551,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": -0.24562828475871956,
+    "p": 0.01893397247379142,
+    "n": 91
+   }
+  },
+  "ep2": {
+   "concepts_per_100_thm": {
+    "rho": -0.0755968529571351,
+    "p": 0.4641438069088859,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": -0.007243993023125174,
+    "p": 0.9441558534155982,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": 0.03052787932706765,
+    "p": 0.7677941041421982,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": 0.14277844116680038,
+    "p": 0.16521835931777457,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": 0.1881920087105509,
+    "p": 0.06633005643569344,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": 0.03095496473141617,
+    "p": 0.7646392810160725,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": -0.12556972327726534,
+    "p": 0.22282821599079378,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": 0.14158205505192042,
+    "p": 0.16882608946622588,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": 0.06735304768392097,
+    "p": 0.5143890886660956,
+    "n": 96
+   },
+   "grounding": {
+    "rho": -0.11313076505697232,
+    "p": 0.2724412016326879,
+    "n": 96
+   },
+   "propagation": {
+    "rho": -0.10080032555615842,
+    "p": 0.3284743150927478,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": 0.11887065961020102,
+    "p": 0.2486936233608532,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": 0.03669289202387412,
+    "p": 0.7226453782038398,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": -0.04584915897992404,
+    "p": 0.6573485071701167,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": -0.04951425386207995,
+    "p": 0.6411493421703135,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": 0.008823060996974042,
+    "p": 0.9338477783844918,
+    "n": 91
+   }
+  },
+  "ep3": {
+   "concepts_per_100_thm": {
+    "rho": 0.39323114487249056,
+    "p": 7.392289967609893e-05,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": -0.3004561413346216,
+    "p": 0.00293620267915654,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": -0.019397852671720395,
+    "p": 0.85120017227466,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": -0.09028148373101455,
+    "p": 0.3816963390311374,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": -0.17481929820475683,
+    "p": 0.08845957847482862,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": -0.5349158979924037,
+    "p": 1.9735361920257285e-08,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": 0.18442756375474767,
+    "p": 0.07204926641457012,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": -0.17153467377398945,
+    "p": 0.0947050882793867,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": -0.09558249933146812,
+    "p": 0.3542543660037588,
+    "n": 96
+   },
+   "grounding": {
+    "rho": 0.04763971785132935,
+    "p": 0.6448564566102253,
+    "n": 96
+   },
+   "propagation": {
+    "rho": -0.07508138903960934,
+    "p": 0.4672045845540106,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": -0.14776001154884522,
+    "p": 0.15080869778135564,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": 0.08681497558328811,
+    "p": 0.40031628138857456,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": -0.33734400434074874,
+    "p": 0.0007763859174814011,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": 0.10818601688166905,
+    "p": 0.307367265997395,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": 0.09628921802834847,
+    "p": 0.3639020509435731,
+    "n": 91
+   }
+  },
+  "ep4": {
+   "concepts_per_100_thm": {
+    "rho": -0.14884698860553444,
+    "p": 0.14779372942917712,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": 0.0701270073652539,
+    "p": 0.4971775266208144,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": -0.13874890633055384,
+    "p": 0.1776008743535802,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": 0.009413645832819683,
+    "p": 0.9274701103771228,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": 0.044014378035119636,
+    "p": 0.670247502542121,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": 0.23270482908301682,
+    "p": 0.02251397536064741,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": -0.21389039609332608,
+    "p": 0.036392186883391284,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": 0.13320066452879967,
+    "p": 0.19574414706389526,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": 0.27747385758341564,
+    "p": 0.006199698752087101,
+    "n": 96
+   },
+   "grounding": {
+    "rho": -0.12276180141074335,
+    "p": 0.23342914652498511,
+    "n": 96
+   },
+   "propagation": {
+    "rho": -0.027631578947368424,
+    "p": 0.7892862059079251,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": -0.03424152801311405,
+    "p": 0.7404938839112514,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": -0.14116928920238742,
+    "p": 0.17008419135903197,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": 0.1823928377645144,
+    "p": 0.0753022062275643,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": -0.30323299888517286,
+    "p": 0.003480198005473708,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": 0.027759197324414717,
+    "p": 0.7939417092894745,
+    "n": 91
+   }
+  },
+  "ep5": {
+   "concepts_per_100_thm": {
+    "rho": 0.06897721106890939,
+    "p": 0.5042748211409869,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": -0.02487239926573035,
+    "p": 0.8099088548385402,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": -0.08320729250932368,
+    "p": 0.42025374998261533,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": 0.05586103639137937,
+    "p": 0.5887992790778458,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": 0.1437896569755718,
+    "p": 0.16221380376582506,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": 0.18341020075963105,
+    "p": 0.07366129027363447,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": 0.10960390667390126,
+    "p": 0.2877667202002659,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": 0.08645187276637312,
+    "p": 0.4022972360577085,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": 0.1646990366383304,
+    "p": 0.10881400721022555,
+    "n": 96
+   },
+   "grounding": {
+    "rho": -0.05691806836679327,
+    "p": 0.5817554254780548,
+    "n": 96
+   },
+   "propagation": {
+    "rho": -0.05233315246880086,
+    "p": 0.6125839995152856,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": 0.19250613224351207,
+    "p": 0.06023416335541715,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": -0.23171459576776993,
+    "p": 0.02311066259734971,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": -0.0198046663049376,
+    "p": 0.8481165074363871,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": 0.3586558369167065,
+    "p": 0.0004812805145012863,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": 0.2982481286829113,
+    "p": 0.0040861689544008555,
+    "n": 91
+   }
+  },
+  "ep6": {
+   "concepts_per_100_thm": {
+    "rho": -0.19899620184481823,
+    "p": 0.051931365579199765,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": 0.15924575673870117,
+    "p": 0.12120110019861462,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": -0.12652690265417618,
+    "p": 0.2192932301805689,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": -0.03472364758885174,
+    "p": 0.7369723248286467,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": -0.22259784660447035,
+    "p": 0.029267663755289,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": 0.01770211611502984,
+    "p": 0.8640775435978149,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": -0.05489690721649485,
+    "p": 0.5952576232352496,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": -0.06553178845268723,
+    "p": 0.5258529094547613,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": 0.129007096084437,
+    "p": 0.21031838663271007,
+    "n": 96
+   },
+   "grounding": {
+    "rho": 0.04658166033640803,
+    "p": 0.6522264817946559,
+    "n": 96
+   },
+   "propagation": {
+    "rho": 0.15873575691806838,
+    "p": 0.122412907850002,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": 0.056979666007740785,
+    "p": 0.5813461486962783,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": 0.044669017905588713,
+    "p": 0.6656339805589073,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": 0.02357569180683668,
+    "p": 0.8196466800545048,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": -0.05854435419652812,
+    "p": 0.581475766575546,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": -0.1388756171364867,
+    "p": 0.18923450865144295,
+    "n": 91
+   }
+  },
+  "ep7": {
+   "concepts_per_100_thm": {
+    "rho": 0.01946554530656538,
+    "p": 0.8506869025851823,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": -0.026052600376239507,
+    "p": 0.8010710097508087,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": -0.022002319603867466,
+    "p": 0.8314988727765273,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": -0.09708183217772938,
+    "p": 0.3467209573848731,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": 0.2162912102918613,
+    "p": 0.0342959693230512,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": 0.27093054801953337,
+    "p": 0.0075868280655891586,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": -0.10919696147585459,
+    "p": 0.2895711592292947,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": 0.07948964199318315,
+    "p": 0.44138698650496844,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": 0.13126763104511854,
+    "p": 0.20236901440405441,
+    "n": 96
+   },
+   "grounding": {
+    "rho": 0.12121540965816603,
+    "p": 0.23941526734800606,
+    "n": 96
+   },
+   "propagation": {
+    "rho": 0.024918610960390667,
+    "p": 0.8095623452811587,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": -0.028345179596452292,
+    "p": 0.7839755533598914,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": -0.30193977211068906,
+    "p": 0.0027920596157917812,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": 0.06211340206185567,
+    "p": 0.5477112195541095,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": -0.311116419812072,
+    "p": 0.00268472853243871,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": 0.1695970695970696,
+    "p": 0.10802063717091093,
+    "n": 91
+   }
+  },
+  "ep8": {
+   "concepts_per_100_thm": {
+    "rho": -0.3138632664134563,
+    "p": 0.0018455462572663035,
+    "n": 96
+   },
+   "live_concept_share": {
+    "rho": 0.24479677172060924,
+    "p": 0.016226354729010014,
+    "n": 96
+   },
+   "single_use_lemma_share": {
+    "rho": 0.05232672495186112,
+    "p": 0.6126277124734587,
+    "n": 96
+   },
+   "cert_token_share": {
+    "rho": 0.06588108272263223,
+    "p": 0.5236443768592404,
+    "n": 96
+   },
+   "casebash_token_share": {
+    "rho": 0.12321054136387764,
+    "p": 0.23171178027769826,
+    "n": 96
+   },
+   "auto_per_1k": {
+    "rho": 0.28530927835051545,
+    "p": 0.004837719048372544,
+    "n": 96
+   },
+   "struct_per_1k": {
+    "rho": -0.13628594682582745,
+    "p": 0.18549673788833376,
+    "n": 96
+   },
+   "numbered_share": {
+    "rho": 0.23070528734757506,
+    "p": 0.023732696859721878,
+    "n": 96
+   },
+   "uninformative_share": {
+    "rho": 0.21337543553565666,
+    "p": 0.036855535034819475,
+    "n": 96
+   },
+   "grounding": {
+    "rho": -0.06127238198589257,
+    "p": 0.5531559288526897,
+    "n": 96
+   },
+   "propagation": {
+    "rho": -0.1402061855670103,
+    "p": 0.1730465747258623,
+    "n": 96
+   },
+   "skel_dup_share": {
+    "rho": 0.1000794931608397,
+    "p": 0.3319626867283608,
+    "n": 96
+   },
+   "library_ref_share": {
+    "rho": -0.029042322300596855,
+    "p": 0.778796922038121,
+    "n": 96
+   },
+   "proof_to_statement": {
+    "rho": 0.317078133478025,
+    "p": 0.001645812668234774,
+    "n": 96
+   },
+   "e_ir": {
+    "rho": -0.10979455327281415,
+    "p": 0.3001878517046751,
+    "n": 91
+   },
+   "e_tok": {
+    "rho": -0.15827361044752353,
+    "p": 0.13402300520684143,
+    "n": 91
+   }
+  }
+ },
+ "decl_join": {
+  "mathlib": {
+   "n": 156457,
+   "rho_ir_text": 0.0805866041446719,
+   "rho_ir_names": 0.04883205866795997,
+   "rho_ir_syntax": 0.11856801088675509,
+   "e_ir_median": 2.710180683430751,
+   "e_tok_median": 5.0637523451155575
+  },
+  "openai": {
+   "n": 14997,
+   "rho_ir_text": 0.024547841714020805,
+   "rho_ir_names": -0.02730253418283192,
+   "rho_ir_syntax": 0.0835194322743996,
+   "e_ir_median": 3.290560329660836,
+   "e_tok_median": 7.12621742598461
+  }
+ },
+ "binned": [
+  {
+   "group": "mathlib",
+   "bin": 0,
+   "e_ir": 1.4732835737012755,
+   "e_tok": 4.8725651491697874,
+   "n": 16749
+  },
+  {
+   "group": "mathlib",
+   "bin": 1,
+   "e_ir": 1.8335239565034935,
+   "e_tok": 4.955548240895262,
+   "n": 16589
+  },
+  {
+   "group": "mathlib",
+   "bin": 2,
+   "e_ir": 2.10420875292646,
+   "e_tok": 5.01268545786146,
+   "n": 16236
+  },
+  {
+   "group": "mathlib",
+   "bin": 3,
+   "e_ir": 2.3700024307876255,
+   "e_tok": 5.048664150791533,
+   "n": 15964
+  },
+  {
+   "group": "mathlib",
+   "bin": 4,
+   "e_ir": 2.630531249125846,
+   "e_tok": 5.05245349358822,
+   "n": 15726
+  },
+  {
+   "group": "mathlib",
+   "bin": 5,
+   "e_ir": 2.9006992284548656,
+   "e_tok": 5.071201135552405,
+   "n": 15540
+  },
+  {
+   "group": "mathlib",
+   "bin": 6,
+   "e_ir": 3.2047395166671397,
+   "e_tok": 5.026250081841484,
+   "n": 15248
+  },
+  {
+   "group": "mathlib",
+   "bin": 7,
+   "e_ir": 3.565786334622523,
+   "e_tok": 5.0604871102338524,
+   "n": 15101
+  },
+  {
+   "group": "mathlib",
+   "bin": 8,
+   "e_ir": 4.088367423913731,
+   "e_tok": 5.143506143038893,
+   "n": 14707
+  },
+  {
+   "group": "mathlib",
+   "bin": 9,
+   "e_ir": 5.226680567837241,
+   "e_tok": 5.361019720716448,
+   "n": 14597
+  },
+  {
+   "group": "openai",
+   "bin": 0,
+   "e_ir": 1.5227091197291014,
+   "e_tok": 7.351678072607319,
+   "n": 395
+  },
+  {
+   "group": "openai",
+   "bin": 1,
+   "e_ir": 1.8552083241739907,
+   "e_tok": 7.426286406189822,
+   "n": 558
+  },
+  {
+   "group": "openai",
+   "bin": 2,
+   "e_ir": 2.1159338645352763,
+   "e_tok": 7.316074325405948,
+   "n": 909
+  },
+  {
+   "group": "openai",
+   "bin": 3,
+   "e_ir": 2.378485871338169,
+   "e_tok": 7.063261818396843,
+   "n": 1182
+  },
+  {
+   "group": "openai",
+   "bin": 4,
+   "e_ir": 2.633551114968331,
+   "e_tok": 6.973948132972239,
+   "n": 1419
+  },
+  {
+   "group": "openai",
+   "bin": 5,
+   "e_ir": 2.9103015557603302,
+   "e_tok": 7.066848386459087,
+   "n": 1605
+  },
+  {
+   "group": "openai",
+   "bin": 6,
+   "e_ir": 3.205711734153269,
+   "e_tok": 6.98041685424664,
+   "n": 1898
+  },
+  {
+   "group": "openai",
+   "bin": 7,
+   "e_ir": 3.577143937127861,
+   "e_tok": 6.96745957009566,
+   "n": 2044
+  },
+  {
+   "group": "openai",
+   "bin": 8,
+   "e_ir": 4.075275183015805,
+   "e_tok": 7.0933517518957245,
+   "n": 2438
+  },
+  {
+   "group": "openai",
+   "bin": 9,
+   "e_ir": 5.425312948069752,
+   "e_tok": 7.409584335692595,
+   "n": 2549
+  }
+ ],
+ "regularization": {
+  "alpha": 0.1,
+  "floor": 0.01
+ }
+}

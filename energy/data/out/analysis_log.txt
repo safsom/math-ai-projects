@@ -1,0 +1,140 @@
+  Pj = D.groupby(['corpus', 'project']).apply(agg).reset_index()
+  pooled = pool.groupby('group').apply(lambda g: pd.Series({
+group
+human              24
+human-upstream      5
+mathlib           465
+openai            524
+openai-ten         11
+strongpnt           1
+dtype: int64
+group                         human  ...  openai-core
+label                                ...             
+Area-matched excess energy    1.518  ...        1.511
+Bespoke references            0.345  ...        0.574
+Coined words                  0.018  ...        0.028
+Energy per theorem          666.261  ...      861.462
+Library surprisal            14.224  ...       13.376
+Literal share                 0.000  ...        0.000
+Name energy                   8.068  ...        8.760
+Premise energy               12.750  ...       14.430
+Proof energy                  6.130  ...        6.530
+Specific energy               6.672  ...        6.989
+Syntax energy                 3.537  ...        3.480
+Theorem length              106.250  ...      124.000
+
+[12 rows x 6 columns]
+         vs         metric                       label  ...     auc       p       q
+0   mathlib          e_tok             Specific energy  ...  0.9371  0.0000  0.0000
+1   mathlib        d_e_tok  Area-matched excess energy  ...  0.9241  0.0000  0.0000
+2   mathlib         e_name                 Name energy  ...  0.9452  0.0000  0.0000
+3   mathlib           e_op               Syntax energy  ...  0.8423  0.0000  0.0000
+4   mathlib        e_proof                Proof energy  ...  0.9234  0.0000  0.0000
+5   mathlib            oov                Coined words  ...  0.9286  0.0000  0.0000
+6   mathlib   E_thm_struct          Energy per theorem  ...  0.9821  0.0000  0.0000
+7   mathlib    tok_per_thm              Theorem length  ...  0.9397  0.0000  0.0000
+8   mathlib      lit_share               Literal share  ...  0.7169  0.0000  0.0000
+9   mathlib         e_prem              Premise energy  ...  0.9115  0.0000  0.0000
+10  mathlib  bespoke_share          Bespoke references  ...  0.8115  0.0000  0.0000
+11  mathlib       lib_surp           Library surprisal  ...  0.1721  0.0000  0.0000
+12    human          e_tok             Specific energy  ...  0.7385  0.0001  0.0001
+13    human        d_e_tok  Area-matched excess energy  ...  0.6075  0.0748  0.0816
+14    human         e_name                 Name energy  ...  0.8335  0.0000  0.0000
+15    human           e_op               Syntax energy  ...  0.4951  0.9364  0.9364
+16    human        e_proof                Proof energy  ...  0.7472  0.0000  0.0001
+17    human            oov                Coined words  ...  0.7230  0.0002  0.0003
+18    human   E_thm_struct          Energy per theorem  ...  0.6209  0.0450  0.0514
+19    human    tok_per_thm              Theorem length  ...  0.5531  0.3792  0.3957
+20    human      lit_share               Literal share  ...  0.6589  0.0039  0.0047
+21    human         e_prem              Premise energy  ...  0.8695  0.0000  0.0000
+22    human  bespoke_share          Bespoke references  ...  0.9577  0.0000  0.0000
+23    human       lib_surp           Library surprisal  ...  0.1143  0.0000  0.0000
+
+[24 rows x 11 columns]
+{
+ "e_tok": {
+  "Intercept": [
+   3.8052611132751184,
+   0.21744010007458076,
+   1.425841144608052e-68
+  ],
+  "C(group, Treatment(\"mathlib\"))[T.human]": [
+   0.9120104035521548,
+   0.19684511801720808,
+   3.601659836297419e-06
+  ],
+  "C(group, Treatment(\"mathlib\"))[T.openai]": [
+   1.5235383286456359,
+   0.06723141916119611,
+   1.0842292510162915e-113
+  ],
+  "logtok": [
+   0.35872803924874225,
+   0.051310296598401396,
+   2.7226128533469984e-12
+  ],
+  "cert": [
+   1.7437222090123041,
+   0.3305745725737463,
+   1.328846068219272e-07
+  ]
+ },
+ "e_prem": {
+  "Intercept": [
+   7.4551761514559525,
+   0.25755360364011276,
+   3.1407505765531756e-184
+  ],
+  "C(group, Treatment(\"mathlib\"))[T.human]": [
+   0.4514417265114826,
+   0.15286738001828543,
+   0.003145395907580566
+  ],
+  "C(group, Treatment(\"mathlib\"))[T.openai]": [
+   1.1706934256087074,
+   0.08690204479780694,
+   2.3041069117306357e-41
+  ],
+  "logtok": [
+   1.1182509538607859,
+   0.0580690126452806,
+   1.2266608780939694e-82
+  ],
+  "cert": [
+   0.015303007525303369,
+   0.39262533710328446,
+   0.9689094372247347
+  ]
+ }
+}
+               e_tok  e_prem   oov  ...  numbered  lit_share  tok_per_thm
+e_tok           1.00    0.10  0.78  ...      0.19       0.23        -0.27
+e_prem          0.10    1.00  0.08  ...      0.19       0.20         0.39
+oov             0.78    0.08  1.00  ...      0.18       0.26        -0.08
+bespoke_share   0.66    0.00  0.50  ...      0.14       0.09        -0.51
+lib_surp       -0.44    0.07 -0.38  ...     -0.00      -0.17         0.13
+cert_mass       0.33    0.18  0.32  ...      0.34       0.57        -0.07
+numbered        0.19    0.19  0.18  ...      1.00       0.25         0.01
+lit_share       0.23    0.20  0.26  ...      0.25       1.00         0.10
+tok_per_thm    -0.27    0.39 -0.08  ...      0.01       0.10         1.00
+
+[9 rows x 9 columns]
+                      median_mathlib  median_openai  size_mathlib  size_openai
+area                                                                          
+RingTheory                      4.77           6.51          62.0          6.0
+RepresentationTheory            5.40           6.72           4.0         22.0
+Analysis                        5.13           6.79          23.0        119.0
+Algebra                         4.79           6.81          39.0         19.0
+AlgebraicGeometry               5.57           6.88          11.0         13.0
+NumberTheory                    5.56           6.89          20.0         25.0
+Geometry                        6.15           6.90           6.0         59.0
+Dynamics                        5.82           6.92           7.0          7.0
+Probability                     5.56           7.01          10.0         71.0
+LinearAlgebra                   4.95           7.06          34.0          8.0
+MeasureTheory                   4.82           7.22          12.0          5.0
+AlgebraicTopology               6.15           7.22           9.0          4.0
+GroupTheory                     5.31           7.25          17.0         18.0
+Combinatorics                   6.21           7.31          13.0         73.0
+Topology                        4.88           7.49          34.0          6.0
+CategoryTheory                  5.70           7.68          43.0          3.0
+Computability                   6.36           8.17           4.0         31.0

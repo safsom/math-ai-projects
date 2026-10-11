@@ -1,0 +1,37 @@
+# Third-party sources and builds (re-cloned / rebuilt locally)
+corpora/
+mathlib4/
+mathlib_build.log
+eigen/human/
+**/.lake/
+eigen/build/
+
+# Local tooling
+.DS_Store
+.claude/
+__pycache__/
+*.pyc
+*.bak
+proofstudy.zip
+
+# Large intermediate data (regenerable from the scripts)
+energy/data/*
+!energy/data/out/
+eigen/oai_imports.json
+eigen/flt_imports.json
+eigen/mathlib_thm_names*.txt
+eigen/job_B.json
+eigen/job_B_rr.json
+eigen/job_cut_oai.json
+eigen/job_ai_*.json
+
+# Raw extraction output: keep only the small result files the reports are built from
+eigen/out*/**
+!eigen/out*/**/
+!eigen/out_final/analysis*/results.json
+!eigen/out_final/analysis_all/corpora.json
+!eigen/out_final/analysis_merged/recheck_ep.json
+!eigen/out_cut/results*.json
+!eigen/out_cut/report_cuts*.json
+!eigen/out_swap/compare.json
+!eigen/out_ai_ready/failures.json

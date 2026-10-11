@@ -1,0 +1,569 @@
+<style>
+.ps { font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 1180px; margin-inline: auto; }
+.ps h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-xs); }
+.ps h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-xl) 0 var(--cds-gap-xs); }
+.ps h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 2px; }
+.ps p { margin: 0 0 var(--cds-gap-sm); line-height: 1.5; }
+.ps .ps-lede { color: var(--color-fg-muted); max-width: 70ch; }
+.ps .ps-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-bottom: var(--cds-gap-sm); }
+.ps .ps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.ps .ps-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); position: relative; min-width: 0; }
+.ps .ps-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: var(--cds-gap-md); margin-top: var(--cds-gap-md); }
+.ps .ps-kpi .v { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.15; }
+.ps .ps-kpi .l { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-top: 4px; }
+.ps .num { font-variant-numeric: tabular-nums; }
+.ps .ps-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); z-index: 5; max-width: 300px; display: none; }
+.ps .ps-tip .t { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.ps .ps-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-sm); align-items: center; }
+.ps .ps-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.ps .ps-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; margin-bottom: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
+.ps .ps-seg { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+.ps .ps-seg button { border: 0; background: transparent; color: var(--color-fg-muted); padding: 4px 10px; font: inherit; cursor: pointer; }
+.ps .ps-seg button[aria-pressed="true"] { background: var(--color-bg); color: var(--color-fg); }
+.ps select, .ps input[type=search] { font: inherit; color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 3px 6px; }
+.ps .ps-forest-fam { margin-top: var(--cds-gap-md); }
+.ps .ps-forest-fam:first-child { margin-top: 0; }
+.ps .ps-frow { display: grid; grid-template-columns: minmax(9rem, 15rem) 1fr; gap: var(--cds-gap-sm); align-items: center; min-height: 30px; border-top: 1px solid var(--color-border-line); }
+.ps .ps-frow .lab { font-size: var(--cds-font-size-caption); line-height: 1.25; padding: 4px 0; }
+.ps .ps-frow .lab small { display: block; color: var(--color-fg-muted); }
+.ps .ps-chart { min-height: 120px; }
+.ps .ps-tablebox { max-height: 440px; overflow: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+.ps table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.ps th, .ps td { padding: 5px 8px; text-align: right; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.ps th:first-child, .ps td:first-child { text-align: left; white-space: normal; }
+.ps th { position: sticky; top: 0; background: var(--color-panel); font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); cursor: pointer; }
+.ps th button { all: unset; cursor: pointer; }
+.ps .ps-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--cds-font-size-caption); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); overflow-x: auto; white-space: pre; color: var(--color-fg-muted); margin: var(--cds-gap-sm) 0 0; }
+.ps .ps-method p, .ps .ps-method li { font-size: var(--cds-font-size-caption); line-height: 1.55; color: var(--color-fg); }
+.ps .ps-method ul { padding-left: 1.2em; margin: 0 0 var(--cds-gap-sm); }
+.ps [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.ps [data-dash-source-state=empty] { color: transparent; }
+.ps .ps-fail { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-height: inherit; }
+.ps .ps-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.ps .ps-acc { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+</style>
+
+<div class="ps">
+  <h1 id="top">Proof style in OpenAI's Lean library</h1>
+  <p class="ps-lede" id="takeaway">
+    Measured at the median project, OpenAI's formalizations form concepts at least as actively as human research projects but lean on bespoke definitions rather than mathlib.
+    Pooled, the picture changes: <span class="ps-acc num dash-skeleton" data-source="cert_concentration" data-field="share" data-row="0">—</span> of all proof tokens sit in
+    <span class="ps-acc num dash-skeleton" data-source="cert_concentration" data-field="n_cert" data-row="0">—</span> certificate-style projects that are kernel-checked computation.
+    The style proxies do not collapse to one "moral quality" score: the first principal component explains
+    <span class="ps-acc num dash-skeleton" data-source="pca" data-field="pc1_variance_share" data-row="0">—</span> of their variation across headline results.
+  </p>
+
+  <div class="ps-kpis">
+    <div class="ps-card ps-kpi"><div class="v dash-skeleton" data-source="sizes" data-field="decls" data-where="group=openai_math">—</div><div class="l">Declarations parsed in OpenAI's openai/math library</div></div>
+    <div class="ps-card ps-kpi"><div class="v dash-skeleton" data-source="sizes" data-field="theorems" data-where="group=openai_math">—</div><div class="l">Theorems and lemmas among them</div></div>
+    <div class="ps-card ps-kpi"><div class="v dash-skeleton" data-source="sizes" data-field="headline_results" data-where="group=openai_math">—</div><div class="l">Headline results traced to their full dependency cone</div></div>
+    <div class="ps-card ps-kpi"><div class="v dash-skeleton" data-source="sizes" data-field="projects_ge20" data-where="group=openai_math">—</div><div class="l">OpenAI projects compared (20 or more theorems)</div></div>
+    <div class="ps-card ps-kpi"><div class="v dash-skeleton" data-source="sizes" data-field="projects_ge20" data-where="group=human_research">—</div><div class="l">Human research project units (Carleson, FLT, PFR, sphere eversion)</div></div>
+  </div>
+
+  <h2 id="regimes">Two regimes: a conceptual core and a certificate shell</h2>
+  <p class="ps-note">A handful of very large projects are long chains of numerical certificates checked by the kernel, the same genre as computer-assisted proofs. They dominate any pooled number, so every comparison below is made at the median project, with the pooled value alongside.</p>
+  <div class="ps-grid">
+    <div class="ps-card" id="card-top-projects">
+      <h3>Largest OpenAI projects by proof tokens</h3>
+      <p class="ps-note">Bar length is all proof and definition tokens; the colored part is certificate mass (numeral-dense declarations or kernel computation via decide).</p>
+      <div class="ps-legend"><span><i class="sw-cert"></i>Certificate mass</span><span><i class="sw-rest"></i>Everything else</span></div>
+      <div class="ps-chart dash-skeleton" id="chart-top" data-source="oai_projects" style="min-height:520px"></div>
+      <div class="ps-tip"></div>
+    </div>
+    <div class="ps-card" id="card-strata">
+      <h3>Pooled metrics by regime</h3>
+      <p class="ps-note">Certificate shell = OpenAI projects whose certificate mass is 30% or more. All values pooled over every declaration in the stratum.</p>
+      <div class="ps-tablebox" style="max-height:none">
+        <table id="tbl-strata" data-source="strata" data-row-key="stratum">
+          <thead><tr>
+            <th data-field="stratum">Stratum</th>
+            <th data-field="n_projects">Projects</th>
+            <th data-field="cert_token_share">Certificate mass</th>
+            <th data-field="numbered_share">Numbered names</th>
+            <th data-field="skel_dup_share">Template proofs</th>
+            <th data-field="live_concept_share">Live concepts</th>
+            <th data-field="library_ref_share">Library refs</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="ps-note" style="margin-top:var(--cds-gap-sm)">What a certificate project looks like (OAI/Analysis/PlanarPacking):</p>
+      <div class="ps-code">noncomputable def s5_6 : CBox := ⟨⟨3391952870388255366293770189, …⟩, …⟩
+lemma c5_6 : chunk 5 6 = s5_6 := by decide +kernel
+noncomputable def s5_7 : CBox := ⟨⟨4367081750152219060258049856, …⟩, …⟩
+lemma c5_7 : chunk 5 7 = s5_7 := by decide +kernel</div>
+    </div>
+  </div>
+
+  <h2 id="compare">How OpenAI's projects compare</h2>
+  <p class="ps-note">Each row is one attribute. Dots are the median project in each group with a 95% bootstrap interval (projects resampled); switch to pooled to see the value over all declarations. Hover a row's label for its exact definition.</p>
+  <div class="ps-card" id="card-forest">
+    <div class="ps-controls">
+      <span class="ps-seg" role="group" aria-label="Statistic">
+        <button type="button" data-mode="median" aria-pressed="true">Median project</button>
+        <button type="button" data-mode="pooled" aria-pressed="false">Pooled</button>
+      </span>
+      <label><input type="checkbox" id="show-extra"> Also show OpenAI ten proofs and StrongPNT</label>
+    </div>
+    <div class="ps-legend" id="forest-legend"></div>
+    <div class="ps-chart dash-skeleton" id="forest" data-source="group_metrics" style="min-height:900px"></div>
+    <div class="ps-tip"></div>
+  </div>
+
+  <div class="ps-card" id="card-tests" style="margin-top:var(--cds-gap-md)">
+    <h3>Is the difference real?</h3>
+    <p class="ps-note">Project-level Mann–Whitney tests, OpenAI math against the chosen group, with Benjamini–Hochberg q-values. AUC is the probability that a random OpenAI project scores higher (0.5 = no difference). Difference = OpenAI median minus the other group's median, with a 95% bootstrap interval.</p>
+    <div class="ps-controls">
+      <span class="ps-seg" role="group" aria-label="Compare with">
+        <button type="button" data-vs="human_research" aria-pressed="true">vs human research</button>
+        <button type="button" data-vs="mathlib" aria-pressed="false">vs mathlib</button>
+      </span>
+    </div>
+    <div class="ps-tablebox">
+      <table id="tbl-tests" data-source="tests" data-row-key="metric,vs">
+        <thead><tr>
+          <th data-field="label">Attribute</th>
+          <th data-field="diff">Difference</th>
+          <th data-field="diff_lo">95% low</th>
+          <th data-field="diff_hi">95% high</th>
+          <th data-field="auc">AUC</th>
+          <th data-field="q">q</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2 id="coherence">Do the proxies agree with each other?</h2>
+  <p class="ps-note">Spearman correlations across OpenAI's headline results (each result's full dependency cone, 20 or more theorems). If "morally good" were one thing, these would line up on one axis. They mostly don't.</p>
+  <div class="ps-grid">
+    <div class="ps-card" id="card-heat">
+      <h3>Correlation between attributes</h3>
+      <div class="ps-legend" id="heat-legend"></div>
+      <div class="ps-chart dash-skeleton" id="heat" data-source="cone_corr" style="min-height:420px"></div>
+      <div class="ps-tip"></div>
+    </div>
+    <div class="ps-card" id="card-pca">
+      <h3>First principal component</h3>
+      <p class="ps-note">Loadings on rank-transformed attributes; it explains <span class="num" data-source="pca" data-field="pc1_variance_share" data-row="0">—</span> of the variance (the second, <span class="num" data-source="pca" data-field="pc2_variance_share" data-row="0">—</span>). Positive end: library-anchored results with live concepts. Negative end: bespoke, computational, templated ones.</p>
+      <div class="ps-chart dash-skeleton" id="pca" data-source="pca" style="min-height:380px"></div>
+      <div class="ps-tip"></div>
+    </div>
+  </div>
+
+  <h2 id="results">Every headline result</h2>
+  <p class="ps-note">One point per headline theorem: OpenAI's formalization catalogues, the human projects' main theorems, and StrongPNT. Values are over the result's whole in-library dependency cone. Pick any two attributes.</p>
+  <div class="ps-card" id="card-scatter">
+    <div class="ps-controls">
+      <label>x <select id="sx"></select></label>
+      <label>y <select id="sy"></select></label>
+    </div>
+    <div class="ps-legend" id="scatter-legend"></div>
+    <div class="ps-chart dash-skeleton" id="scatter" data-source="cones" style="min-height:440px"></div>
+    <div class="ps-tip"></div>
+  </div>
+  <div class="ps-card" id="card-cones" style="margin-top:var(--cds-gap-md)">
+    <div class="ps-controls"><input type="search" id="cone-q" placeholder="Search results" aria-label="Search results"></div>
+    <div class="ps-tablebox">
+      <table id="tbl-cones" data-source="cones" data-row-key="headline">
+        <thead><tr>
+          <th data-field="short"><button data-k="short">Result</button></th>
+          <th data-field="group_label"><button data-k="group_label">Group</button></th>
+          <th data-field="n_decls"><button data-k="n_decls">Declarations</button></th>
+          <th data-field="concepts_per_100_thm"><button data-k="concepts_per_100_thm">Concepts / 100 thm</button></th>
+          <th data-field="live_concept_share"><button data-k="live_concept_share">Live concepts</button></th>
+          <th data-field="cert_token_share"><button data-k="cert_token_share">Certificate mass</button></th>
+          <th data-field="numbered_share"><button data-k="numbered_share">Numbered names</button></th>
+          <th data-field="grounding"><button data-k="grounding">Name grounding</button></th>
+          <th data-field="library_ref_share"><button data-k="library_ref_share">Library refs</button></th>
+          <th data-field="skel_dup_share"><button data-k="skel_dup_share">Template proofs</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2 id="method">Method and limits</h2>
+  <div class="ps-card ps-method">
+    <p><b>Corpus.</b> OpenAI's openai/math Lean library (release of October 6, 2026) and the earlier openai/ten-proofs. Controls: mathlib at the exact revision OpenAI pins; four human-written research formalizations (Carleson, FLT, PFR, sphere eversion) at their current commits; StrongPNT (Math Inc.) as a second AI-produced corpus. Lean core and Batteries are used only to resolve names.</p>
+    <p><b>Parsing.</b> No elaboration (mathlib cannot be built on the analysis machine), so this is a syntactic parse: comments and strings stripped; namespaces, sections and <code>open</code> tracked; declarations split into statement and proof; every identifier resolved against the declared names of all corpora, with local binders shadowing globals, generated names (structure fields, constructors, <code>to_additive</code> translations) included, and field notation <code>h.foo</code> resolved only when <code>foo</code> is unique in the corpus and absent from mathlib. Declaration counts match an independent line count on random samples. Dependency counts are lower bounds.</p>
+    <p><b>Units.</b> A project is a directory (OpenAI: OAI/&lt;Area&gt;/&lt;Topic&gt;; mathlib: Mathlib/&lt;A&gt;/&lt;B&gt;; human projects: first-level subdirectory). A headline result's cone is every same-corpus declaration reachable from it through statement or proof references.</p>
+    <p><b>Attribute families.</b> Concept formation (how many definitions a development introduces and whether they become shared vocabulary), brute force (certificate mass, case enumeration, tactic mix), naming (length, serial numbers, placeholder words, mathlib vocabulary, how much a name is read off its statement, and whether a concept's name propagates into theorems about it), compression (duplicate and templated proofs, window-normalized zlib ratio, proof/statement length) and derivation (how much is built from library constants rather than local ones, and verbatim re-derivation across projects).</p>
+    <ul>
+      <li>These are style proxies, not a verdict on whether a proof is explanatory. Validating them needs an outside signal: blinded mathematician ratings, the repository's withdrawals and repairs, or later reuse.</li>
+      <li>The Lean was produced by a formalization pipeline after the fact, so it measures formal-proof style, which may differ from the papers' arguments.</li>
+      <li>Human controls are small and may include some AI-assisted code; mathlib is a library, not a proof, so its single-use-lemma and proof-length numbers reflect that genre.</li>
+      <li>Field notation is under-resolved, more so in human code: the sphere-eversion cone is clearly incomplete. A detector for restated mathlib theorems was dropped because its hits were mostly false positives; true restatement is rare in every group.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  const num = (v) => (v === '' || v == null ? NaN : Number(v));
+  const pct = d3.format('.1%');
+  const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
+  const comma = d3.format(',');
+  const SHARE = new Set(['live_concept_share','dead_concept_share','single_use_lemma_share','reusable_lemma_share','cert_token_share','casebash_token_share','numbered_share','uninformative_share','vocab_share','grounding','ns_inherit','propagation','body_dup_share','skel_dup_share','library_ref_share','stmt_library_share','cross_project_restatement','numeral_density']);
+  const fmtMetric = (k, v) => {
+    if (!isFinite(v)) return '–';
+    if (SHARE.has(k)) return pct(v);
+    if (k === 'concepts_per_100_thm') return d3.format('.1f')(v);
+    if (k === 'name_tokens') return d3.format('.0f')(v);
+    if (k === 'zlib_ratio') return d3.format('.3f')(v);
+    if (k === 'proof_to_statement') return d3.format('.2f')(v);
+    return d3.format('.1f')(v);
+  };
+  const FAM = { concept: 'Concept formation', brute: 'Brute force', naming: 'Naming', compression: 'Compression', derivation: 'Mathlib derivation' };
+  const GROUPS = [
+    { id: 'openai_math', label: 'OpenAI math', color: () => dash.colors[0], shape: 'circle' },
+    { id: 'human_research', label: 'Human research', color: () => dash.colors[1], shape: 'circle' },
+    { id: 'mathlib', label: 'mathlib', color: () => dash.colors[2], shape: 'circle' },
+    { id: 'openai_ten', label: 'OpenAI ten proofs', color: () => 'var(--cds-chart-muted)', shape: 'square', extra: true },
+    { id: 'other_ai', label: 'StrongPNT', color: () => 'var(--cds-chart-muted)', shape: 'diamond', extra: true },
+  ];
+  const gById = Object.fromEntries(GROUPS.map((g) => [g.id, g]));
+  const sym = (s) => d3.symbol().type(s === 'square' ? d3.symbolSquare : s === 'diamond' ? d3.symbolDiamond : d3.symbolCircle);
+
+  function resolveColor(c) {
+    const el = document.createElement('span');
+    el.style.color = c; document.body.appendChild(el);
+    const out = getComputedStyle(el).color; el.remove(); return out;
+  }
+  function failed(el) {
+    el.classList.remove('dash-skeleton');
+    const d = document.createElement('div'); d.className = 'ps-fail'; d.textContent = 'Failed to load';
+    el.replaceChildren(d);
+  }
+  function tipFor(card) {
+    const tip = card.querySelector(':scope > .ps-tip');
+    return {
+      show(evt, title, lines) {
+        tip.replaceChildren();
+        const t = document.createElement('div'); t.className = 't'; t.textContent = title; tip.appendChild(t);
+        for (const [sw, txt] of lines) {
+          const row = document.createElement('div');
+          if (sw) { const i = document.createElement('i'); i.style.cssText = `display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:${sw}`; row.appendChild(i); }
+          row.appendChild(document.createTextNode(txt)); tip.appendChild(row);
+        }
+        tip.style.display = 'block';
+        const r = card.getBoundingClientRect();
+        let x = evt.clientX - r.left + 12, y = evt.clientY - r.top + 12;
+        const w = tip.offsetWidth, h = tip.offsetHeight;
+        if (x + w > r.width - 8) x = evt.clientX - r.left - w - 12;
+        if (y + h > r.height - 8) y = evt.clientY - r.top - h - 12;
+        tip.style.left = Math.max(4, x) + 'px'; tip.style.top = Math.max(4, y) + 'px';
+      },
+      hide() { tip.style.display = 'none'; },
+    };
+  }
+  const rowsOf = (id) => { const d = dash.data(id); return d.status === 'ok' ? d.data : null; };
+
+  // ---------------- calcs ----------------
+  dash.calc('cert_concentration', {
+    inputs: ['oai_projects'],
+    title: 'Certificate-project concentration',
+    description: 'Share of all OpenAI proof tokens that sit in projects whose certificate mass is 30% or more.',
+    fn: (oai_projects) => {
+      const tok = (r) => Number(r.tokens);
+      const cert = oai_projects.filter((r) => r.regime === 'certificate');
+      const total = d3.sum(oai_projects, tok);
+      return [{ share: d3.sum(cert, tok) / total, n_cert: cert.length, n_projects: oai_projects.length }];
+    },
+  });
+
+  // ---------------- fill simple marks ----------------
+  function fillMarks() {
+    document.querySelectorAll('.ps [data-source][data-field]').forEach((el) => {
+      if (el.tagName === 'TH' || el.closest('table')) return;
+      const id = el.dataset.source, f = el.dataset.field;
+      const d = dash.data(id);
+      if (d.status !== 'ok') { if (d.status === 'error') el.classList.remove('dash-skeleton'); return; }
+      let row = null;
+      if (el.dataset.row != null) row = d.data[Number(el.dataset.row)];
+      else if (el.dataset.where) {
+        const conds = el.dataset.where.split('&').map((p) => p.split('=').map(decodeURIComponent));
+        row = d.data.find((r) => conds.every(([k, v]) => String(r[k]) === v));
+      }
+      el.classList.remove('dash-skeleton');
+      if (!row) { el.textContent = '—'; return; }
+      const v = num(row[f]);
+      el.textContent = (f === 'share' || f.endsWith('variance_share')) ? d3.format('.0%')(v) : (v >= 10000 ? compact.format(v) : comma(v));
+    });
+  }
+
+  // ---------------- top projects ----------------
+  function drawTop() {
+    const el = document.getElementById('chart-top');
+    const d = dash.data('oai_projects');
+    document.querySelectorAll('.sw-cert').forEach((i) => (i.style.background = dash.colors[1]));
+    document.querySelectorAll('.sw-rest').forEach((i) => (i.style.background = 'var(--cds-chart-muted)'));
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') return;
+    el.classList.remove('dash-skeleton');
+    const rows = d.data.map((r) => ({ p: r.project, t: num(r.tokens), c: num(r.cert_tokens), s: num(r.cert_token_share) }))
+      .sort((a, b) => b.t - a.t).slice(0, 20);
+    const W = el.clientWidth || 400, bh = 18, gap = 6, H = rows.length * (bh + gap) + 24;
+    el.replaceChildren();
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const tmp = svg.append('text').attr('font-size', 11).style('font-family', 'var(--font-anthropic-sans)');
+    let labW = 0; rows.forEach((r) => { tmp.text(r.p); labW = Math.max(labW, tmp.node().getComputedTextLength()); }); tmp.remove();
+    labW = Math.min(labW + 8, W * 0.45);
+    const valW = 44;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.t)], [0, Math.max(40, W - labW - valW)]);
+    const tip = tipFor(document.getElementById('card-top-projects'));
+    const g = svg.selectAll('g.r').data(rows).join('g').attr('transform', (r, i) => `translate(0,${i * (bh + gap)})`);
+    g.append('text').attr('x', labW - 8).attr('y', bh / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).style('fill', 'var(--color-fg-muted)').text((r) => r.p);
+    g.append('rect').attr('x', labW).attr('height', bh).attr('rx', 4).attr('width', (r) => Math.max(1, x(r.t))).style('fill', 'var(--cds-chart-muted)');
+    g.append('rect').attr('x', labW).attr('height', bh).attr('rx', 4).attr('width', (r) => (r.c > 0 ? Math.max(1, x(r.c) - 2) : 0)).style('fill', dash.colors[1]);
+    g.append('text').attr('x', (r) => labW + x(r.t) + 6).attr('y', bh / 2).attr('dy', '0.35em').attr('font-size', 11).style('fill', 'var(--color-fg-muted)').text((r) => compact.format(r.t));
+    g.append('rect').attr('x', 0).attr('width', W).attr('height', bh + gap).attr('y', -gap / 2).style('fill', 'transparent')
+      .on('mousemove', (e, r) => tip.show(e, r.p, [[null, `${comma(r.t)} tokens`], [dash.colors[1], `Certificate mass ${pct(r.s)}`]]))
+      .on('mouseleave', () => tip.hide());
+  }
+
+  // ---------------- strata table ----------------
+  const STRATA = { openai_core: 'OpenAI conceptual core', openai_shell: 'OpenAI certificate shell', human_research: 'Human research', mathlib: 'mathlib' };
+  function drawStrata() {
+    const tb = document.querySelector('#tbl-strata tbody');
+    const rows = rowsOf('strata'); if (!rows) return;
+    tb.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.stratum;
+      const cells = [STRATA[r.stratum] || r.stratum, comma(num(r.n_projects)), pct(num(r.cert_token_share)), pct(num(r.numbered_share)), pct(num(r.skel_dup_share)), pct(num(r.live_concept_share)), pct(num(r.library_ref_share))];
+      cells.forEach((c) => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+      return tr;
+    }));
+  }
+
+  // ---------------- forest ----------------
+  let mode = 'median';
+  let showExtra = false;
+  document.querySelectorAll('#card-forest [data-mode]').forEach((b) => b.addEventListener('click', () => {
+    mode = b.dataset.mode;
+    document.querySelectorAll('#card-forest [data-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    drawForest();
+  }));
+  document.getElementById('show-extra').addEventListener('change', (e) => { showExtra = e.target.checked; drawForest(); });
+  function drawForest() {
+    const el = document.getElementById('forest');
+    const d = dash.data('group_metrics');
+    const groups = GROUPS.filter((g) => showExtra || !g.extra);
+    const lg = document.getElementById('forest-legend');
+    lg.replaceChildren(...groups.map((g) => {
+      const s = document.createElement('span');
+      const svg = d3.create('svg').attr('width', 12).attr('height', 12).style('margin-right', '6px').style('vertical-align', '-1px');
+      svg.append('path').attr('d', sym(g.shape).size(60)()).attr('transform', 'translate(6,6)').style('fill', g.color());
+      s.appendChild(svg.node()); s.appendChild(document.createTextNode(g.label)); return s;
+    }));
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') return;
+    el.classList.remove('dash-skeleton');
+    const rows = d.data.map((r) => ({ ...r, median: num(r.median), lo: num(r.ci_lo), hi: num(r.ci_hi), pooled: num(r.pooled), n: num(r.n_projects) }));
+    const metrics = []; const seen = new Set();
+    rows.forEach((r) => { if (!seen.has(r.metric)) { seen.add(r.metric); metrics.push(r); } });
+    const tip = tipFor(document.getElementById('card-forest'));
+    el.replaceChildren();
+    const W0 = el.clientWidth || 600;
+    Object.keys(FAM).forEach((fam) => {
+      const ms = metrics.filter((m) => m.family === fam); if (!ms.length) return;
+      const box = document.createElement('div'); box.className = 'ps-forest-fam';
+      const h = document.createElement('h3'); h.textContent = FAM[fam]; box.appendChild(h);
+      ms.forEach((m) => {
+        const row = document.createElement('div'); row.className = 'ps-frow';
+        const lab = document.createElement('div'); lab.className = 'lab'; lab.textContent = m.label; lab.title = m.definition;
+        const chart = document.createElement('div');
+        row.appendChild(lab); row.appendChild(chart); box.appendChild(row);
+        el.appendChild(box);
+        const W = Math.max(120, chart.clientWidth || (W0 * 0.6)), H = 30, pad = 8;
+        const vals = rows.filter((r) => r.metric === m.metric && groups.some((g) => g.id === r.group));
+        const ext = vals.flatMap((r) => mode === 'median' ? [r.lo, r.hi, r.median] : [r.pooled]).filter(isFinite);
+        const x = d3.scaleLinear([0, Math.max(1e-9, d3.max(ext) || 1) * 1.05], [pad, W - 46]);
+        const svg = d3.select(chart).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+        svg.append('line').attr('x1', pad).attr('x2', W - 46).attr('y1', H / 2).attr('y2', H / 2).style('stroke', 'var(--cds-chart-grid)');
+        svg.append('text').attr('x', W - 40).attr('y', H / 2).attr('dy', '0.35em').attr('font-size', 10).style('fill', 'var(--color-fg-muted)').text(fmtMetric(m.metric, x.domain()[1]));
+        groups.forEach((g, gi) => {
+          const r = vals.find((v) => v.group === g.id); if (!r) return;
+          const y = H / 2 + (gi - (groups.length - 1) / 2) * 4;
+          const v = mode === 'median' ? r.median : r.pooled;
+          if (!isFinite(v)) return;
+          if (mode === 'median' && isFinite(r.lo) && isFinite(r.hi)) {
+            svg.append('line').attr('x1', x(r.lo)).attr('x2', x(r.hi)).attr('y1', y).attr('y2', y).style('stroke', g.color()).attr('stroke-width', 2).attr('stroke-linecap', 'round').style('opacity', 0.55);
+          }
+          svg.append('path').attr('d', sym(g.shape).size(56)()).attr('transform', `translate(${x(v)},${y})`).style('fill', g.color()).style('stroke', 'var(--color-panel)').attr('stroke-width', 1.5);
+        });
+        svg.append('rect').attr('width', W).attr('height', H).style('fill', 'transparent')
+          .on('mousemove', (e) => tip.show(e, m.label, groups.map((g) => {
+            const r = vals.find((v) => v.group === g.id); if (!r) return null;
+            const t = mode === 'median' ? `${g.label}: ${fmtMetric(m.metric, r.median)} [${fmtMetric(m.metric, r.lo)}, ${fmtMetric(m.metric, r.hi)}] · ${r.n} projects` : `${g.label}: ${fmtMetric(m.metric, r.pooled)} pooled`;
+            return [g.color(), t];
+          }).filter(Boolean)))
+          .on('mouseleave', () => tip.hide());
+      });
+    });
+  }
+
+  // ---------------- tests table ----------------
+  let vs = 'human_research';
+  document.querySelectorAll('#card-tests [data-vs]').forEach((b) => b.addEventListener('click', () => {
+    vs = b.dataset.vs;
+    document.querySelectorAll('#card-tests [data-vs]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    drawTests();
+  }));
+  function drawTests() {
+    const rows = rowsOf('tests'); if (!rows) return;
+    const tb = document.querySelector('#tbl-tests tbody');
+    tb.replaceChildren(...rows.filter((r) => r.vs === vs).map((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = `${encodeURIComponent(r.metric)},${encodeURIComponent(r.vs)}`;
+      const k = r.metric;
+      const fd = (v) => (SHARE.has(k) ? d3.format('+.1%')(v) : d3.format('+.2f')(v));
+      const q = num(r.q);
+      [r.label, fd(num(r.diff)), fd(num(r.diff_lo)), fd(num(r.diff_hi)), d3.format('.2f')(num(r.auc)), q < 0.001 ? '<0.001' : d3.format('.3f')(q)]
+        .forEach((c) => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+      return tr;
+    }));
+  }
+
+  // ---------------- heatmap ----------------
+  function drawHeat() {
+    const el = document.getElementById('heat');
+    const d = dash.data('cone_corr');
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') return;
+    el.classList.remove('dash-skeleton');
+    const rows = d.data.map((r) => ({ ...r, rho: num(r.rho) }));
+    const keys = [...new Set(rows.map((r) => r.a))];
+    const lab = Object.fromEntries(rows.map((r) => [r.a, r.a_label]));
+    const pos = resolveColor(dash.colors[0]), neg = resolveColor(dash.colors[1]), mid = resolveColor('var(--cds-chart-grid)');
+    const color = (v) => (v >= 0 ? d3.interpolateRgb(mid, pos)(Math.min(1, v)) : d3.interpolateRgb(mid, neg)(Math.min(1, -v)));
+    const lg = document.getElementById('heat-legend');
+    lg.replaceChildren(...[[-1, 'ρ = −1'], [0, '0'], [1, '+1']].map(([v, t]) => { const s = document.createElement('span'); const i = document.createElement('i'); i.style.background = color(v); i.style.borderRadius = '2px'; s.appendChild(i); s.appendChild(document.createTextNode(t)); return s; }));
+    const W = el.clientWidth || 400;
+    el.replaceChildren();
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    const tmp = svg.append('text').attr('font-size', 10).style('font-family', 'var(--font-anthropic-sans)');
+    let lw = 0; keys.forEach((k) => { tmp.text(lab[k]); lw = Math.max(lw, tmp.node().getComputedTextLength()); }); tmp.remove();
+    lw = Math.min(lw + 6, W * 0.42);
+    const cs = Math.max(8, Math.floor((W - lw - 4) / keys.length));
+    const H = lw + cs * keys.length + 4;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const tip = tipFor(document.getElementById('card-heat'));
+    const g = svg.append('g').attr('transform', `translate(${lw},${lw})`);
+    keys.forEach((k, i) => {
+      svg.append('text').attr('x', lw - 4).attr('y', lw + i * cs + cs / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 10).style('fill', 'var(--color-fg-muted)').text(lab[k]);
+      svg.append('text').attr('transform', `translate(${lw + i * cs + cs / 2},${lw - 4}) rotate(-60)`).attr('font-size', 10).style('fill', 'var(--color-fg-muted)').text(lab[k]);
+    });
+    g.selectAll('rect').data(rows).join('rect')
+      .attr('x', (r) => keys.indexOf(r.b) * cs + 1).attr('y', (r) => keys.indexOf(r.a) * cs + 1)
+      .attr('width', cs - 2).attr('height', cs - 2).attr('rx', 2).style('fill', (r) => color(r.rho))
+      .on('mousemove', (e, r) => tip.show(e, `${r.a_label} × ${r.b_label}`, [[null, `Spearman ρ = ${d3.format('+.2f')(r.rho)}`]]))
+      .on('mouseleave', () => tip.hide());
+  }
+
+  // ---------------- pca ----------------
+  function drawPca() {
+    const el = document.getElementById('pca');
+    const d = dash.data('pca');
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') return;
+    el.classList.remove('dash-skeleton');
+    const rows = d.data.map((r) => ({ l: r.label, v: num(r.pc1_loading) })).sort((a, b) => b.v - a.v);
+    const W = el.clientWidth || 380, bh = 16, gap = 6, H = rows.length * (bh + gap) + 10;
+    el.replaceChildren();
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const tmp = svg.append('text').attr('font-size', 11).style('font-family', 'var(--font-anthropic-sans)');
+    let lw = 0; rows.forEach((r) => { tmp.text(r.l); lw = Math.max(lw, tmp.node().getComputedTextLength()); }); tmp.remove();
+    lw = Math.min(lw + 10, W * 0.5);
+    const m = d3.max(rows, (r) => Math.abs(r.v));
+    const x = d3.scaleLinear([-m, m], [lw, W - 40]);
+    svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', 0).attr('y2', H).style('stroke', 'var(--cds-chart-axis)');
+    const tip = tipFor(document.getElementById('card-pca'));
+    const g = svg.selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${i * (bh + gap)})`);
+    g.append('text').attr('x', lw - 8).attr('y', bh / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).style('fill', 'var(--color-fg-muted)').text((r) => r.l);
+    g.append('rect').attr('x', (r) => Math.min(x(0), x(r.v))).attr('width', (r) => Math.abs(x(r.v) - x(0))).attr('height', bh).attr('rx', 4)
+      .style('fill', (r) => (r.v >= 0 ? dash.colors[0] : dash.colors[1]))
+      .on('mousemove', (e, r) => tip.show(e, r.l, [[null, `PC1 loading ${d3.format('+.2f')(r.v)}`]])).on('mouseleave', () => tip.hide());
+    g.append('text').attr('x', (r) => (r.v >= 0 ? x(r.v) + 4 : x(r.v) - 4)).attr('text-anchor', (r) => (r.v >= 0 ? 'start' : 'end')).attr('y', bh / 2).attr('dy', '0.35em').attr('font-size', 10).style('fill', 'var(--color-fg-muted)').text((r) => d3.format('+.2f')(r.v));
+  }
+
+  // ---------------- scatter + table ----------------
+  const AX = [
+    ['library_ref_share', 'Library references'], ['live_concept_share', 'Live concepts'], ['concepts_per_100_thm', 'Concepts per 100 theorems'],
+    ['cert_token_share', 'Certificate mass'], ['casebash_token_share', 'Case-bash mass'], ['numbered_share', 'Numbered names'],
+    ['grounding', 'Name grounding'], ['propagation', 'Concept-name propagation'], ['vocab_share', 'Mathlib vocabulary'],
+    ['single_use_lemma_share', 'Single-use lemmas'], ['reusable_lemma_share', 'Reusable lemmas'], ['skel_dup_share', 'Template proofs'],
+    ['stmt_library_share', 'Statements in library terms'], ['struct_per_1k', 'Structural steps / 1k tokens'], ['auto_per_1k', 'Closing automation / 1k tokens'],
+    ['proof_to_statement', 'Proof / statement length'],
+  ];
+  const sx = document.getElementById('sx'), sy = document.getElementById('sy');
+  AX.forEach(([k, l]) => { sx.appendChild(new Option(l, k)); sy.appendChild(new Option(l, k)); });
+  sx.value = 'library_ref_share'; sy.value = 'live_concept_share';
+  sx.addEventListener('change', drawScatter); sy.addEventListener('change', drawScatter);
+  function drawScatter() {
+    const el = document.getElementById('scatter');
+    const d = dash.data('cones');
+    const lg = document.getElementById('scatter-legend');
+    lg.replaceChildren(...['openai_math', 'openai_ten', 'human_research', 'other_ai'].map((id) => {
+      const g = gById[id]; const s = document.createElement('span');
+      const svg = d3.create('svg').attr('width', 12).attr('height', 12).style('margin-right', '6px').style('vertical-align', '-1px');
+      svg.append('path').attr('d', sym(g.shape).size(60)()).attr('transform', 'translate(6,6)').style('fill', g.color());
+      s.appendChild(svg.node()); s.appendChild(document.createTextNode(g.label)); return s;
+    }));
+    if (d.status === 'error') return failed(el);
+    if (d.status !== 'ok') return;
+    el.classList.remove('dash-skeleton');
+    const kx = sx.value, ky = sy.value;
+    const pts = d.data.map((r) => ({ r, x: num(r[kx]), y: num(r[ky]), g: gById[r.group] })).filter((p) => isFinite(p.x) && isFinite(p.y) && p.g);
+    const order = { openai_math: 0, openai_ten: 1, other_ai: 2, human_research: 3 };
+    pts.sort((a, b) => order[a.r.group] - order[b.r.group]);
+    const W = el.clientWidth || 600, H = 420, m = { l: 52, r: 16, t: 10, b: 40 };
+    el.replaceChildren();
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleLinear(d3.extent(pts, (p) => p.x), [m.l, W - m.r]).nice();
+    const y = d3.scaleLinear(d3.extent(pts, (p) => p.y), [H - m.b, m.t]).nice();
+    const fx = (v) => fmtMetric(kx, v), fy = (v) => fmtMetric(ky, v);
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor(W / 110))).tickFormat(fx).tickSizeOuter(0))
+      .attr('font-size', null).attr('font-family', null).call((g) => { g.selectAll('text').style('fill', 'var(--color-fg-muted)').attr('font-size', 11); g.selectAll('line,path').style('stroke', 'var(--cds-chart-axis)'); });
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(fy).tickSize(-(W - m.l - m.r)))
+      .attr('font-size', null).attr('font-family', null).call((g) => { g.selectAll('text').style('fill', 'var(--color-fg-muted)').attr('font-size', 11); g.selectAll('line').style('stroke', 'var(--cds-chart-grid)'); g.select('.domain').remove(); });
+    svg.append('text').attr('x', W - m.r).attr('y', H - 6).attr('text-anchor', 'end').attr('font-size', 11).style('fill', 'var(--color-fg-muted)').text(AX.find((a) => a[0] === kx)[1]);
+    svg.append('text').attr('x', m.l + 4).attr('y', m.t + 12).attr('font-size', 11).style('fill', 'var(--color-fg-muted)').text(AX.find((a) => a[0] === ky)[1]);
+    const tip = tipFor(document.getElementById('card-scatter'));
+    svg.selectAll('path.pt').data(pts).join('path').attr('class', 'pt')
+      .attr('d', (p) => sym(p.g.shape).size(p.r.group === 'openai_math' ? 46 : 110)())
+      .attr('transform', (p) => `translate(${x(p.x)},${y(p.y)})`)
+      .style('fill', (p) => p.g.color()).style('fill-opacity', (p) => (p.r.group === 'openai_math' ? 0.7 : 1))
+      .style('stroke', 'var(--color-panel)').attr('stroke-width', 1.5)
+      .on('mousemove', (e, p) => tip.show(e, p.r.short, [[p.g.color(), p.g.label], [null, `${AX.find((a) => a[0] === kx)[1]}: ${fx(p.x)}`], [null, `${AX.find((a) => a[0] === ky)[1]}: ${fy(p.y)}`], [null, `${comma(num(p.r.n_decls))} declarations in cone`]]))
+      .on('mouseleave', () => tip.hide());
+    svg.selectAll('text.hl').data(pts.filter((p) => p.r.group === 'human_research' || p.r.group === 'other_ai')).join('text').attr('class', 'hl')
+      .attr('x', (p) => x(p.x) + 8).attr('y', (p) => y(p.y)).attr('dy', '0.35em').attr('font-size', 10).style('fill', 'var(--color-fg)').text((p) => p.r.short);
+  }
+  let sortK = 'n_decls', sortDir = -1;
+  document.querySelectorAll('#tbl-cones th button').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.k; if (sortK === k) sortDir = -sortDir; else { sortK = k; sortDir = k === 'short' || k === 'group_label' ? 1 : -1; }
+    drawCones();
+  }));
+  document.getElementById('cone-q').addEventListener('input', drawCones);
+  function drawCones() {
+    const rows = rowsOf('cones'); if (!rows) return;
+    const q = document.getElementById('cone-q').value.trim().toLowerCase();
+    const text = (k) => k === 'short' || k === 'group_label';
+    const rs = rows.filter((r) => !q || (r.short + ' ' + r.group_label + ' ' + r.project).toLowerCase().includes(q))
+      .sort((a, b) => (text(sortK) ? String(a[sortK]).localeCompare(String(b[sortK])) : (num(a[sortK]) || 0) - (num(b[sortK]) || 0)) * sortDir);
+    document.querySelectorAll('#tbl-cones th').forEach((th) => th.setAttribute('aria-sort', th.dataset.field === sortK ? (sortDir > 0 ? 'ascending' : 'descending') : 'none'));
+    const tb = document.querySelector('#tbl-cones tbody');
+    tb.replaceChildren(...rs.map((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.headline;
+      [r.short, r.group_label, comma(num(r.n_decls)), d3.format('.1f')(num(r.concepts_per_100_thm)), pct(num(r.live_concept_share)), pct(num(r.cert_token_share)), pct(num(r.numbered_share)), pct(num(r.grounding)), pct(num(r.library_ref_share)), pct(num(r.skel_dup_share))]
+        .forEach((c) => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+      return tr;
+    }));
+  }
+
+  dash.onData(() => {
+    fillMarks();
+    drawTop(); drawStrata(); drawForest(); drawTests(); drawHeat(); drawPca(); drawScatter(); drawCones();
+  });
+})();
+</script>

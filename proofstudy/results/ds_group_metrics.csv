@@ -1,0 +1,126 @@
+metric,family,label,definition,group,group_label,n_projects,median,ci_lo,ci_hi,pooled
+concepts_per_100_thm,concept,Concepts per 100 theorems,(defs + structures/classes/inductives) per 100 theorem/lemma declarations,openai_math,OpenAI math (Oct),524,30.67686,28.84963,32.22032,56.56715
+concepts_per_100_thm,concept,Concepts per 100 theorems,(defs + structures/classes/inductives) per 100 theorem/lemma declarations,openai_ten,OpenAI ten proofs (Aug),10,41.13871,29.62996,44.79167,50.49663
+concepts_per_100_thm,concept,Concepts per 100 theorems,(defs + structures/classes/inductives) per 100 theorem/lemma declarations,human_research,Human research projects,29,26.0355,18.0791,35.29412,23.88151
+concepts_per_100_thm,concept,Concepts per 100 theorems,(defs + structures/classes/inductives) per 100 theorem/lemma declarations,other_ai,StrongPNT (Math Inc.),5,3.08642,1.68067,30.76923,4.07407
+concepts_per_100_thm,concept,Concepts per 100 theorems,(defs + structures/classes/inductives) per 100 theorem/lemma declarations,mathlib,mathlib,465,18.18182,16.1157,20.96774,21.78319
+live_concept_share,concept,Live concepts,share of concepts that appear in the statements of >= 2 theorems in the same corpus,openai_math,OpenAI math (Oct),524,0.69945,0.6679,0.71346,0.29436
+live_concept_share,concept,Live concepts,share of concepts that appear in the statements of >= 2 theorems in the same corpus,openai_ten,OpenAI ten proofs (Aug),10,0.68099,0.59918,0.77778,0.51587
+live_concept_share,concept,Live concepts,share of concepts that appear in the statements of >= 2 theorems in the same corpus,human_research,Human research projects,28,0.42593,0.32925,0.52785,0.41113
+live_concept_share,concept,Live concepts,share of concepts that appear in the statements of >= 2 theorems in the same corpus,other_ai,StrongPNT (Math Inc.),5,0.55556,0.2,0.75,0.47727
+live_concept_share,concept,Live concepts,share of concepts that appear in the statements of >= 2 theorems in the same corpus,mathlib,mathlib,462,0.46427,0.43798,0.5,0.37015
+dead_concept_share,concept,Dead concepts,share of concepts referenced by nothing in the corpus,openai_math,OpenAI math (Oct),524,0.02341,0.01961,0.02712,0.13758
+dead_concept_share,concept,Dead concepts,share of concepts referenced by nothing in the corpus,openai_ten,OpenAI ten proofs (Aug),10,0.00424,0.00116,0.00767,0.00424
+dead_concept_share,concept,Dead concepts,share of concepts referenced by nothing in the corpus,human_research,Human research projects,28,0.13393,0.09659,0.20532,0.18862
+dead_concept_share,concept,Dead concepts,share of concepts referenced by nothing in the corpus,other_ai,StrongPNT (Math Inc.),5,0.33333,0.1,0.6,0.38636
+dead_concept_share,concept,Dead concepts,share of concepts referenced by nothing in the corpus,mathlib,mathlib,462,0.14916,0.13658,0.16775,0.22239
+single_use_lemma_share,concept,Single-use lemmas,share of theorems/lemmas cited by exactly one other declaration,openai_math,OpenAI math (Oct),524,0.53341,0.52727,0.54134,0.77691
+single_use_lemma_share,concept,Single-use lemmas,share of theorems/lemmas cited by exactly one other declaration,openai_ten,OpenAI ten proofs (Aug),10,0.68483,0.65948,0.74081,0.68029
+single_use_lemma_share,concept,Single-use lemmas,share of theorems/lemmas cited by exactly one other declaration,human_research,Human research projects,29,0.46763,0.42446,0.51351,0.46144
+single_use_lemma_share,concept,Single-use lemmas,share of theorems/lemmas cited by exactly one other declaration,other_ai,StrongPNT (Math Inc.),5,0.58974,0.44444,0.69231,0.54167
+single_use_lemma_share,concept,Single-use lemmas,share of theorems/lemmas cited by exactly one other declaration,mathlib,mathlib,465,0.26817,0.26137,0.27785,0.26082
+reusable_lemma_share,concept,Reusable lemmas,share of theorems/lemmas cited by >= 3 declarations,openai_math,OpenAI math (Oct),524,0.14685,0.14069,0.15334,0.07503
+reusable_lemma_share,concept,Reusable lemmas,share of theorems/lemmas cited by >= 3 declarations,openai_ten,OpenAI ten proofs (Aug),10,0.12672,0.09198,0.14451,0.13115
+reusable_lemma_share,concept,Reusable lemmas,share of theorems/lemmas cited by >= 3 declarations,human_research,Human research projects,29,0.11382,0.07975,0.13861,0.13911
+reusable_lemma_share,concept,Reusable lemmas,share of theorems/lemmas cited by >= 3 declarations,other_ai,StrongPNT (Math Inc.),5,0.03846,0.03086,0.05882,0.04074
+reusable_lemma_share,concept,Reusable lemmas,share of theorems/lemmas cited by >= 3 declarations,mathlib,mathlib,465,0.1375,0.12857,0.14815,0.17045
+cert_token_share,brute,Certificate mass,"share of all proof/definition tokens in declarations that are numeral-dense (>= 25% numerals, >= 50 tokens) or use decide/native_decide",openai_math,OpenAI math (Oct),524,0.0097,0.00789,0.01239,0.37793
+cert_token_share,brute,Certificate mass,"share of all proof/definition tokens in declarations that are numeral-dense (>= 25% numerals, >= 50 tokens) or use decide/native_decide",openai_ten,OpenAI ten proofs (Aug),10,0.00321,0.0018,0.06872,0.02464
+cert_token_share,brute,Certificate mass,"share of all proof/definition tokens in declarations that are numeral-dense (>= 25% numerals, >= 50 tokens) or use decide/native_decide",human_research,Human research projects,29,0.0,0.0,0.0,0.02523
+cert_token_share,brute,Certificate mass,"share of all proof/definition tokens in declarations that are numeral-dense (>= 25% numerals, >= 50 tokens) or use decide/native_decide",other_ai,StrongPNT (Math Inc.),5,0.00366,0.0,0.01215,0.00613
+cert_token_share,brute,Certificate mass,"share of all proof/definition tokens in declarations that are numeral-dense (>= 25% numerals, >= 50 tokens) or use decide/native_decide",mathlib,mathlib,465,0.0,0.0,0.0,0.0063
+casebash_token_share,brute,Case-bash mass,"share of theorem proof tokens in proofs that enumerate cases (fin_cases / interval_cases) and close them uniformly (<;>, all_goals or decide)",openai_math,OpenAI math (Oct),524,0.00052,1e-05,0.00127,0.03131
+casebash_token_share,brute,Case-bash mass,"share of theorem proof tokens in proofs that enumerate cases (fin_cases / interval_cases) and close them uniformly (<;>, all_goals or decide)",openai_ten,OpenAI ten proofs (Aug),10,4e-05,0.0,0.0244,0.00921
+casebash_token_share,brute,Case-bash mass,"share of theorem proof tokens in proofs that enumerate cases (fin_cases / interval_cases) and close them uniformly (<;>, all_goals or decide)",human_research,Human research projects,29,0.0,0.0,0.0,0.04158
+casebash_token_share,brute,Case-bash mass,"share of theorem proof tokens in proofs that enumerate cases (fin_cases / interval_cases) and close them uniformly (<;>, all_goals or decide)",other_ai,StrongPNT (Math Inc.),5,0.0,0.0,0.0,0.0
+casebash_token_share,brute,Case-bash mass,"share of theorem proof tokens in proofs that enumerate cases (fin_cases / interval_cases) and close them uniformly (<;>, all_goals or decide)",mathlib,mathlib,465,0.0,0.0,0.0,0.00337
+enum_per_1k,brute,Enumeration tactics / 1k tokens,"decide, native_decide, fin_cases, interval_cases",openai_math,OpenAI math (Oct),524,0.13607,0.11066,0.16212,7.33363
+enum_per_1k,brute,Enumeration tactics / 1k tokens,"decide, native_decide, fin_cases, interval_cases",openai_ten,OpenAI ten proofs (Aug),10,0.05392,0.02952,1.40783,0.59564
+enum_per_1k,brute,Enumeration tactics / 1k tokens,"decide, native_decide, fin_cases, interval_cases",human_research,Human research projects,29,0.0,0.0,0.07264,0.40852
+enum_per_1k,brute,Enumeration tactics / 1k tokens,"decide, native_decide, fin_cases, interval_cases",other_ai,StrongPNT (Math Inc.),5,0.02021,0.0,0.02364,0.01632
+enum_per_1k,brute,Enumeration tactics / 1k tokens,"decide, native_decide, fin_cases, interval_cases",mathlib,mathlib,465,0.0,0.0,0.0,0.13355
+auto_per_1k,brute,Closing automation / 1k tokens,"simp, omega, linarith, nlinarith, norm_num, positivity, ring, aesop, grind, ...",openai_math,OpenAI math (Oct),524,16.92279,16.38031,17.4868,7.68166
+auto_per_1k,brute,Closing automation / 1k tokens,"simp, omega, linarith, nlinarith, norm_num, positivity, ring, aesop, grind, ...",openai_ten,OpenAI ten proofs (Aug),10,16.40964,11.61421,20.01698,16.75017
+auto_per_1k,brute,Closing automation / 1k tokens,"simp, omega, linarith, nlinarith, norm_num, positivity, ring, aesop, grind, ...",human_research,Human research projects,29,17.91898,16.19043,20.79442,18.07819
+auto_per_1k,brute,Closing automation / 1k tokens,"simp, omega, linarith, nlinarith, norm_num, positivity, ring, aesop, grind, ...",other_ai,StrongPNT (Math Inc.),5,20.42408,18.74288,22.86188,21.27555
+auto_per_1k,brute,Closing automation / 1k tokens,"simp, omega, linarith, nlinarith, norm_num, positivity, ring, aesop, grind, ...",mathlib,mathlib,465,17.27771,16.22328,18.33235,18.33229
+struct_per_1k,brute,Structural steps / 1k tokens,"intro, apply, exact, refine, have, obtain, calc, induction, rw, ...",openai_math,OpenAI math (Oct),524,55.41433,54.53928,56.01328,35.619
+struct_per_1k,brute,Structural steps / 1k tokens,"intro, apply, exact, refine, have, obtain, calc, induction, rw, ...",openai_ten,OpenAI ten proofs (Aug),10,53.31438,49.48294,59.84569,53.64579
+struct_per_1k,brute,Structural steps / 1k tokens,"intro, apply, exact, refine, have, obtain, calc, induction, rw, ...",human_research,Human research projects,29,58.62647,54.23894,61.04546,57.7128
+struct_per_1k,brute,Structural steps / 1k tokens,"intro, apply, exact, refine, have, obtain, calc, induction, rw, ...",other_ai,StrongPNT (Math Inc.),5,61.29427,47.89258,70.68788,60.63805
+struct_per_1k,brute,Structural steps / 1k tokens,"intro, apply, exact, refine, have, obtain, calc, induction, rw, ...",mathlib,mathlib,465,53.24337,51.69066,54.27209,53.43839
+numeral_density,brute,Numeral density,numeric literals per proof token,openai_math,OpenAI math (Oct),524,0.02481,0.02398,0.02576,0.13461
+numeral_density,brute,Numeral density,numeric literals per proof token,openai_ten,OpenAI ten proofs (Aug),10,0.03044,0.01874,0.04057,0.02856
+numeral_density,brute,Numeral density,numeric literals per proof token,human_research,Human research projects,29,0.01782,0.01089,0.02446,0.029
+numeral_density,brute,Numeral density,numeric literals per proof token,other_ai,StrongPNT (Math Inc.),5,0.04148,0.02034,0.06174,0.04241
+numeral_density,brute,Numeral density,numeric literals per proof token,mathlib,mathlib,465,0.00602,0.00547,0.00695,0.0106
+name_tokens,naming,Words per theorem name,median number of words in theorem names,openai_math,OpenAI math (Oct),524,3.0,3.0,3.0,4.0
+name_tokens,naming,Words per theorem name,median number of words in theorem names,openai_ten,OpenAI ten proofs (Aug),10,6.0,5.0,7.0,6.0
+name_tokens,naming,Words per theorem name,median number of words in theorem names,human_research,Human research projects,29,4.0,3.0,4.0,4.0
+name_tokens,naming,Words per theorem name,median number of words in theorem names,other_ai,StrongPNT (Math Inc.),5,4.0,4.0,4.0,4.0
+name_tokens,naming,Words per theorem name,median number of words in theorem names,mathlib,mathlib,465,4.0,3.0,4.0,4.0
+numbered_share,naming,Numbered names,"theorem names ending in / containing serial numbers (cover12, step_3)",openai_math,OpenAI math (Oct),524,0.00072,0.0,0.00129,0.59859
+numbered_share,naming,Numbered names,"theorem names ending in / containing serial numbers (cover12, step_3)",openai_ten,OpenAI ten proofs (Aug),10,0.00805,0.00283,0.01594,0.01449
+numbered_share,naming,Numbered names,"theorem names ending in / containing serial numbers (cover12, step_3)",human_research,Human research projects,29,0.00741,0.0,0.02367,0.04184
+numbered_share,naming,Numbered names,"theorem names ending in / containing serial numbers (cover12, step_3)",other_ai,StrongPNT (Math Inc.),5,0.17308,0.10504,0.26616,0.18704
+numbered_share,naming,Numbered names,"theorem names ending in / containing serial numbers (cover12, step_3)",mathlib,mathlib,465,0.0,0.0,0.0,0.00374
+uninformative_share,naming,Placeholder names,theorem names built on aux/key/step/claim/main/helper/part/... words,openai_math,OpenAI math (Oct),524,0.0232,0.02164,0.02467,0.09164
+uninformative_share,naming,Placeholder names,theorem names built on aux/key/step/claim/main/helper/part/... words,openai_ten,OpenAI ten proofs (Aug),10,0.02939,0.02342,0.04536,0.03408
+uninformative_share,naming,Placeholder names,theorem names built on aux/key/step/claim/main/helper/part/... words,human_research,Human research projects,29,0.03707,0.02367,0.05085,0.04138
+uninformative_share,naming,Placeholder names,theorem names built on aux/key/step/claim/main/helper/part/... words,other_ai,StrongPNT (Math Inc.),5,0.52821,0.13462,0.64815,0.50926
+uninformative_share,naming,Placeholder names,theorem names built on aux/key/step/claim/main/helper/part/... words,mathlib,mathlib,465,0.01075,0.00676,0.01408,0.02625
+vocab_share,naming,Mathlib vocabulary,share of theorem-name words that occur >= 5 times in mathlib theorem names,openai_math,OpenAI math (Oct),524,0.81123,0.80315,0.82065,0.66195
+vocab_share,naming,Mathlib vocabulary,share of theorem-name words that occur >= 5 times in mathlib theorem names,openai_ten,OpenAI ten proofs (Aug),10,0.80366,0.66598,0.85317,0.77368
+vocab_share,naming,Mathlib vocabulary,share of theorem-name words that occur >= 5 times in mathlib theorem names,human_research,Human research projects,29,0.90073,0.84361,0.95314,0.88058
+vocab_share,naming,Mathlib vocabulary,share of theorem-name words that occur >= 5 times in mathlib theorem names,other_ai,StrongPNT (Math Inc.),5,0.83681,0.81721,0.89712,0.84571
+vocab_share,naming,Mathlib vocabulary,share of theorem-name words that occur >= 5 times in mathlib theorem names,mathlib,mathlib,465,0.99762,0.99697,0.99821,0.99543
+grounding,naming,Name grounding,share of a theorem name's words found in the names of the constants its statement mentions,openai_math,OpenAI math (Oct),524,0.51962,0.50998,0.53186,0.57674
+grounding,naming,Name grounding,share of a theorem name's words found in the names of the constants its statement mentions,openai_ten,OpenAI ten proofs (Aug),10,0.6265,0.58449,0.66033,0.64378
+grounding,naming,Name grounding,share of a theorem name's words found in the names of the constants its statement mentions,human_research,Human research projects,29,0.43123,0.37918,0.45932,0.38404
+grounding,naming,Name grounding,share of a theorem name's words found in the names of the constants its statement mentions,other_ai,StrongPNT (Math Inc.),5,0.19973,0.15758,0.24653,0.20052
+grounding,naming,Name grounding,share of a theorem name's words found in the names of the constants its statement mentions,mathlib,mathlib,465,0.46101,0.44593,0.47558,0.45431
+ns_inherit,naming,Namespace inheritance,share of theorems whose namespace is the name of a constant in their statement (dot-notation ready),openai_math,OpenAI math (Oct),524,0.01145,0.00783,0.01599,0.01835
+ns_inherit,naming,Namespace inheritance,share of theorems whose namespace is the name of a constant in their statement (dot-notation ready),openai_ten,OpenAI ten proofs (Aug),10,0.01242,0.00189,0.02648,0.01449
+ns_inherit,naming,Namespace inheritance,share of theorems whose namespace is the name of a constant in their statement (dot-notation ready),human_research,Human research projects,29,0.07785,0.00885,0.13636,0.10307
+ns_inherit,naming,Namespace inheritance,share of theorems whose namespace is the name of a constant in their statement (dot-notation ready),other_ai,StrongPNT (Math Inc.),5,0.0,0.0,0.0,0.0
+ns_inherit,naming,Namespace inheritance,share of theorems whose namespace is the name of a constant in their statement (dot-notation ready),mathlib,mathlib,465,0.18667,0.1625,0.2139,0.22793
+propagation,naming,Concept-name propagation,for concepts used in >= 2 theorem statements: share of those theorems whose name contains the concept's name,openai_math,OpenAI math (Oct),524,0.29372,0.27999,0.30628,0.19503
+propagation,naming,Concept-name propagation,for concepts used in >= 2 theorem statements: share of those theorems whose name contains the concept's name,openai_ten,OpenAI ten proofs (Aug),10,0.32291,0.17992,0.35543,0.2442
+propagation,naming,Concept-name propagation,for concepts used in >= 2 theorem statements: share of those theorems whose name contains the concept's name,human_research,Human research projects,28,0.41017,0.26733,0.49582,0.36555
+propagation,naming,Concept-name propagation,for concepts used in >= 2 theorem statements: share of those theorems whose name contains the concept's name,other_ai,StrongPNT (Math Inc.),5,0.125,0.03704,0.25,0.10631
+propagation,naming,Concept-name propagation,for concepts used in >= 2 theorem statements: share of those theorems whose name contains the concept's name,mathlib,mathlib,452,0.47881,0.46216,0.50698,0.42711
+proof_to_statement,compression,Proof / statement length,median theorem proof tokens / statement tokens,openai_math,OpenAI math (Oct),524,1.05768,1.02707,1.0875,0.55556
+proof_to_statement,compression,Proof / statement length,median theorem proof tokens / statement tokens,openai_ten,OpenAI ten proofs (Aug),10,0.94542,0.8081,1.54534,0.91111
+proof_to_statement,compression,Proof / statement length,median theorem proof tokens / statement tokens,human_research,Human research projects,29,0.94828,0.63516,1.39417,0.82927
+proof_to_statement,compression,Proof / statement length,median theorem proof tokens / statement tokens,other_ai,StrongPNT (Math Inc.),5,1.3341,0.2892,2.44041,0.72727
+proof_to_statement,compression,Proof / statement length,median theorem proof tokens / statement tokens,mathlib,mathlib,465,0.41935,0.38889,0.44444,0.38462
+body_dup_share,compression,Duplicate proofs,share of theorem proofs (>= 20 tokens) whose exact text occurs again in the corpus,openai_math,OpenAI math (Oct),524,0.00871,0.00702,0.01051,0.12
+body_dup_share,compression,Duplicate proofs,share of theorem proofs (>= 20 tokens) whose exact text occurs again in the corpus,openai_ten,OpenAI ten proofs (Aug),10,0.00631,0.00283,0.02033,0.01346
+body_dup_share,compression,Duplicate proofs,share of theorem proofs (>= 20 tokens) whose exact text occurs again in the corpus,human_research,Human research projects,29,0.0,0.0,0.0,0.01119
+body_dup_share,compression,Duplicate proofs,share of theorem proofs (>= 20 tokens) whose exact text occurs again in the corpus,other_ai,StrongPNT (Math Inc.),5,0.0,0.0,0.01212,0.00608
+body_dup_share,compression,Duplicate proofs,share of theorem proofs (>= 20 tokens) whose exact text occurs again in the corpus,mathlib,mathlib,459,0.0,0.0,0.0,0.01863
+skel_dup_share,compression,Template proofs,share of theorem proofs (>= 30 tokens) whose identifier-abstracted skeleton occurs again,openai_math,OpenAI math (Oct),524,0.03745,0.03316,0.04107,0.33782
+skel_dup_share,compression,Template proofs,share of theorem proofs (>= 30 tokens) whose identifier-abstracted skeleton occurs again,openai_ten,OpenAI ten proofs (Aug),10,0.08447,0.04353,0.10718,0.08705
+skel_dup_share,compression,Template proofs,share of theorem proofs (>= 30 tokens) whose identifier-abstracted skeleton occurs again,human_research,Human research projects,29,0.0,0.0,0.02899,0.02914
+skel_dup_share,compression,Template proofs,share of theorem proofs (>= 30 tokens) whose identifier-abstracted skeleton occurs again,other_ai,StrongPNT (Math Inc.),5,0.0,0.0,0.01212,0.00343
+skel_dup_share,compression,Template proofs,share of theorem proofs (>= 30 tokens) whose identifier-abstracted skeleton occurs again,mathlib,mathlib,453,0.0198,0.00748,0.0303,0.06335
+zlib_ratio,compression,zlib ratio,compressed/raw size on fixed 32 KiB windows (lower = more repetitive),openai_math,OpenAI math (Oct),478,0.23451,0.23283,0.23635,
+zlib_ratio,compression,zlib ratio,compressed/raw size on fixed 32 KiB windows (lower = more repetitive),openai_ten,OpenAI ten proofs (Aug),10,0.17704,0.16714,0.18647,
+zlib_ratio,compression,zlib ratio,compressed/raw size on fixed 32 KiB windows (lower = more repetitive),human_research,Human research projects,27,0.24423,0.23551,0.25261,
+zlib_ratio,compression,zlib ratio,compressed/raw size on fixed 32 KiB windows (lower = more repetitive),other_ai,StrongPNT (Math Inc.),5,0.21232,0.16613,0.21877,
+zlib_ratio,compression,zlib ratio,compressed/raw size on fixed 32 KiB windows (lower = more repetitive),mathlib,mathlib,332,0.23848,0.23522,0.24165,
+library_ref_share,derivation,Library references,share of resolved references (distinct per declaration) that go to mathlib/core/batteries,openai_math,OpenAI math (Oct),524,0.54222,0.53205,0.5507,0.35241
+library_ref_share,derivation,Library references,share of resolved references (distinct per declaration) that go to mathlib/core/batteries,openai_ten,OpenAI ten proofs (Aug),10,0.47808,0.43902,0.6109,0.4621
+library_ref_share,derivation,Library references,share of resolved references (distinct per declaration) that go to mathlib/core/batteries,human_research,Human research projects,29,0.72771,0.70555,0.77561,0.75015
+library_ref_share,derivation,Library references,share of resolved references (distinct per declaration) that go to mathlib/core/batteries,other_ai,StrongPNT (Math Inc.),5,0.82363,0.79571,0.94319,0.8427
+library_ref_share,derivation,Library references,share of resolved references (distinct per declaration) that go to mathlib/core/batteries,mathlib,mathlib,465,0.10029,0.09126,0.11014,0.11734
+stmt_library_share,derivation,Statements in library terms,share of statement-level references that are mathlib/core/batteries constants,openai_math,OpenAI math (Oct),524,0.44245,0.42427,0.459,0.32964
+stmt_library_share,derivation,Statements in library terms,share of statement-level references that are mathlib/core/batteries constants,openai_ten,OpenAI ten proofs (Aug),10,0.44162,0.39343,0.60227,0.42583
+stmt_library_share,derivation,Statements in library terms,share of statement-level references that are mathlib/core/batteries constants,human_research,Human research projects,29,0.72264,0.54527,0.76533,0.7199
+stmt_library_share,derivation,Statements in library terms,share of statement-level references that are mathlib/core/batteries constants,other_ai,StrongPNT (Math Inc.),5,0.8595,0.78112,0.96084,0.86373
+stmt_library_share,derivation,Statements in library terms,share of statement-level references that are mathlib/core/batteries constants,mathlib,mathlib,465,0.06222,0.05534,0.07055,0.09341
+cross_project_restatement,derivation,Re-derived across projects,share of theorem statements that recur verbatim (alpha-normalised) in another project,openai_math,OpenAI math (Oct),524,0.00441,0.00378,0.00517,0.0073
+cross_project_restatement,derivation,Re-derived across projects,share of theorem statements that recur verbatim (alpha-normalised) in another project,openai_ten,OpenAI ten proofs (Aug),10,0.00014,0.0,0.00161,0.00078
+cross_project_restatement,derivation,Re-derived across projects,share of theorem statements that recur verbatim (alpha-normalised) in another project,human_research,Human research projects,29,0.0,0.0,0.0,0.00063
+cross_project_restatement,derivation,Re-derived across projects,share of theorem statements that recur verbatim (alpha-normalised) in another project,other_ai,StrongPNT (Math Inc.),5,0.00388,0.0,0.01026,0.00559
+cross_project_restatement,derivation,Re-derived across projects,share of theorem statements that recur verbatim (alpha-normalised) in another project,mathlib,mathlib,465,0.0,0.0,0.0,0.01339

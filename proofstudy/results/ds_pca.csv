@@ -1,0 +1,15 @@
+metric,label,pc1_loading,pc1_variance_share,pc2_variance_share,n_results
+concepts_per_100_thm,Concepts per 100 theorems,-0.389,0.2231,0.127,195
+live_concept_share,Live concepts,0.339,0.2231,0.127,195
+single_use_lemma_share,Single-use lemmas,0.141,0.2231,0.127,195
+cert_token_share,Certificate mass,-0.294,0.2231,0.127,195
+casebash_token_share,Case-bash mass,-0.29,0.2231,0.127,195
+auto_per_1k,Closing automation / 1k tokens,0.217,0.2231,0.127,195
+struct_per_1k,Structural steps / 1k tokens,0.141,0.2231,0.127,195
+numbered_share,Numbered names,-0.296,0.2231,0.127,195
+uninformative_share,Placeholder names,0.052,0.2231,0.127,195
+grounding,Name grounding,-0.112,0.2231,0.127,195
+propagation,Concept-name propagation,0.25,0.2231,0.127,195
+skel_dup_share,Template proofs,-0.286,0.2231,0.127,195
+library_ref_share,Library references,0.442,0.2231,0.127,195
+proof_to_statement,Proof / statement length,0.184,0.2231,0.127,195

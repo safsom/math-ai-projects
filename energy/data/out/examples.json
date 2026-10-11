@@ -1,0 +1,29 @@
+[
+ {
+  "label": "low",
+  "project": "OAI/Dynamics/SmoothObstruction",
+  "name": "OAI.SmoothObstruction.GridMargin.productLabel_card",
+  "bits_per_tok": 4.2997688288736455,
+  "bits": 197.7893661281877,
+  "tokens": 46.0,
+  "text": "lemma productLabel_card (m : \u2115) :\n    Nat.card (\u03b9 \u2192 Fin (2*m+1))=(2*m+1)^Fintype.card \u03b9 := by\n  classical\n  simp [Nat.card_eq_fintype_card]"
+ },
+ {
+  "label": "median",
+  "project": "OAI/Combinatorics/MatroidCounting",
+  "name": "OAI.CommonBasesFPRAS.rationalEmpirical_cast",
+  "bits_per_tok": 7.435189854087707,
+  "bits": 550.2040492024903,
+  "tokens": 74.0,
+  "text": "lemma rationalEmpirical_cast [Fintype \u0393] [DecidableEq \u0393] (H : Set \u0393 \u2192 \u211a) (l : List (Set \u0393)) :\n    (rationalEmpirical H l:\u211d)=empirical (fun S => (H S:\u211d)) l := by\n  simp [rationalEmpirical,empirical,Rat.cast_list_sum,List.map_map,Function.comp_def]"
+ },
+ {
+  "label": "high",
+  "project": "OAI/GameTheory/SnakyTwentyOne",
+  "name": "OAI.SnakyPrototype.Certificate21.envelope_exact_696",
+  "bits_per_tok": 13.174679844422835,
+  "bits": 632.3846325322961,
+  "tokens": 48.0,
+  "text": "theorem envelope_exact_696 : envelope_696 =\n    insert (5, 4) (Finset.univ.biUnion childrenD_696) := by\n  exact envelope_eq_combination childrenD_696 (5, 4) envelope_696\n    pivot_mem_696 child_envelope_sub_696 envelope_origin_696"
+ }
+]

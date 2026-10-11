@@ -1,0 +1,81 @@
+/* Layout: a left contents rail beside one reading column; tables and charts take the column's full width. */
+:root {
+  --paper: #f5f7f9; --panel: #ffffff; --ink: #18202b; --muted: #5a6575; --rule: #dbe0e7; --accent: #2b5c8a;
+  --c-ml: #4767a8; --c-oa: #c0682f; --c-hu: #2f8a62; --c-up: #7d8fae; --c-ai: #8457b0; --c-chi: #b8c0cc;
+  --ok: #2f7d55; --warn: #a8641c; --new: #6a4fb0; --open: #6b7584;
+  --f-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --f-body: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #11151b; --panel: #181d25; --ink: #e5e9ef; --muted: #9aa5b4; --rule: #2a313c; --accent: #8db6e2;
+  --c-ml: #7f9ddb; --c-oa: #e3925a; --c-hu: #5cc293; --c-up: #9aa9c4; --c-ai: #b58ee0; --c-chi: #4a5361;
+  --ok: #63c08f; --warn: #e0a159; --new: #b39cf0; --open: #9aa5b4; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #11151b; --panel: #181d25; --ink: #e5e9ef; --muted: #9aa5b4; --rule: #2a313c; --accent: #8db6e2;
+  --c-ml: #7f9ddb; --c-oa: #e3925a; --c-hu: #5cc293; --c-up: #9aa9c4; --c-ai: #b58ee0; --c-chi: #4a5361;
+  --ok: #63c08f; --warn: #e0a159; --new: #b39cf0; --open: #9aa5b4; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--paper); color: var(--ink); font: 16px/1.6 var(--f-body); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 80px; display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 48px; }
+.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; display: grid; gap: 6px; font-size: 14px; }
+.toc a { color: var(--muted); text-decoration: none; padding: 2px 0; border-left: 2px solid transparent; padding-left: 10px; }
+.toc a:hover, .toc a:focus-visible { color: var(--ink); border-left-color: var(--accent); outline: none }
+main { min-width: 0; display: grid; gap: 64px; }
+section { display: grid; gap: 20px; min-width: 0; scroll-margin-top: 24px }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; margin: 0; line-height: 1.15 }
+h1 { font-size: clamp(34px, 5vw, 52px); letter-spacing: -0.01em }
+h2 { font-size: 28px; padding-bottom: 8px; border-bottom: 1px solid var(--rule) }
+h3 { font-size: 19px; font-weight: 500 }
+p { margin: 0 }
+.prose { display: grid; gap: 14px; max-width: 70ch }
+.prose ul { margin: 0; padding-left: 20px; display: grid; gap: 8px }
+.eyebrow { font: 500 12px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 }
+.top { display: grid; gap: 18px }
+.dek { font-size: 19px; line-height: 1.5; color: var(--muted); max-width: 66ch }
+code { font: 0.86em var(--f-mono); background: color-mix(in srgb, var(--rule) 55%, transparent); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere }
+.figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px }
+.fig { background: var(--panel); padding: 16px 18px; display: grid; gap: 6px; align-content: start }
+.fig .v { font: 600 30px/1 var(--f-display); font-variant-numeric: tabular-nums }
+.fig .v small { font: 400 13px var(--f-body); color: var(--muted) }
+.fig .l { font-size: 13.5px; color: var(--muted); line-height: 1.4 }
+.findings { display: grid; gap: 22px; max-width: 74ch }
+.finding { display: grid; gap: 6px }
+.ledger { display: grid; border-top: 1px solid var(--rule) }
+.lrow { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); align-items: baseline }
+.tag { font: 500 11.5px/1 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 7px; border-radius: 3px; text-align: center; border: 1px solid currentColor }
+.t-holds { color: var(--ok) } .t-revised { color: var(--warn) } .t-new { color: var(--new) } .t-open { color: var(--open) }
+.sub { font-size: 13.5px; color: var(--muted); line-height: 1.45; margin-top: 2px; font-weight: 400 }
+.tablebox { overflow-x: auto; border: 1px solid var(--rule); background: var(--panel) }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums }
+th, td { padding: 9px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule) }
+th { font: 500 12px var(--f-mono); letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; white-space: nowrap; background: color-mix(in srgb, var(--rule) 30%, var(--panel)) }
+tbody tr:last-child td { border-bottom: 0 }
+td:not(:first-child) { white-space: nowrap }
+table.wide td:not(:first-child) { white-space: normal; min-width: 140px }
+table.wide td:last-child { min-width: 260px }
+.ns { color: var(--muted); opacity: 0.75 }
+.cap, figcaption { font-size: 13.5px; color: var(--muted); max-width: 80ch; line-height: 1.5 }
+figure { margin: 0; display: grid; gap: 8px }
+.chart { background: var(--panel); border: 1px solid var(--rule); padding: 16px; overflow-x: auto }
+.chart svg { width: 100%; min-width: 620px; height: auto; display: block }
+svg .grid { stroke: var(--rule); stroke-width: 1 }
+svg .tick { fill: var(--muted); font: 12px var(--f-mono) }
+svg .tick.strong { fill: var(--ink) }
+svg .lab { fill: var(--ink); font: 500 13.5px var(--f-body) }
+svg .med { stroke: var(--ink); stroke-width: 2 }
+svg .nullm { stroke: var(--ink); stroke-width: 2 }
+svg .nullx { stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 3 }
+svg .bar-chi { fill: var(--c-chi) }
+.hist { margin: 0; padding-left: 22px; display: grid; gap: 8px; max-width: 74ch }
+a { color: var(--accent) }
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-inline: 16px; padding-block: 24px 60px }
+  .toc { position: static; display: flex; flex-wrap: wrap; gap: 4px 14px }
+  .toc .eyebrow { width: 100% }
+  .toc a { border-left: 0; padding-left: 0 }
+  .figs { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  main { gap: 48px }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important } }
+html { scroll-behavior: smooth }

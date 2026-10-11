@@ -1,0 +1,642 @@
+{
+ "examples": {
+  "cert_token_share": {
+   "top": [
+    {
+     "headline": "OAI.BorsukNine.main_theorem",
+     "project": "Geometry/Borsuk",
+     "n_decls": 4885.0,
+     "tokens": 804316.0,
+     "cert_token_share": 0.6343066655394148
+    },
+    {
+     "headline": "OAI.MatrixAllFields.MatrixMultiplication.AllFieldMain.omega_lt_source_constant",
+     "project": "LinearAlgebra/MatrixFields",
+     "n_decls": 46409.0,
+     "tokens": 1411187.0,
+     "cert_token_share": 0.5458631634219987
+    },
+    {
+     "headline": "OAI.Laughlin.mainTarget_proved",
+     "project": "Analysis/Laughlin",
+     "n_decls": 10079.0,
+     "tokens": 247045.0,
+     "cert_token_share": 0.46839239814608674
+    },
+    {
+     "headline": "OAI.DepthThreeLowerBound.exists_polynomial_time_language_depth_three_lower_bound",
+     "project": "Computability/DepthThree",
+     "n_decls": 1930.0,
+     "tokens": 104499.0,
+     "cert_token_share": 0.16971454272289688
+    },
+    {
+     "headline": "OAI.Fifths.Single.unknown",
+     "project": "Computability/SpaceSimulation",
+     "n_decls": 254.0,
+     "tokens": 12746.0,
+     "cert_token_share": 0.15267534912913855
+    }
+   ],
+   "bottom": [
+    {
+     "headline": "OAI.TwoWayComplementation.explicit_family_main",
+     "project": "Combinatorics/TwoWayAutomata",
+     "n_decls": 277.0,
+     "tokens": 33455.0,
+     "cert_token_share": 0.0
+    },
+    {
+     "headline": "OAI.TwoWayComplementation.complementation_lower_bound_finite",
+     "project": "Combinatorics/TwoWayAutomata",
+     "n_decls": 221.0,
+     "tokens": 29737.0,
+     "cert_token_share": 0.0
+    },
+    {
+     "headline": "OAI.TraceConeClassification.TraceConeEquiv.idealOrderIso_zeroIdeal",
+     "project": "Analysis/TraceCone",
+     "n_decls": 63.0,
+     "tokens": 3998.0,
+     "cert_token_share": 0.0
+    },
+    {
+     "headline": "OAI.UniformSparsestCut.mainGap",
+     "project": "Combinatorics/SparsestCut",
+     "n_decls": 656.0,
+     "tokens": 78966.0,
+     "cert_token_share": 0.0
+    },
+    {
+     "headline": "OAI.WeakMTWGlobalSupport.current_main_convexity",
+     "project": "Geometry/WeakMTW",
+     "n_decls": 557.0,
+     "tokens": 104268.0,
+     "cert_token_share": 0.0
+    }
+   ]
+  },
+  "casebash_token_share": {
+   "top": [
+    {
+     "headline": "OAI.BorsukNine.main_theorem",
+     "project": "Geometry/Borsuk",
+     "n_decls": 4885.0,
+     "tokens": 804316.0,
+     "casebash_token_share": 0.1670137770352779
+    },
+    {
+     "headline": "OAI.ScalarConductivity.main_nonuniqueness",
+     "project": "Analysis/Conductivity",
+     "n_decls": 4061.0,
+     "tokens": 407299.0,
+     "casebash_token_share": 0.08296395483305856
+    },
+    {
+     "headline": "OAI.ArnoldCounterexample.main",
+     "project": "Geometry/Arnold",
+     "n_decls": 561.0,
+     "tokens": 32391.0,
+     "casebash_token_share": 0.07919794273005282
+    },
+    {
+     "headline": "OAI.MatrixAllFields.MatrixMultiplication.AllFieldMain.omega_lt_source_constant",
+     "project": "LinearAlgebra/MatrixFields",
+     "n_decls": 46409.0,
+     "tokens": 1411187.0,
+     "casebash_token_share": 0.06795039382413896
+    },
+    {
+     "headline": "OAI.SingleFold.main",
+     "project": "NumberTheory/SingleFold",
+     "n_decls": 292.0,
+     "tokens": 21160.0,
+     "casebash_token_share": 0.0649478563151796
+    }
+   ],
+   "bottom": [
+    {
+     "headline": "OAI.TwoWayComplementation.complementation_lower_bound_finite",
+     "project": "Combinatorics/TwoWayAutomata",
+     "n_decls": 221.0,
+     "tokens": 29737.0,
+     "casebash_token_share": 0.0
+    },
+    {
+     "headline": "OAI.ComparatorModel.CurrentMain.main",
+     "project": "Analysis/TracialSplitting",
+     "n_decls": 715.0,
+     "tokens": 73637.0,
+     "casebash_token_share": 0.0
+    },
+    {
+     "headline": "OAI.UniformSparsestCut.mainGap",
+     "project": "Combinatorics/SparsestCut",
+     "n_decls": 656.0,
+     "tokens": 78966.0,
+     "casebash_token_share": 0.0
+    },
+    {
+     "headline": "OAI.WeakHessian.every_geodesic",
+     "project": "Geometry/WeakHessian",
+     "n_decls": 1365.0,
+     "tokens": 237365.0,
+     "casebash_token_share": 0.0
+    },
+    {
+     "headline": "OAI.WeakMTWGlobalSupport.current_main_convexity",
+     "project": "Geometry/WeakMTW",
+     "n_decls": 557.0,
+     "tokens": 104268.0,
+     "casebash_token_share": 0.0
+    }
+   ]
+  },
+  "numbered_share": {
+   "top": [
+    {
+     "headline": "OAI.Laughlin.mainTarget_proved",
+     "project": "Analysis/Laughlin",
+     "n_decls": 10079.0,
+     "tokens": 247045.0,
+     "numbered_share": 0.8928830415414897
+    },
+    {
+     "headline": "OAI.BorsukNine.main_theorem",
+     "project": "Geometry/Borsuk",
+     "n_decls": 4885.0,
+     "tokens": 804316.0,
+     "numbered_share": 0.8622287760690963
+    },
+    {
+     "headline": "OAI.MatrixAllFields.MatrixMultiplication.AllFieldMain.omega_lt_source_constant",
+     "project": "LinearAlgebra/MatrixFields",
+     "n_decls": 46409.0,
+     "tokens": 1411187.0,
+     "numbered_share": 0.4679184874313157
+    },
+    {
+     "headline": "OAI.CriticalHoneycomb.finiteBridgeMassEstimate",
+     "project": "Combinatorics/HoneycombChords",
+     "n_decls": 6409.0,
+     "tokens": 1982230.0,
+     "numbered_share": 0.3466288722413444
+    },
+    {
+     "headline": "OAI.GaussianPropeller.all_partitions",
+     "project": "Probability/GaussianPropeller",
+     "n_decls": 702.0,
+     "tokens": 111195.0,
+     "numbered_share": 0.18555008210180624
+    }
+   ],
+   "bottom": [
+    {
+     "headline": "OAI.TwoWayComplementation.complementation_lower_bound_finite",
+     "project": "Combinatorics/TwoWayAutomata",
+     "n_decls": 221.0,
+     "tokens": 29737.0,
+     "numbered_share": 0.0
+    },
+    {
+     "headline": "OAI.TraceConeClassification.TraceConeEquiv.idealOrderIso_zeroIdeal",
+     "project": "Analysis/TraceCone",
+     "n_decls": 63.0,
+     "tokens": 3998.0,
+     "numbered_share": 0.0
+    },
+    {
+     "headline": "OAI.TriangularHilbert.main_estimate",
+     "project": "Analysis/TriangularHilbert",
+     "n_decls": 919.0,
+     "tokens": 73826.0,
+     "numbered_share": 0.0
+    },
+    {
+     "headline": "OAI.UniversalFInfinity.universal_group_of_type_FInfinity",
+     "project": "GroupTheory/UniversalGroup",
+     "n_decls": 1782.0,
+     "tokens": 110900.0,
+     "numbered_share": 0.0
+    },
+    {
+     "headline": "OAI.WeakMTWGlobalSupport.current_main_convexity",
+     "project": "Geometry/WeakMTW",
+     "n_decls": 557.0,
+     "tokens": 104268.0,
+     "numbered_share": 0.0
+    }
+   ]
+  },
+  "grounding": {
+   "top": [
+    {
+     "headline": "OAI.MatrixAllFields.MatrixMultiplication.AllFieldMain.omega_lt_source_constant",
+     "project": "LinearAlgebra/MatrixFields",
+     "n_decls": 46409.0,
+     "tokens": 1411187.0,
+     "grounding": 0.8458883166313171
+    },
+    {
+     "headline": "OAI.common_bases_fpras",
+     "project": "Combinatorics/MatroidCounting",
+     "n_decls": 2487.0,
+     "tokens": 176630.0,
+     "grounding": 0.6986716985702515
+    },
+    {
+     "headline": "OAI.ReflexiveFixedPoints.exists_fixedPoint_of_canonicallyReflexive",
+     "project": "Analysis/Nonexpansive",
+     "n_decls": 256.0,
+     "tokens": 14907.0,
+     "grounding": 0.678690493106842
+    },
+    {
+     "headline": "OAI.Kaplansky.kaplansky_quasitrace_counterexample",
+     "project": "Analysis/Kaplansky",
+     "n_decls": 1562.0,
+     "tokens": 101752.0,
+     "grounding": 0.6691053509712219
+    },
+    {
+     "headline": "OAI.ArExplicit.Statement.main",
+     "project": "Algebra/AuslanderReiten",
+     "n_decls": 3429.0,
+     "tokens": 184445.0,
+     "grounding": 0.6675768494606018
+    }
+   ],
+   "bottom": [
+    {
+     "headline": "OAI.TraceConeClassification.TraceConeEquiv.idealOrderIso_zeroIdeal",
+     "project": "Analysis/TraceCone",
+     "n_decls": 63.0,
+     "tokens": 3998.0,
+     "grounding": 0.23284314572811127
+    },
+    {
+     "headline": "OAI.ExactDerandomization.exact_logarithmic_space_derandomization",
+     "project": "Computability/Logspace",
+     "n_decls": 2229.0,
+     "tokens": 102853.0,
+     "grounding": 0.23100829124450684
+    },
+    {
+     "headline": "OAI.Laughlin.mainTarget_proved",
+     "project": "Analysis/Laughlin",
+     "n_decls": 10079.0,
+     "tokens": 247045.0,
+     "grounding": 0.1806240975856781
+    },
+    {
+     "headline": "OAI.DiamondDistortion.headline_all_pairs",
+     "project": "Analysis/DiamondDistortion",
+     "n_decls": 175.0,
+     "tokens": 17765.0,
+     "grounding": 0.14924924075603485
+    },
+    {
+     "headline": "OAI.BorsukNine.main_theorem",
+     "project": "Geometry/Borsuk",
+     "n_decls": 4885.0,
+     "tokens": 804316.0,
+     "grounding": 0.08357193320989609
+    }
+   ]
+  },
+  "live_concept_share": {
+   "top": [
+    {
+     "headline": "OAI.IndependentProducts.main_general",
+     "project": "Analysis/ProductSpaces",
+     "n_decls": 62.0,
+     "tokens": 5480.0,
+     "live_concept_share": 1.0
+    },
+    {
+     "headline": "OAI.Problem337.prescribed_denominator_corollary",
+     "project": "NumberTheory/EgyptianFractions",
+     "n_decls": 299.0,
+     "tokens": 35468.0,
+     "live_concept_share": 0.9761904761904762
+    },
+    {
+     "headline": "OAI.SeymourSecondNeighborhood.exists_goodVertex",
+     "project": "Combinatorics/SecondNeighborhood",
+     "n_decls": 269.0,
+     "tokens": 21610.0,
+     "live_concept_share": 0.9625
+    },
+    {
+     "headline": "OAI.WeakMTWGlobalSupport.current_main_convexity",
+     "project": "Geometry/WeakMTW",
+     "n_decls": 557.0,
+     "tokens": 104268.0,
+     "live_concept_share": 0.9382716049382716
+    },
+    {
+     "headline": "OAI.BorsukNine.main_theorem",
+     "project": "Geometry/Borsuk",
+     "n_decls": 4885.0,
+     "tokens": 804316.0,
+     "live_concept_share": 0.9347826086956522
+    }
+   ],
+   "bottom": [
+    {
+     "headline": "OAI.DiamondDistortion.headline_all_pairs",
+     "project": "Analysis/DiamondDistortion",
+     "n_decls": 175.0,
+     "tokens": 17765.0,
+     "live_concept_share": 0.3673469387755102
+    },
+    {
+     "headline": "OAI.TraceConeClassification.TraceConeEquiv.idealOrderIso_zeroIdeal",
+     "project": "Analysis/TraceCone",
+     "n_decls": 63.0,
+     "tokens": 3998.0,
+     "live_concept_share": 0.36363636363636365
+    },
+    {
+     "headline": "OAI.IntegralCharacterVarieties.SurfacePresentation.Diagram.producedMarkedValues_allSeams",
+     "project": "AlgebraicGeometry/CharacterVarieties",
+     "n_decls": 938.0,
+     "tokens": 56376.0,
+     "live_concept_share": 0.2847826086956522
+    },
+    {
+     "headline": "OAI.MatrixAllFields.MatrixMultiplication.AllFieldMain.omega_lt_source_constant",
+     "project": "LinearAlgebra/MatrixFields",
+     "n_decls": 46409.0,
+     "tokens": 1411187.0,
+     "live_concept_share": 0.25523695054945056
+    },
+    {
+     "headline": "OAI.MetricKMedianRecovery.global_application",
+     "project": "Combinatorics/KMedianRecovery",
+     "n_decls": 7719.0,
+     "tokens": 369915.0,
+     "live_concept_share": 0.2350322724237703
+    }
+   ]
+  }
+ },
+ "name_samples": {
+  "openai_math": [
+   "tangentDeriv_eq",
+   "coefficientErrorSpatialLog_mono",
+   "k12t6p4_templates_item_9",
+   "k16t8p182_templates_item_19",
+   "sharpPolynomial_sup_nonneg",
+   "iterated_comp_linear",
+   "c0_3",
+   "sound731",
+   "source_gram_23_1_11",
+   "scalarNormalizer_posSemidef",
+   "hasDerivAt_atTime",
+   "c4_10"
+  ],
+  "openai_ten": [
+   "pairwise_pivot_rows_unique",
+   "hasKazhdanPropertyT_finitelyGenerated",
+   "tendsto_upper_shortEndpoint_scaled",
+   "stripAngle_eq_pi_sub",
+   "sourceUnaryDivision_modulus_true",
+   "boundedFold_cast_nil",
+   "momentJointJetSection_spatial_periodic",
+   "lowerCoth_log_small_abs_bound",
+   "measurable_sourceTorusCoverPoint",
+   "interlacingRowSchedule_pairwise_le",
+   "powerSumHankel_det_ne_zero",
+   "unconditionalActualFairSourceVector_norm_sq"
+  ],
+  "human_research": [
+   "update_apply",
+   "ker_conj",
+   "carlesonSum_\ud835\udd13pos_inter_\u212d_eq_add_sum",
+   "approx_le",
+   "diff_apply",
+   "transfer_localize",
+   "loop_C1",
+   "lTensorLeft_tmul",
+   "toAdicCompletion_finiteAdeleIncl_of_ne",
+   "support_sigma_finite_from_MemLp",
+   "almost_always_bijOn",
+   "ofReal_rpow_of_pos_aux"
+  ],
+  "other_ai": [
+   "Bf_is_analytic_on_disk",
+   "log_Deriv_Expansion_Zeta",
+   "eventuallyEq_mul_right_fun",
+   "lem_f_vs_2M_minus_fR",
+   "lem_limitTerm1",
+   "lem_Rself",
+   "lem_nonnegative_product5",
+   "eventually_decomposition_for_ext",
+   "factor_I_from_integrand",
+   "final_sum_bound",
+   "tsum_le_of_nonneg_of_le",
+   "lem_calc_r_prime_minus_r"
+  ],
+  "mathlib": [
+   "inl_mono",
+   "hensels_lemma",
+   "lim_eq_iff",
+   "edist_toLp_single_same",
+   "div_div_cancel'",
+   "image_closure_of_convex'",
+   "csin",
+   "exists_separating_of_ne",
+   "le_card_cliqueFinset",
+   "listProd",
+   "coe_fn_inj",
+   "ind_iff_of_equivalence"
+  ]
+ },
+ "metric_defs": {
+  "concepts_per_100_thm": [
+   "concept",
+   "Concepts per 100 theorems",
+   "(defs + structures/classes/inductives) per 100 theorem/lemma declarations"
+  ],
+  "live_concept_share": [
+   "concept",
+   "Live concepts",
+   "share of concepts that appear in the statements of >= 2 theorems in the same corpus"
+  ],
+  "dead_concept_share": [
+   "concept",
+   "Dead concepts",
+   "share of concepts referenced by nothing in the corpus"
+  ],
+  "single_use_lemma_share": [
+   "concept",
+   "Single-use lemmas",
+   "share of theorems/lemmas cited by exactly one other declaration"
+  ],
+  "reusable_lemma_share": [
+   "concept",
+   "Reusable lemmas",
+   "share of theorems/lemmas cited by >= 3 declarations"
+  ],
+  "cert_token_share": [
+   "brute",
+   "Certificate mass",
+   "share of all proof/definition tokens in declarations that are numeral-dense (>= 25% numerals, >= 50 tokens) or use decide/native_decide"
+  ],
+  "casebash_token_share": [
+   "brute",
+   "Case-bash mass",
+   "share of theorem proof tokens in proofs that enumerate cases (fin_cases / interval_cases) and close them uniformly (<;>, all_goals or decide)"
+  ],
+  "enum_per_1k": [
+   "brute",
+   "Enumeration tactics / 1k tokens",
+   "decide, native_decide, fin_cases, interval_cases"
+  ],
+  "auto_per_1k": [
+   "brute",
+   "Closing automation / 1k tokens",
+   "simp, omega, linarith, nlinarith, norm_num, positivity, ring, aesop, grind, ..."
+  ],
+  "struct_per_1k": [
+   "brute",
+   "Structural steps / 1k tokens",
+   "intro, apply, exact, refine, have, obtain, calc, induction, rw, ..."
+  ],
+  "numeral_density": [
+   "brute",
+   "Numeral density",
+   "numeric literals per proof token"
+  ],
+  "name_tokens": [
+   "naming",
+   "Words per theorem name",
+   "median number of words in theorem names"
+  ],
+  "numbered_share": [
+   "naming",
+   "Numbered names",
+   "theorem names ending in / containing serial numbers (cover12, step_3)"
+  ],
+  "uninformative_share": [
+   "naming",
+   "Placeholder names",
+   "theorem names built on aux/key/step/claim/main/helper/part/... words"
+  ],
+  "vocab_share": [
+   "naming",
+   "Mathlib vocabulary",
+   "share of theorem-name words that occur >= 5 times in mathlib theorem names"
+  ],
+  "grounding": [
+   "naming",
+   "Name grounding",
+   "share of a theorem name's words found in the names of the constants its statement mentions"
+  ],
+  "ns_inherit": [
+   "naming",
+   "Namespace inheritance",
+   "share of theorems whose namespace is the name of a constant in their statement (dot-notation ready)"
+  ],
+  "propagation": [
+   "naming",
+   "Concept-name propagation",
+   "for concepts used in >= 2 theorem statements: share of those theorems whose name contains the concept's name"
+  ],
+  "proof_to_statement": [
+   "compression",
+   "Proof / statement length",
+   "median theorem proof tokens / statement tokens"
+  ],
+  "body_dup_share": [
+   "compression",
+   "Duplicate proofs",
+   "share of theorem proofs (>= 20 tokens) whose exact text occurs again in the corpus"
+  ],
+  "skel_dup_share": [
+   "compression",
+   "Template proofs",
+   "share of theorem proofs (>= 30 tokens) whose identifier-abstracted skeleton occurs again"
+  ],
+  "zlib_ratio": [
+   "compression",
+   "zlib ratio",
+   "compressed/raw size on fixed 32 KiB windows (lower = more repetitive)"
+  ],
+  "library_ref_share": [
+   "derivation",
+   "Library references",
+   "share of resolved references (distinct per declaration) that go to mathlib/core/batteries"
+  ],
+  "stmt_library_share": [
+   "derivation",
+   "Statements in library terms",
+   "share of statement-level references that are mathlib/core/batteries constants"
+  ],
+  "reinvent_share": [
+   "derivation",
+   "Restated mathlib theorems",
+   "share of theorem statements (>= 8 tokens) identical, after alpha-normalisation, to a mathlib statement"
+  ],
+  "cross_project_restatement": [
+   "derivation",
+   "Re-derived across projects",
+   "share of theorem statements that recur verbatim (alpha-normalised) in another project"
+  ]
+ },
+ "sizes": {
+  "openai_math": {
+   "decls": 3579699,
+   "theorems": 2263119,
+   "projects": 562,
+   "projects_ge20": 524
+  },
+  "openai_ten": {
+   "decls": 27720,
+   "theorems": 18223,
+   "projects": 10,
+   "projects_ge20": 10
+  },
+  "human_research": {
+   "decls": 9038,
+   "theorems": 6549,
+   "projects": 38,
+   "projects_ge20": 29
+  },
+  "other_ai": {
+   "decls": 1124,
+   "theorems": 1080,
+   "projects": 7,
+   "projects_ge20": 5
+  },
+  "mathlib": {
+   "decls": 264508,
+   "theorems": 189357,
+   "projects": 588,
+   "projects_ge20": 465
+  }
+ },
+ "diagnostics": {
+  "openai_math": {
+   "unresolved_q_per_decl": 0.1655256489442269,
+   "dot_resolved_per_decl": 0.07062493243146979
+  },
+  "openai_ten": {
+   "unresolved_q_per_decl": 0.18932178932178934,
+   "dot_resolved_per_decl": 0.10963203463203464
+  },
+  "human_research": {
+   "unresolved_q_per_decl": 0.31843328169949103,
+   "dot_resolved_per_decl": 0.1745961495906174
+  },
+  "other_ai": {
+   "unresolved_q_per_decl": 0.07562277580071175,
+   "dot_resolved_per_decl": 0.0
+  },
+  "mathlib": {
+   "unresolved_q_per_decl": 0.34020521118453884,
+   "dot_resolved_per_decl": 0.0
+  }
+ }
+}
