@@ -40,3 +40,9 @@ eigen/lean3/gestures.old
 eigen/out_terms_redo.out
 eigen/out_terms_chain.out
 eigen/tests/terms_toy/out/
+
+# chat history / assistant session data: never commit
+.claude/
+*transcript*
+*.chat.*
+CLAUDE.local.md
