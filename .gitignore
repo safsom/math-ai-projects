@@ -35,3 +35,7 @@ eigen/out*/**
 !eigen/out_cut/report_cuts*.json
 !eigen/out_swap/compare.json
 !eigen/out_ai_ready/failures.json
+eigen/lean3b/
+eigen/lean3/gestures.old
+eigen/out_terms_redo.out
+eigen/out_terms_chain.out

@@ -23,6 +23,7 @@ from analyze import user_name, strip_internal, GENERATED, project_and_group, HUM
 OT = os.environ.get('OT', os.path.join(HERE, 'out_terms'))
 OTI = os.environ.get('OTI', os.path.join(HERE, 'out_terms_iso'))
 OTA = os.environ.get('OTA', os.path.join(HERE, 'out_terms_ai'))
+OT2 = os.environ.get('OT2', os.path.join(HERE, 'out_terms_v2'))
 MIN = 10
 lg = math.log2
 
@@ -32,6 +33,8 @@ def files():
     out += [(p, 'openai') for p in sorted(glob.glob(os.path.join(OT, 'OAI.*.jsonl')))]
     out += [(p, 'human') for p in sorted(glob.glob(os.path.join(OT, 'human.*.jsonl')))]
     out += [(os.path.join(OTA, c, c + '.jsonl'), c) for c in ('spherepacking', 'putnam2025', 'imo2025')]
+    # the second pass (unfolded ranks, proof-applied redexes) replaces the first where it exists
+    out = [(p.replace(OT, OT2, 1) if p.startswith(OT) and os.path.exists(p.replace(OT, OT2, 1)) else p, c) for p, c in out]
     return [(p, c) for p, c in out if os.path.exists(p) and not p.endswith(('.log.jsonl', '.trace.jsonl'))]
 
 
@@ -43,10 +46,14 @@ def measures(r):
     lb = max(lg(S / G), ca)
     ub = lg(S / D)
     rk = r.get('rk', [0] * 12)
+    rku = r.get('rku')
+    maxr = lambda h: max((i for i in range(4) if sum(h[3 * i:3 * i + 3])), default=-1)
     return dict(N0=N0, N3=N3, S=S, D=D, kappa=lg(N3 / N0), chi_author=ca, chi_lb=lb, chi_ub=max(ub, lb),
                 ub_raw=ub, missed=lb - ca, resid=r['tResid'], occmax=lg(max(r['tOccMax'], 1)),
                 prod_bound=sum(lg(max(u, 1)) for u in uses), named=r['tNamed'], shared=r['tShared'],
-                rk=rk, agree=abs(S - N3) <= 0.01 * N3 + 1)
+                rk=rk, agree=abs(S - N3) <= 0.01 * N3 + 1,
+                # second pass only: rank with definitions unfolded, and created redexes applied to a proof
+                rku=rku, residP=r.get('tResidP'), maxrank_u=maxr(rku) if rku else None)
 
 
 def load():
@@ -87,6 +94,10 @@ def summarize(M):
         rank_hist=rk.tolist(), shared_rank_ge1=float(rk[1:, 2].sum() / shared) if shared else None,
         cuts_rank_ge1=float(rk[1:].sum() / rk.sum()) if rk.sum() else None,
         occmax_median=float(np.median(a('occmax'))), occmax_p99=float(np.percentile(a('occmax'), 99)),
+        # rank ladder (second-pass records): a created proof redex needs a cut of rank >= 1
+        ladder_n=sum(1 for m in M if m['residP']),
+        ladder_holds=float(np.mean([m['maxrank_u'] >= 1 for m in M if m['residP']])) if any(m['residP'] for m in M) else None,
+        rank_hist_u=np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3).tolist() if any(m['rku'] for m in M) else None,
         # the inequalities
         ub_le_occmax=float((a('ub_raw') <= a('occmax') + 1e-9).mean()),
         kappa_le_prod=float((a('kappa') <= a('prod_bound') + 1e-9).mean()),
@@ -167,7 +178,7 @@ def main():
     res['invariance'] = invariance()
     json.dump(res, open(os.path.join(OT, 'terms_results.json'), 'w'), indent=1)
     import pandas as pd
-    print(pd.DataFrame(res['corpora']).T.drop(columns=['rank_hist']).round(3).T.to_string())
+    print(pd.DataFrame(res['corpora']).T.drop(columns=['rank_hist', 'rank_hist_u']).round(3).T.to_string())
     print(json.dumps(res['project_median'], indent=0))
     print(json.dumps(res['invariance'], indent=0))
 

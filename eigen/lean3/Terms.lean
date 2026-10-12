@@ -46,6 +46,7 @@ structure DS where
   nextTok : Nat := 0
   log : Array String := #[]
   resid : Nat := 0
+  residP : Nat := 0
   steps : Nat := 0
   over : Bool := false
 
@@ -149,7 +150,9 @@ partial def dag (cx : Ctx) (ctx : Array Expr) (env : Env) (e : Expr) : StateM DS
   -- a cut variable applied to arguments: its proof is substituted at the head
   if let some (c, tok) := cutVar? env f then
     modify fun s => { s with used := s.used.insert tok }
-    if (← get).isLam[c]! then modify fun s => { s with resid := s.resid + 1 }
+    if (← get).isLam[c]! then
+      modify fun s => { s with resid := s.resid + 1 }
+      if args.any (isProofTerm cx ctx ·) then modify fun s => { s with residP := s.residP + 1 }
     let mut ks : Std.HashMap Nat Nat := ({} : Std.HashMap Nat Nat).insert c 1
     for a in args do
       if isProofTerm cx ctx a then
@@ -209,9 +212,53 @@ partial def rank (env : Environment) (ctx : Array Expr) (T : Expr) : Nat :=
       else 0
     | _ => 0
 
+/-- Weak head normal form by δ-unfolding of definitions and projection of constructor
+applications, with a bound on the number of unfoldings. -/
+partial def whnfLite (env : Environment) (fuel : Nat) (e : Expr) : Expr :=
+  let e := e.consumeMData.headBeta
+  if fuel == 0 then e else
+  let args := e.getAppArgs
+  match e.getAppFn.consumeMData with
+  | .const c us =>
+    match env.find? c with
+    | some (.defnInfo d) =>
+      whnfLite env (fuel - 1) ((d.value.instantiateLevelParams d.levelParams us).beta args)
+    | _ => e
+  | .proj _ i x =>
+    let x' := whnfLite env (fuel - 1) x
+    match x'.getAppFn.consumeMData with
+    | .const k _ =>
+      match env.find? k with
+      | some (.ctorInfo ci) =>
+        let xs := x'.getAppArgs
+        if h : ci.numParams + i < xs.size then whnfLite env (fuel - 1) (mkAppN xs[ci.numParams + i] args) else e
+      | _ => e
+    | _ => e
+  | _ => e
+
+/-- `rank` with definitions unfolded (`s ⊆ t`, `Monotone f`, `Injective f` are implications). -/
+partial def rankU (env : Environment) (ctx : Array Expr) (T : Expr) : Nat :=
+  match whnfLite env 24 T.consumeTypeAnnotations with
+  | .forallE _ d b _ =>
+    let rb := rankU env (ctx.push d) b
+    if isProp env ctx d then max (rankU env ctx d + 1) rb else rb
+  | e =>
+    let args := e.getAppArgs
+    match e.getAppFn.consumeMData with
+    | .const c _ =>
+      if c == `Iff && args.size == 2 then max (rankU env ctx args[0]!) (rankU env ctx args[1]!) + 1
+      else if (c == `And || c == `Or) && args.size == 2 then max (rankU env ctx args[0]!) (rankU env ctx args[1]!)
+      else if c == `Exists && args.size == 2 then
+        match args[1]!.consumeMData with
+        | .lam _ d b _ => rankU env (ctx.push d) b
+        | _ => 0
+      else 0
+    | _ => 0
+
 structure RS where
   seen : Std.HashSet (Expr × Nat) := {}
   hist : Array Nat := Array.replicate 12 0
+  histU : Array Nat := Array.replicate 12 0
   steps : Nat := 0
 
 /-- Cut histogram of the written term: rank (0, 1, 2, ≥3) × multiplicity of the cut variable. -/
@@ -223,10 +270,16 @@ partial def ranks (cx : Ctx) (ctx : Array Expr) (e : Expr) : StateM RS Unit := d
   if let some (_, t, v, b) := cutForm cx ctx e then
     let r := min 3 (rank cx.env ctx t)
     let m := match mult b with | "0" => 0 | "1" => 1 | _ => 2
-    modify fun s => { s with hist := s.hist.modify (3 * r + m) (· + 1) }
+    let ru := min 3 (rankU cx.env ctx t)
+    modify fun s => { s with hist := s.hist.modify (3 * r + m) (· + 1), histU := s.histU.modify (3 * ru + m) (· + 1) }
     ranks cx ctx v
     ranks cx (ctx.push t) b
     return
+  -- a data β-redex is substituted, as in `dag`, so the cuts behind it are seen
+  if let .lam _ _ b _ := e.getAppFn.consumeMData then
+    let args := e.getAppArgs
+    if args.size > 0 then
+      return ← ranks cx ctx (mkAppN (b.instantiate1 args[0]!) (args.extract 1 args.size))
   let some (_, kids, _) := node cx ctx e | return
   for (kctx, k) in kids do
     ranks cx kctx k
@@ -269,7 +322,7 @@ def stats (cx : Ctx) (value : Expr) (debug : Bool := false) : List (String × Js
     named := named'
   return [("tt", toJson false), ("tS", toJson sz[ri]!), ("tD", toJson reach), ("tG", toJson best),
     ("tNamed", toJson bestNamed), ("tShared", toJson shared), ("tOccMax", toJson occMax),
-    ("tResid", toJson ds.resid), ("rk", toJson rst.hist)] ++ (if debug then dbg else [])
+    ("tResid", toJson ds.resid), ("tResidP", toJson ds.residP), ("rk", toJson rst.hist), ("rku", toJson rst.histU)] ++ (if debug then dbg else [])
 
 /-- Saves the given theorems' constants (types and proof terms) in Lean's module-data format. -/
 def saveTerms (dir : System.FilePath) (mod : Name) (cis : Array ConstantInfo) : IO Unit := do
