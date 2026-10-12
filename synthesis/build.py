@@ -34,6 +34,7 @@ CO = json.load(open(os.path.join(OF, 'analysis_all', 'corpora.json')))
 FAIL = json.load(open(os.path.join(EG, 'out_ai_ready', 'failures.json')))
 _tr = os.path.join(EG, 'out_terms', 'terms_results.json')
 TR = json.load(open(_tr)) if os.path.exists(_tr) else None
+T = TR['corpora'] if TR else {}
 _tx = os.path.join(EG, 'out_terms', 'terms_extra_mathlib.json')
 TX = json.load(open(_tx)) if os.path.exists(_tx) else None
 
@@ -517,6 +518,12 @@ P['method'] = (
     '<li>The human baseline is small: 11 compiled projects from two efforts. Its intervals are wide, and its null is large.</li>'
     '<li>Other AI corpora were compiled against a newer mathlib than they were written for. Failures are not random.</li>'
     '<li>χ* is bracketed, not computed, and sharing is exact: a lemma abstracted over a varying part is not found.</li>'
+    '<li>Every pass decides whether a term is a proof from the declared type of its statement’s head symbol. A statement that is a proposition only once '
+    'definitions unfold, such as <code>S x</code> for <code>S : Set α</code> written as an application, is treated as data, so its <code>have</code> is not counted as a cut. '
+    + (f'The third pass counts these: {pct(T["mathlib"]["hidden_share"], 2)} of mathlib proofs have one, '
+       f'{T["mathlib"]["hidden_per_cut"] * 100:.2f} for every 100 cuts counted. The same rule applies to every corpus. '
+       if TR and T['mathlib'].get('hidden_share') is not None else 'Its size is being measured. ') +
+    'Rank uses the unfolding test.</li>'
     '<li>A 5-gram model is a weak model of Lean. A stronger one would lower every energy; whether it would close the gaps is untested.</li>'
     '</ul>')
 

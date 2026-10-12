@@ -17,3 +17,6 @@ theorem t_nest (p : Prop) (hp : p) : ((p ∧ p) ∧ (p ∧ p)) ∧ ((p ∧ p) �
   have a : p ∧ p := And.intro hp hp
   have b : (p ∧ p) ∧ (p ∧ p) := And.intro a a
   And.intro b b
+def MySet (α : Type) : Type := α → Prop
+theorem t_setprop (S : MySet Nat) (h0 : S 0) : S 0 :=
+  have x : ∀ (_a : S 0), S 0 := fun a => a; x h0

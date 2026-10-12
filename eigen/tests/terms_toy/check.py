@@ -10,7 +10,7 @@ EIGEN = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, EIGEN)
 import lean3job  # noqa: E402
 
-# name: (S cut-free size, D distinct nodes, G explicit layout, tResid, tResidP, rk cells, rku cells)
+# name: (S cut-free size, D distinct nodes, G explicit layout, tResid, tResidP, rk cells, rku cells[, tHidden])
 # rk cell = 3 * rank + use class (0 dead, 1 linear, 2 shared)
 EXPECT = {
     't_share': (11, 8, 11, 0, 0, [2], [2]),    # same cut-free proof as t_cse; naming a 3-node pair used twice does not pay
@@ -21,6 +21,9 @@ EXPECT = {
     't_unf': (6, 6, 6, 1, 1, [1], [4]),        # Imp p p is rank 0 as written, rank 1 unfolded
     't_prefix': (6, 6, 6, 1, 1, [4], [4]),     # the cut behind a data β-prefix is seen, rank 1
     't_nest': (17, 6, 13, 0, 0, [2], [2]),     # the author's layout is optimal: G = N4 = 13; S/D = 17/6 <= occMax 8
+    # S 0 is a proposition only once MySet unfolds. Every pass decides proofs from declared types, so x is not seen as a cut;
+    # the second-pass counter tHidden records it
+    't_setprop': (4, 4, 4, 0, 0, [], [], 1),
 }
 
 out = os.path.join(HERE, 'out')
@@ -30,13 +33,14 @@ job = lean3job.fill({'out': out, 'imports': ['Init'], 'mathlibNames': '', 'trace
                      'projects': [{'name': 'OAI.Toy.T', 'modules': [{'mod': 'OAI.Toy.T', 'path': os.path.join(HERE, 'Toy.lean')}]}]})
 json.dump(job, open(os.path.join(out, 'job.json'), 'w'))
 env = dict(os.environ, GESTURE_CUTS='1', GESTURE_TERMS='1')
-subprocess.run([os.path.join(EIGEN, 'run_driver3.sh'), os.path.join(out, 'job.json'), os.path.join(out, 'run.log')], env=env, check=True)
+subprocess.run([os.path.join(EIGEN, os.environ.get('DRIVER', 'run_driver3.sh')), os.path.join(out, 'job.json'), os.path.join(out, 'run.log')], env=env, check=True)
 got = {}
 for line in open(os.path.join(out, 'OAI.Toy.T.jsonl')):
     r = json.loads(line)
     if r['n'] in EXPECT:
         got[r['n']] = (r['tS'], r['tD'], r['tG'], r['tResid'], r['tResidP'],
-                       [i for i, v in enumerate(r['rk']) if v], [i for i, v in enumerate(r['rku']) if v])
-bad = {n: (e, got.get(n)) for n, e in EXPECT.items() if got.get(n) != e}
+                       [i for i, v in enumerate(r['rk']) if v], [i for i, v in enumerate(r['rku']) if v], r.get('tHidden'))
+same = lambda e, g: g is not None and all(a is None or a == b for a, b in zip(e, g))
+bad = {n: (e, got.get(n)) for n, e in EXPECT.items() if not same(e, got.get(n))}
 print('ok' if not bad else bad)
 sys.exit(1 if bad else 0)

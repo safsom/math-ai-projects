@@ -24,6 +24,8 @@ OT = os.environ.get('OT', os.path.join(HERE, 'out_terms'))
 OTI = os.environ.get('OTI', os.path.join(HERE, 'out_terms_iso'))
 OTA = os.environ.get('OTA', os.path.join(HERE, 'out_terms_ai'))
 OT2 = os.environ.get('OT2', os.path.join(HERE, 'out_terms_v2'))
+OT3 = os.environ.get('OT3', os.path.join(HERE, 'out_terms_v3'))
+OTA3 = os.environ.get('OTA3', os.path.join(HERE, 'out_terms_v3_ai'))
 MIN = 10
 lg = math.log2
 
@@ -33,8 +35,15 @@ def files():
     out += [(p, 'openai') for p in sorted(glob.glob(os.path.join(OT, 'OAI.*.jsonl')))]
     out += [(p, 'human') for p in sorted(glob.glob(os.path.join(OT, 'human.*.jsonl')))]
     out += [(os.path.join(OTA, c, c + '.jsonl'), c) for c in ('spherepacking', 'putnam2025', 'imo2025')]
-    # the second pass (unfolded ranks, proof-applied redexes) replaces the first where it exists
-    out = [(p.replace(OT, OT2, 1) if p.startswith(OT) and os.path.exists(p.replace(OT, OT2, 1)) else p, c) for p, c in out]
+    # later passes replace earlier ones where they exist: v2 unfolded ranks and proof-applied redexes,
+    # v3 a Prop test that unfolds definitions and the count of hidden-proposition cuts
+    def newest(p):
+        for old, new in ((OT, OT3), (OTA, OTA3), (OT, OT2)):
+            q = p.replace(old, new, 1)
+            if p.startswith(old) and os.path.exists(q):
+                return q
+        return p
+    out = [(newest(p), c) for p, c in out]
     return [(p, c) for p, c in out if os.path.exists(p) and not p.endswith(('.log.jsonl', '.trace.jsonl'))]
 
 
@@ -53,6 +62,7 @@ def measures(r):
                 prod_bound=sum(lg(max(u, 1)) for u in uses), named=r['tNamed'], shared=r['tShared'],
                 rk=rk, agree=abs(S - N3) <= 0.01 * N3 + 1,
                 # second pass only: rank with definitions unfolded, and created redexes applied to a proof
+                hidden=r.get('tHidden'), ver=3 if 'tHidden' in r else 2 if rku is not None else 1,
                 rku=rku, residP=r.get('tResidP'), maxrank_u=maxr(rku) if rku else None,
                 maxrank_u_shared=max((i for i in range(4) if rku[3 * i + 2]), default=-1) if rku else None,
                 # first-order estimate of kappa: each cut copies its proof (uses - 1) more times
@@ -116,6 +126,10 @@ def summarize(M):
         rank_hist_u=np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3).tolist() if any(m['rku'] for m in M) else None,
         ladder_u=ladder(M),
         v2_share=float(np.mean([m['rku'] is not None for m in M])),
+        v3_share=float(np.mean([m['ver'] == 3 for m in M])),
+        hidden_share=float(np.mean([m['hidden'] > 0 for m in M if m['ver'] == 3])) if any(m['ver'] == 3 for m in M) else None,
+        hidden_per_cut=float(sum(m['hidden'] for m in M if m['ver'] == 3) / max(1, sum(sum(m['rku']) for m in M if m['ver'] == 3)))
+        if any(m['ver'] == 3 for m in M) else None,
         residP_share=float(np.mean([bool(m['residP']) for m in M if m['rku'] is not None])) if any(m['rku'] is not None for m in M) else None,
         cuts_rank_ge1_u=(lambda h: float(h[1:].sum() / h.sum()) if h.sum() else None)(np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3))
         if any(m['rku'] for m in M) else None,
