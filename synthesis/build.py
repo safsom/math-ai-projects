@@ -693,7 +693,7 @@ if TR:
          'instantiations with data. So with rank-0 cuts, eliminating cuts costs at most the single-exponential product bound above. The tower-of-exponentials '
          'blowups of cut elimination (Statman; Orevkov) need cuts of positive rank, and the classical upper bound is a tower whose height grows with rank. '
          + (f'The implication held for {pct(ml["ladder_holds"], 1)} of the {ml["ladder_n"]:,} mathlib proofs with such redexes'
-            if ml.get('ladder_holds') is not None else 'It is checked here on the corpora') +
+            if ml.get('ladder_holds') is not None else 'It is checked here on the corpora')
          + (f' (the {round((1 - ml["ladder_holds"]) * ml["ladder_n"])} left are proofs where a hypothesis is a proposition only through a defined family, such as '
             '<code>R.arrows f</code> for a sieve, which the rank pass then reads as data)' if ml.get('ladder_holds') is not None and ml['ladder_holds'] < 1 else '') +
          '. Before definitions were unfolded and cuts behind data β-redexes were seen, it seemed to fail for over half. That was a measurement error, '
