@@ -25,6 +25,14 @@ open Lean
 namespace Gestures.Terms
 open Cuts (cutForm)
 
+/-- Instantiate the leading `∀`s of a type with arguments, as far as they go (no reduction). -/
+partial def _root_.Lean.Expr.instantiateForall' (t : Expr) (args : Array Expr) (i : Nat := 0) : Expr :=
+  if h : i < args.size then
+    match t.consumeMData with
+    | .forallE _ _ b _ => b.instantiate1 args[i] |>.instantiateForall' args (i + 1)
+    | _ => t
+  else t
+
 def nfBudget : Nat := 400000
 
 def dagBudget : Nat := 200000
@@ -236,12 +244,33 @@ partial def whnfLite (env : Environment) (fuel : Nat) (e : Expr) : Expr :=
     | _ => e
   | _ => e
 
+/-- `isProp` seeing through definitions: `R.arrows f` is a proposition because `Presieve X` unfolds to
+`∀ Y, Set (Y ⟶ X)` and `Set α` to `α → Prop`. -/
+partial def codomainIsPropU (env : Environment) (fuel : Nat) (e : Expr) : Bool :=
+  match whnfLite env fuel e with
+  | .forallE _ _ b _ => codomainIsPropU env fuel b
+  | .sort .zero => true
+  | _ => false
+
+partial def isPropU (env : Environment) (ctx : Array Expr) (T : Expr) : Bool :=
+  isProp env ctx T ||
+  match whnfLite env 24 T.consumeTypeAnnotations with
+  | .forallE _ d b _ => isPropU env (ctx.push d) b
+  | .sort _ => false
+  | e =>
+    match e.getAppFn.consumeMData with
+    | .const c _ => match env.find? c with
+      | some ci => codomainIsPropU env 24 (ci.type.instantiateForall' e.getAppArgs)
+      | none => false
+    | .bvar i => if i < ctx.size then codomainIsPropU env 24 (ctx[ctx.size - 1 - i]!.instantiateForall' e.getAppArgs) else false
+    | _ => false
+
 /-- `rank` with definitions unfolded (`s ⊆ t`, `Monotone f`, `Injective f` are implications). -/
 partial def rankU (env : Environment) (ctx : Array Expr) (T : Expr) : Nat :=
   match whnfLite env 24 T.consumeTypeAnnotations with
   | .forallE _ d b _ =>
     let rb := rankU env (ctx.push d) b
-    if isProp env ctx d then max (rankU env ctx d + 1) rb else rb
+    if isPropU env ctx d then max (rankU env ctx d + 1) rb else rb
   | e =>
     let args := e.getAppArgs
     match e.getAppFn.consumeMData with
@@ -259,6 +288,7 @@ structure RS where
   seen : Std.HashSet (Expr × Nat) := {}
   hist : Array Nat := Array.replicate 12 0
   histU : Array Nat := Array.replicate 12 0
+  hidden : Nat := 0
   steps : Nat := 0
 
 /-- Cut histogram of the written term: rank (0, 1, 2, ≥3) × multiplicity of the cut variable. -/
@@ -275,6 +305,14 @@ partial def ranks (cx : Ctx) (ctx : Array Expr) (e : Expr) : StateM RS Unit := d
     ranks cx ctx v
     ranks cx (ctx.push t) b
     return
+  -- a let or β-redex whose type is a proposition only once definitions unfold: a cut every pass treats as data
+  let hiddenTy? : Option Expr := match e with
+    | .letE _ t _ _ _ => some t
+    | _ => match e.getAppFn.consumeMData with
+      | .lam _ t _ _ => if e.getAppNumArgs > 0 then some t else none
+      | _ => none
+  if let some t := hiddenTy? then
+    if !isProp cx.env ctx t && isPropU cx.env ctx t then modify fun s => { s with hidden := s.hidden + 1 }
   -- a data β-redex is substituted, as in `dag`, so the cuts behind it are seen
   if let .lam _ _ b _ := e.getAppFn.consumeMData then
     let args := e.getAppArgs
@@ -322,7 +360,7 @@ def stats (cx : Ctx) (value : Expr) (debug : Bool := false) : List (String × Js
     named := named'
   return [("tt", toJson false), ("tS", toJson sz[ri]!), ("tD", toJson reach), ("tG", toJson best),
     ("tNamed", toJson bestNamed), ("tShared", toJson shared), ("tOccMax", toJson occMax),
-    ("tResid", toJson ds.resid), ("tResidP", toJson ds.residP), ("rk", toJson rst.hist), ("rku", toJson rst.histU)] ++ (if debug then dbg else [])
+    ("tResid", toJson ds.resid), ("tResidP", toJson ds.residP), ("rk", toJson rst.hist), ("rku", toJson rst.histU), ("tHidden", toJson rst.hidden)] ++ (if debug then dbg else [])
 
 /-- Saves the given theorems' constants (types and proof terms) in Lean's module-data format. -/
 def saveTerms (dir : System.FilePath) (mod : Name) (cis : Array ConstantInfo) : IO Unit := do

@@ -537,7 +537,7 @@ P['history'] = [
     ('Synthesis v1', 'All of the above from the ground up, plus the first three other AI corpora.'),
     ('This version', 'Proof-term pass: intrinsic compression bounds, logical rank of cuts, created redexes, layout invariance. A first run '
      'failed the rank-ladder check for over half of the proofs with redexes. The cause was the measurement: definitions were not unfolded, and cuts behind data β-redexes were missed. '
-     'Rank figures are from the corrected second pass.'),
+     'Rank figures are from the corrected later passes; the third also unfolds the types of hypotheses.'),
 ]
 
 # ------------------------------------------------------------------ proof terms
@@ -641,8 +641,9 @@ if TR:
         f'<p><b>Authors realize very different shares.</b> mathlib’s cuts realize {pct(ml["realized"])} of the compression the explicit layout finds'
         + (f', OpenAI’s {pct(oa["realized"])}' if oa else '') + '. '
         + ' '.join(f'{GL[c]}: {pct(T[c]["realized"])}.' for c in TC if c not in ('mathlib', 'openai')) +
-        ' How much there is to realize depends mostly on proof length. At equal size the corpora have similar χ<sub>DAG</sub>, and AI proofs have more '
-        'in total only because they are longer. The realization gap is not a length effect: in each size bin from 30 nodes up, mathlib realizes more '
+        (f' Sphere packing, closest to human code in its gesture mix, realizes the least.' if 'spherepacking' in TC and min(TC, key=lambda c: T[c]['realized']) == 'spherepacking' else '') +
+        ' How much there is to realize depends mostly on proof length. The corpus means of χ<sub>DAG</sub> differ by factors of 2 to 4, but from 100 nodes up '
+        'the size bins agree within a factor of about 1.6, so AI proofs have more mostly because they are longer. The realization gap is not a length effect: in each size bin from 30 nodes up, mathlib realizes more '
         '(second table below)' + (f'. Across projects, OpenAI against mathlib gives AUC {TR["tests"]["openai_vs_mathlib"]["realized"]["auc"]:.2f} '
         f'(p = {sci(TR["tests"]["openai_vs_mathlib"]["realized"]["p"])}).' if TR and TR['tests'].get('openai_vs_mathlib', {}).get('realized') else '.') +
         ' The AI corpora pay twice. They write cuts that save nothing, the layout redundancy ρ above, and they leave out cuts that would save something. '
@@ -694,8 +695,8 @@ if TR:
          'blowups of cut elimination (Statman; Orevkov) need cuts of positive rank, and the classical upper bound is a tower whose height grows with rank. '
          + (f'The implication held for {pct(ml["ladder_holds"], 1)} of the {ml["ladder_n"]:,} mathlib proofs with such redexes'
             if ml.get('ladder_holds') is not None else 'It is checked here on the corpora')
-         + (f' (the {round((1 - ml["ladder_holds"]) * ml["ladder_n"])} left are proofs where a hypothesis is a proposition only through a defined family, such as '
-            '<code>R.arrows f</code> for a sieve, which the rank pass then reads as data)' if ml.get('ladder_holds') is not None and ml['ladder_holds'] < 1 else '') +
+         + (f' (of the {round((1 - ml["ladder_holds"]) * ml["ladder_n"])} left, the one inspected by hand has a hypothesis that is a proposition only through a defined family, '
+            '<code>R.arrows f</code> for a sieve, which even the unfolding pass reads as data; the others are not yet explained)' if ml.get('ladder_holds') is not None and ml['ladder_holds'] < 1 else '') +
          '. Before definitions were unfolded and cuts behind data β-redexes were seen, it seemed to fail for over half. That was a measurement error, '
          'found by printing a counterexample.'),
         ('Real proofs sit in the elementary regime', 'Empirical',
@@ -785,14 +786,14 @@ if TR:
                 table([''] + [GL[c] for c in TC], terms_rows) +
                 (table(['Cut-free size'] + [GL[c] for c in TC if c in RBS['corpora']], size_rows) +
                  '<p class="cap">Realized share within bins of cut-free proof size; below it, the mean χ<sub>DAG</sub> (what there is to realize) and the number of proofs. Cells with fewer than 30 proofs are left out.</p>' if size_rows else '') +
-                f'<p class="cap">Means over proofs with at least 10 steps; corpus shares pool proofs. Rank and created-redex rows use the second pass '
-                f'(definitions unfolded), which covers {", ".join(f"{GL[c]} {pct(T[c]["v2_share"])}" for c in TC if T[c].get("v2_share") is not None and T[c]["v2_share"] < 0.995) or "every corpus"}'
+                f'<p class="cap">Means over proofs with at least 10 steps; corpus shares pool proofs. Rank and created-redex rows use the later passes '
+                f'(definitions unfolded; sphere packing has the second only), which cover {", ".join(f"{GL[c]} {pct(T[c]["v2_share"])}" for c in TC if T[c].get("v2_share") is not None and T[c]["v2_share"] < 0.995) or "every corpus"}'
                 f'{" of proofs" if any(T[c].get("v2_share", 1) < 0.995 for c in TC) else ""}.</p></section>')
     body.append('<section id="theory"><h2>What it suggests</h2><div class="prose"><p>The measurements support four statements about proofs in general. '
                 'Two are theorems with short proofs, one is classical, and one is empirical.</p></div><div class="findings">' +
                 ''.join(f'<div class="finding"><h3>{h}</h3><p class="sub">{st}</p><p>{t}</p></div>' for h, st, t in P['theory']) + '</div>'
                 + (table(['Highest rank among shared cuts', 'mathlib proofs', 'χ<sub>author</sub>', 'χ<sub>lb</sub>', 'χ<sub>DAG</sub>', 'Created proof redexes'], lad_rows) +
-                   '<p class="cap">mathlib, second pass. Ranks unfolded; “no shared cut” proofs may still have linear or dead cuts.</p>' if lad_rows else '')
+                   '<p class="cap">mathlib, third pass. Ranks unfolded; “no shared cut” proofs may still have linear or dead cuts.</p>' if lad_rows else '')
                 + f'<h3 class="sub-h">Directions</h3><div class="prose">{P["directions"]}</div>'
                 + (table(['Largest missed sharing in mathlib', 'Cut-free', 'Author', 'Explicit', 'DAG'], miss_rows) +
                    '<p class="cap">Sizes in proof-position nodes.</p>' if miss_rows else '') + '</section>')

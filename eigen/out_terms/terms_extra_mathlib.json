@@ -1,0 +1,485 @@
+{
+ "file": "mathlib",
+ "proofs": 143439,
+ "resid_proofs": 2204,
+ "resid_with_rank_ge1_cut": 0.5748638838475499,
+ "resid_violations": [
+  "BoxIntegral.Prepartition.restrict_split",
+  "MeasureTheory.isTightMeasureSet_range_of_tendsto_limsup_inner",
+  "CStarModule.inner_mul_inner_swap_le",
+  "Setoid.IsPartition.ncard_eq_finsum",
+  "iteratedDerivWithin_vcomp_three",
+  "IsTranscendenceBasis.isAlgebraic",
+  "MeasureTheory.LocallyIntegrableOn.exists_countable_integrableOn",
+  "Module.Finite.of_isLocalized_maximal",
+  "ZeroAtInftyContinuousMap.bounded",
+  "lp.sum_rpow_le_norm_rpow",
+  "Real.eq_Gamma_of_log_convex",
+  "LinearMap.IsSymmetric.continuous",
+  "summable_mul_of_bigO_atTop'",
+  "Submodule.natAbs_det_equiv",
+  "HasFTaylorSeriesUpToOn.comp",
+  "cbiSup_eq_of_forall_not",
+  "FirstOrder.Language.presburger.term_realize_eq_add_dotProduct",
+  "MvPowerSeries.prod_smul_X_eq_smul_monomial_one",
+  "Algebra.IsLocalIso.trans",
+  "LocallyFiniteSupport.finite_inter_support_of_isCompact"
+ ],
+ "ladder_by_max_shared_rank": {
+  "-1": {
+   "n": 134169,
+   "chi_author": 0.0,
+   "chi_lb": 0.00898105909193119,
+   "chi_ub": 0.058172583013332495,
+   "ub_p99": 0.7719625399210571,
+   "ub_max": 6.105673495414135,
+   "author_p99": 0.0,
+   "author_max": 0.0,
+   "resid_share": 0.003622297251973258
+  },
+  "0": {
+   "n": 8254,
+   "chi_author": 0.4430562676114993,
+   "chi_lb": 0.4790185503454078,
+   "chi_ub": 0.6938265820996817,
+   "ub_p99": 4.213600000934778,
+   "ub_max": 9.890379006541908,
+   "author_p99": 3.886065657331291,
+   "author_max": 9.38795598080619,
+   "resid_share": 0.1275745093288103
+  },
+  "1": {
+   "n": 956,
+   "chi_author": 0.4544031225729663,
+   "chi_lb": 0.4964971696754955,
+   "chi_ub": 0.7415727631791651,
+   "ub_p99": 4.938340190001417,
+   "ub_max": 10.142446695458155,
+   "author_p99": 4.48634921183802,
+   "author_max": 9.324784479772527,
+   "resid_share": 0.6558577405857741
+  },
+  "2": {
+   "n": 56,
+   "chi_author": 0.42461445188702013,
+   "chi_lb": 0.44336935587093873,
+   "chi_ub": 0.6328218355976437,
+   "ub_p99": 1.7621722684181065,
+   "ub_max": 1.927048778554643,
+   "author_p99": 1.36648181749109,
+   "author_max": 1.4313393116079443,
+   "resid_share": 0.625
+  },
+  "3": {
+   "n": 4,
+   "chi_author": 0.5557638953869368,
+   "chi_lb": 0.5557638953869368,
+   "chi_ub": 0.6751248140352121,
+   "ub_p99": 1.407322180084466,
+   "ub_max": 1.4223422999020772,
+   "author_p99": 1.26634596424863,
+   "author_max": 1.2817158268998687,
+   "resid_share": 0.75
+  }
+ },
+ "totals": {
+  "cutfree": 12455660,
+  "author_layout": 7963484.0,
+  "explicit_layout": 6473051.604163833,
+  "dag": 5660656,
+  "saving_author": 0.3606533897039579,
+  "saving_explicit": 0.48031243593965856,
+  "saving_dag": 0.5455354433245609
+ },
+ "top_missed": [
+  {
+   "n": "CartanMatrix.E\u2088_det",
+   "m": "Mathlib.LinearAlgebra.Matrix.Cartan.Basic",
+   "cutfree": 561653,
+   "author": 561653,
+   "explicit": 21052,
+   "dag": 8156,
+   "missed_bits": 4.74,
+   "named": 4349,
+   "shared": 6001
+  },
+  {
+   "n": "CartanMatrix.E\u2087_det",
+   "m": "Mathlib.LinearAlgebra.Matrix.Cartan.Basic",
+   "cutfree": 131207,
+   "author": 131207,
+   "explicit": 12204,
+   "dag": 5038,
+   "missed_bits": 3.43,
+   "named": 2308,
+   "shared": 3417
+  },
+  {
+   "n": "CartanMatrix.E\u2086_det",
+   "m": "Mathlib.LinearAlgebra.Matrix.Cartan.Basic",
+   "cutfree": 31352,
+   "author": 31352,
+   "explicit": 6461,
+   "dag": 2922,
+   "missed_bits": 2.28,
+   "named": 1040,
+   "shared": 1741
+  },
+  {
+   "n": "WeierstrassCurve.Projective.negDblY_smul",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Formula",
+   "cutfree": 30276,
+   "author": 30276,
+   "explicit": 9181,
+   "dag": 5847,
+   "missed_bits": 1.72,
+   "named": 472,
+   "shared": 1879
+  },
+  {
+   "n": "WeierstrassCurve.Projective.dblX_smul",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Formula",
+   "cutfree": 23854,
+   "author": 23854,
+   "explicit": 7441,
+   "dag": 4601,
+   "missed_bits": 1.68,
+   "named": 455,
+   "shared": 1593
+  },
+  {
+   "n": "WeierstrassCurve.variableChange_\u0394",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.VariableChange",
+   "cutfree": 32059,
+   "author": 32059,
+   "explicit": 16317,
+   "dag": 11121,
+   "missed_bits": 0.97,
+   "named": 665,
+   "shared": 2140
+  },
+  {
+   "n": "WeierstrassCurve.Projective.negDblY_eq'",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Formula",
+   "cutfree": 25422,
+   "author": 25422,
+   "explicit": 11546,
+   "dag": 7732,
+   "missed_bits": 1.14,
+   "named": 440,
+   "shared": 1570
+  },
+  {
+   "n": "Real.exp_lt_two_add_div_two_sub",
+   "m": "Mathlib.Analysis.Complex.Exponential",
+   "cutfree": 12936,
+   "author": 12936,
+   "explicit": 1698,
+   "dag": 999,
+   "missed_bits": 2.93,
+   "named": 104,
+   "shared": 358
+  },
+  {
+   "n": "ofDigits_zero_two_sequence_unique",
+   "m": "Mathlib.Topology.Instances.CantorSet",
+   "cutfree": 28818,
+   "author": 18426,
+   "explicit": 7269,
+   "dag": 2970,
+   "missed_bits": 1.34,
+   "named": 1285,
+   "shared": 2234
+  },
+  {
+   "n": "sum_eight_sq_mul_sum_eight_sq",
+   "m": "Mathlib.Algebra.Ring.Identities",
+   "cutfree": 22043,
+   "author": 22043,
+   "explicit": 12255,
+   "dag": 9363,
+   "missed_bits": 0.85,
+   "named": 271,
+   "shared": 870
+  },
+  {
+   "n": "WeierstrassCurve.Projective.dblX_eq'",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Formula",
+   "cutfree": 18255,
+   "author": 18255,
+   "explicit": 8561,
+   "dag": 5842,
+   "missed_bits": 1.09,
+   "named": 279,
+   "shared": 1274
+  },
+  {
+   "n": "QuaternionAlgebra.star_mul_eq_coe",
+   "m": "Mathlib.Algebra.Quaternion",
+   "cutfree": 12566,
+   "author": 12566,
+   "explicit": 2949,
+   "dag": 1640,
+   "missed_bits": 2.09,
+   "named": 282,
+   "shared": 879
+  },
+  {
+   "n": "_private.Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree.0.WeierstrassCurve.expCoeff_rec",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree",
+   "cutfree": 13338,
+   "author": 13338,
+   "explicit": 3902,
+   "dag": 2150,
+   "missed_bits": 1.77,
+   "named": 237,
+   "shared": 802
+  },
+  {
+   "n": "ModularForm.discriminant_T_invariant",
+   "m": "Mathlib.NumberTheory.ModularForms.Discriminant",
+   "cutfree": 17047,
+   "author": 17047,
+   "explicit": 7679,
+   "dag": 4055,
+   "missed_bits": 1.15,
+   "named": 853,
+   "shared": 3898
+  },
+  {
+   "n": "WeierstrassCurve.Jacobian.negAddY_smul",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Jacobian.Formula",
+   "cutfree": 12930,
+   "author": 12930,
+   "explicit": 4150,
+   "dag": 2473,
+   "missed_bits": 1.64,
+   "named": 195,
+   "shared": 958
+  },
+  {
+   "n": "WeierstrassCurve.Jacobian.negAddY_neg",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Jacobian.Point",
+   "cutfree": 12549,
+   "author": 12549,
+   "explicit": 4940,
+   "dag": 3106,
+   "missed_bits": 1.34,
+   "named": 239,
+   "shared": 909
+  },
+  {
+   "n": "WeierstrassCurve.addSubMapCoeff_condition",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Affine.AddSubMap",
+   "cutfree": 9967,
+   "author": 9967,
+   "explicit": 2682,
+   "dag": 1957,
+   "missed_bits": 1.89,
+   "named": 119,
+   "shared": 923
+  },
+  {
+   "n": "Int.mul_mem_zero_one_two_three_four_iff",
+   "m": "Mathlib.NumberTheory.Divisors",
+   "cutfree": 15611,
+   "author": 15611,
+   "explicit": 8963,
+   "dag": 5064,
+   "missed_bits": 0.8,
+   "named": 502,
+   "shared": 1160
+  },
+  {
+   "n": "WeierstrassCurve.Projective.negAddY_eq'",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Formula",
+   "cutfree": 10027,
+   "author": 10027,
+   "explicit": 4469,
+   "dag": 2902,
+   "missed_bits": 1.17,
+   "named": 162,
+   "shared": 803
+  },
+  {
+   "n": "WeierstrassCurve.variableChange_b\u2088",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.VariableChange",
+   "cutfree": 11243,
+   "author": 11243,
+   "explicit": 5901,
+   "dag": 4005,
+   "missed_bits": 0.93,
+   "named": 216,
+   "shared": 969
+  },
+  {
+   "n": "WeierstrassCurve.Projective.negAddY_neg",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Point",
+   "cutfree": 9044,
+   "author": 9044,
+   "explicit": 4091,
+   "dag": 2641,
+   "missed_bits": 1.14,
+   "named": 215,
+   "shared": 707
+  },
+  {
+   "n": "WeierstrassCurve.Jacobian.negAddY_eq'",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Jacobian.Formula",
+   "cutfree": 8478,
+   "author": 8478,
+   "explicit": 3568,
+   "dag": 2290,
+   "missed_bits": 1.25,
+   "named": 112,
+   "shared": 655
+  },
+  {
+   "n": "CartanMatrix.E_det",
+   "m": "Mathlib.LinearAlgebra.Matrix.Cartan.Basic",
+   "cutfree": 7757,
+   "author": 7757,
+   "explicit": 3015,
+   "dag": 1582,
+   "missed_bits": 1.36,
+   "named": 350,
+   "shared": 709
+  },
+  {
+   "n": "WeierstrassCurve.Projective.addX_eq'",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Formula",
+   "cutfree": 8872,
+   "author": 8872,
+   "explicit": 4139,
+   "dag": 2750,
+   "missed_bits": 1.1,
+   "named": 120,
+   "shared": 689
+  },
+  {
+   "n": "WeierstrassCurve.Projective.negDblY_of_Z_eq_zero",
+   "m": "Mathlib.AlgebraicGeometry.EllipticCurve.Projective.Formula",
+   "cutfree": 7025,
+   "author": 7025,
+   "explicit": 2334,
+   "dag": 1211,
+   "missed_bits": 1.59,
+   "named": 68,
+   "shared": 472
+  }
+ ],
+ "missed_by_dir": [
+  [
+   "Mathlib.LinearAlgebra.Matrix.Cartan",
+   689830.0
+  ],
+  [
+   "Mathlib.AlgebraicGeometry.EllipticCurve.Projective",
+   135119.0
+  ],
+  [
+   "Mathlib.AlgebraicGeometry.EllipticCurve.Jacobian",
+   71898.0
+  ],
+  [
+   "Mathlib.NumberTheory",
+   51550.0
+  ],
+  [
+   "Mathlib.AlgebraicGeometry.EllipticCurve",
+   43746.0
+  ],
+  [
+   "Mathlib.Analysis.Complex",
+   31028.0
+  ],
+  [
+   "Mathlib.RingTheory.Polynomial",
+   29850.0
+  ],
+  [
+   "Mathlib.AlgebraicGeometry.EllipticCurve.Affine",
+   22037.0
+  ],
+  [
+   "Mathlib.Analysis.SpecialFunctions.Trigonometric",
+   21347.0
+  ],
+  [
+   "Mathlib.Algebra",
+   19968.0
+  ],
+  [
+   "Mathlib.Analysis.Convex",
+   17656.0
+  ],
+  [
+   "Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial",
+   16877.0
+  ],
+  [
+   "Mathlib.NumberTheory.ModularForms",
+   14288.0
+  ],
+  [
+   "Mathlib.Algebra.Ring",
+   13144.0
+  ],
+  [
+   "Mathlib.NumberTheory.FLT",
+   12784.0
+  ]
+ ],
+ "tightness_by_ncuts": {
+  "1": {
+   "n": 1485,
+   "median": 0.13750352374993502,
+   "p90": 0.5634737703113705
+  },
+  "2": {
+   "n": 1353,
+   "median": 0.12264386204977955,
+   "p90": 0.5059394019405157
+  },
+  "3": {
+   "n": 997,
+   "median": 0.1284300519615972,
+   "p90": 0.482547716624913
+  },
+  "4": {
+   "n": 721,
+   "median": 0.12288793417579237,
+   "p90": 0.42113769881526164
+  },
+  "5": {
+   "n": 467,
+   "median": 0.08465861461443157,
+   "p90": 0.39980468290268023
+  },
+  "6": {
+   "n": 320,
+   "median": 0.10115424292489922,
+   "p90": 0.4072134386654928
+  },
+  "7": {
+   "n": 251,
+   "median": 0.08692141073632226,
+   "p90": 0.2935271548454822
+  },
+  "8": {
+   "n": 192,
+   "median": 0.10521215765294109,
+   "p90": 0.3405201244319642
+  },
+  "9": {
+   "n": 112,
+   "median": 0.09700158740542747,
+   "p90": 0.36192240504491235
+  },
+  "10": {
+   "n": 516,
+   "median": 0.06009876017105006,
+   "p90": 0.2601709728215843
+  }
+ }
+}
