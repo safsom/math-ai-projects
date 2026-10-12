@@ -53,7 +53,10 @@ def measures(r):
                 prod_bound=sum(lg(max(u, 1)) for u in uses), named=r['tNamed'], shared=r['tShared'],
                 rk=rk, agree=abs(S - N3) <= 0.01 * N3 + 1,
                 # second pass only: rank with definitions unfolded, and created redexes applied to a proof
-                rku=rku, residP=r.get('tResidP'), maxrank_u=maxr(rku) if rku else None)
+                rku=rku, residP=r.get('tResidP'), maxrank_u=maxr(rku) if rku else None,
+                maxrank_u_shared=max((i for i in range(4) if rku[3 * i + 2]), default=-1) if rku else None,
+                # first-order estimate of kappa: each cut copies its proof (uses - 1) more times
+                kappa_est=sum(lg(1 + max(u - 1, 0) * c[2] / N0) for u, c in zip(uses, r['cuts'])))
 
 
 def load():
@@ -79,6 +82,19 @@ def load():
     return data
 
 
+def ladder(M):
+    """Compression by the highest unfolded rank among a proof's shared cuts (-1: no shared cut)."""
+    out = {}
+    for k in (-1, 0, 1, 2, 3):
+        S = [m for m in M if m['maxrank_u_shared'] == k]
+        if len(S) >= 5:
+            out[str(k)] = dict(n=len(S), chi_author=float(np.mean([m['chi_author'] for m in S])),
+                               chi_lb=float(np.mean([m['chi_lb'] for m in S])), chi_ub=float(np.mean([m['chi_ub'] for m in S])),
+                               chi_ub_p99=float(np.percentile([m['chi_ub'] for m in S], 99)),
+                               residP=float(np.mean([bool(m['residP']) for m in S])))
+    return out
+
+
 def summarize(M):
     a = lambda k: np.array([m[k] for m in M], float)
     ca, lb, ub = a('chi_author'), a('chi_lb'), a('chi_ub')
@@ -98,6 +114,10 @@ def summarize(M):
         ladder_n=sum(1 for m in M if m['residP']),
         ladder_holds=float(np.mean([m['maxrank_u'] >= 1 for m in M if m['residP']])) if any(m['residP'] for m in M) else None,
         rank_hist_u=np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3).tolist() if any(m['rku'] for m in M) else None,
+        ladder_u=ladder(M),
+        kappa_est_spearman=float(stats.spearmanr([m['kappa'] for m in M if m['kappa'] > 0], [m['kappa_est'] for m in M if m['kappa'] > 0])[0])
+        if sum(m['kappa'] > 0 for m in M) > 10 else None,
+        kappa_le_est=float(np.mean([m['kappa'] <= m['kappa_est'] + 1e-9 for m in M if m['kappa'] > 0])) if any(m['kappa'] > 0 for m in M) else None,
         # the inequalities
         ub_le_occmax=float((a('ub_raw') <= a('occmax') + 1e-9).mean()),
         kappa_le_prod=float((a('kappa') <= a('prod_bound') + 1e-9).mean()),
