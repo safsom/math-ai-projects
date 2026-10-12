@@ -32,11 +32,16 @@ ISO = json.load(open(os.path.join(EG, 'out_swap', 'compare.json')))
 CR = json.load(open(os.path.join(EG, 'out_cut', 'results_ai.json')))
 CO = json.load(open(os.path.join(OF, 'analysis_all', 'corpora.json')))
 FAIL = json.load(open(os.path.join(EG, 'out_ai_ready', 'failures.json')))
+_tr = os.path.join(EG, 'out_terms', 'terms_results.json')
+TR = json.load(open(_tr)) if os.path.exists(_tr) else None
+_tx = os.path.join(EG, 'out_terms', 'terms_extra_mathlib.json')
+TX = json.load(open(_tx)) if os.path.exists(_tx) else None
 
 SRC = ['energy/data/out/{group_metrics,tests,areas,projects,projects_ai}.csv, summary.json, decomp.json',
        'eigen/out_final/analysis_merged/{results,recheck_ep}.json',
        'eigen/out_final/analysis_{proofs,rho0,nocut}/results.json',
-       'eigen/out_final/analysis_all/corpora.json', 'eigen/out_cut/results_ai.json', 'eigen/out_swap/compare.json']
+       'eigen/out_final/analysis_all/corpora.json', 'eigen/out_cut/results_ai.json', 'eigen/out_swap/compare.json',
+       'eigen/out_terms/{terms_results,terms_extra_mathlib}.json']
 
 
 def esc(s):
@@ -226,8 +231,8 @@ for c in AI:
     co = CO['corpora'][c]
     corpora_rows.append([f'<b>{AI_NAME[c]}</b>', AI_WHO[c], f'{ai_text.get(c, (0, 0))[1]} / {co["projects"]}', f'{co["theorems"]:,}',
                          f'Written for Lean {AI_LEAN[c]}; {pct(FAIL[c]["share"])} of its theorems fail or contain sorry under the mathlib used here.'])
-corpora_rows += [['<b>Erdős 90</b>', AI_WHO['erdos90'], '–', 'compiling', '1.2M lines (src/original). About 5% compiled so far.'],
-                 ['<b>FLT</b>', AI_WHO['flt'], '–', 'queued', '13.5M lines. A random sample of 1,563 proof modules (about 800k lines with their imports).']]
+corpora_rows += [['<b>Erdős 90</b>', AI_WHO['erdos90'], '–', 'not run', '1.2M lines. Stopped after about 5% (some 45 hours of compilation) to free the machine for the proof-term pass.'],
+                 ['<b>FLT</b>', AI_WHO['flt'], '–', 'not run', '13.5M lines. Left for a later run.']]
 
 units_rows = [
     ['bits per token', 'Text energy', 'The cost of the source text under a 5-gram Kneser–Ney model of mathlib’s own Lean source: −log₂ q<sub>mathlib</sub>(x) per token. Low means it reads like mathlib.'],
@@ -339,7 +344,7 @@ ledger = [
      f'{pct(M1["openai_excess_from_rho+"])} of OpenAI’s excess comes from proofs with redundant layout; it survives without them at {M1["openai_rho0"]["beyond2"] / M1["mathlib_rho0"]["beyond2"]:.1f}× mathlib’s rate.'),
     ('revised', 'Lemma-level compression is not higher in OpenAI.',
      f'It looked higher with 67 projects; with all {PM["openai"]["projects"]} it is AUC {AU["openai_vs_mathlib"]["kappa_lemma"]:.2f}, p = {PV["openai_vs_mathlib"]["kappa_lemma"]:.2f}.'),
-    ('open', 'Whether Erdős 90 and Anthropic’s FLT share these signatures.', 'Both are still compiling; the IMO corpus is too damaged by version drift to say much.'),
+    ('open', 'Whether Erdős 90 and Anthropic’s FLT share these signatures.', 'Neither was compiled; the IMO corpus is too damaged by version drift to say much.'),
 ]
 TAG = {'holds': 'Holds', 'new': 'New', 'revised': 'Revised', 'open': 'Open'}
 
@@ -347,7 +352,8 @@ TAG = {'holds': 'Holds', 'new': 'New', 'revised': 'Revised', 'open': 'Open'}
 P = {}
 P['dek'] = (f'An account from the ground up of how AI-written Lean differs from mathlib and from human research code: in its source text, '
             f'in its compiled proof terms, and in how it names and reuses intermediate results. The core comparison covers OpenAI’s '
-            f'openai/math library. Three further AI corpora are included so far.')
+            f'openai/math library, and three further AI corpora are included. A final pass reads the proof terms themselves: how much '
+            f'compression each proof has in it, how much of that its author realizes, and what that suggests about proofs in general.')
 
 P['summary'] = [
     ('Its text reads unlike mathlib’s, mostly in the names.',
@@ -499,12 +505,18 @@ P['method'] = (
     f'The decomposition is stable across shrinkage choices for the first four directions.</li>'
     '<li><b>Cuts.</b> Use counts are proof-position occurrences. A proof used only inside a type or data stays alive as one copy. '
     'Sizes are exact big integers. The optimal layout decides bottom-up, eliminating a cut when (uses − 1)·|p| ≤ uses + 1.</li>'
+    '<li><b>Proof terms.</b> Cut-free form computed through a substitution environment with canonical hashes, so it is never built. A cut variable '
+    'hashes as its proof, an ordinary binder by its domain and enclosing binder. Data β-redexes are substituted silently, created redexes are left in place and counted '
+    '(identical ones once). The explicit layout names a node when references × size exceed size + references + 1, and is then refined greedily up to six times. '
+    'Budgets: 200k DAG nodes and 400k rank steps per proof; proofs over budget are dropped (10 of 254,147 in mathlib). Rank unfolds definitions up to 24 times, '
+    'reducing projections of constructor applications.</li>'
     '</ul><p><b>Limits.</b></p><ul>'
     '<li>Low energy means “reads like mathlib”, not “is good mathematics”. mathlib is one community’s house style, and research code, '
     'human or AI, is expected to coin vocabulary.</li>'
     '<li>The compiled OpenAI sample is 96 projects of about 524; the text pass covers them all.</li>'
     '<li>The human baseline is small: 11 compiled projects from two efforts. Its intervals are wide, and its null is large.</li>'
     '<li>Other AI corpora were compiled against a newer mathlib than they were written for. Failures are not random.</li>'
+    '<li>χ* is bracketed, not computed, and sharing is exact: a lemma abstracted over a varying part is not found.</li>'
     '<li>A 5-gram model is a weak model of Lean. A stronger one would lower every energy; whether it would close the gaps is untested.</li>'
     '</ul>')
 
@@ -515,8 +527,170 @@ P['history'] = [
     ('v3', 'FormulaHitting and KLS added (96 projects); Geometry.Arnold left out.'),
     ('v4', 'Cut compression. Before publishing, an inflated count of uses inside types was fixed, a ratio of summed sizes was replaced by per-proof means, and cut rates moved to the shared-size denominator. A lemma-level difference seen at 67 projects disappeared at 94.'),
     ('v5', 'Every compiled analysis rerun on proofs in optimal cut layout. Compiled energy and eigenproof 1 revised.'),
-    ('This report', 'All of the above from the ground up, plus the first three other AI corpora.'),
+    ('Synthesis v1', 'All of the above from the ground up, plus the first three other AI corpora.'),
+    ('This version', 'Proof-term pass: intrinsic compression bounds, logical rank of cuts, created redexes, layout invariance. A first run '
+     'failed the rank-ladder check for over half of the proofs with redexes. The cause was the measurement: definitions were not unfolded, and cuts behind data β-redexes were missed. '
+     'Rank figures are from the corrected second pass.'),
 ]
+
+# ------------------------------------------------------------------ proof terms
+TC = [c for c in ('mathlib', 'human', 'openai', 'spherepacking', 'putnam2025', 'imo2025') if TR and c in TR['corpora']]
+T = TR['corpora'] if TR else {}
+INV = TR.get('invariance') if TR else None
+
+
+def sandwich_chart():
+    W, L, Rm, row = 900, 190, 70, 44
+    H = 58 + row * len(TC)
+    hi = max(0.05, 1.15 * max(T[c]['chi_ub'] for c in TC))
+    hi = math.ceil(hi * 20) / 20
+    x = lambda v: L + v / hi * (W - L - Rm)
+    out = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="What authors realize of the compression available in their proofs, by corpus">']
+    step = 0.05 if hi <= 0.4 else 0.1
+    for i in range(int(round(hi / step)) + 1):
+        t = i * step
+        out.append(f'<line x1="{x(t):.1f}" x2="{x(t):.1f}" y1="8" y2="{H - 44}" class="grid"/>'
+                   f'<text x="{x(t):.1f}" y="{H - 26}" class="tick" text-anchor="middle">{t:.2f}</text>')
+    for i, c in enumerate(TC):
+        y0 = 22 + i * row
+        a, lb, ub = T[c]['chi_author'], T[c]['chi_lb'], T[c]['chi_ub']
+        col = GC.get(c, 'var(--c-ai)')
+        out.append(f'<text x="{L - 12}" y="{y0 + 5}" class="lab" text-anchor="end">{GL[c]}</text>'
+                   f'<line x1="{x(0):.1f}" x2="{x(ub):.1f}" y1="{y0}" y2="{y0}" class="grid"/>'
+                   f'<rect x="{x(0):.1f}" y="{y0 - 6}" width="{x(a) - x(0):.1f}" height="12" style="fill:{col}"/>'
+                   f'<rect x="{x(a):.1f}" y="{y0 - 6}" width="{max(x(lb) - x(a), 0):.1f}" height="12" style="fill:{col}" fill-opacity="0.3"/>'
+                   f'<line x1="{x(ub):.1f}" x2="{x(ub):.1f}" y1="{y0 - 9}" y2="{y0 + 9}" class="med"/>'
+                   f'<text x="{x(ub) + 6:.1f}" y="{y0 + 4}" class="tick strong">{pct(T[c]["realized"])}</text>')
+    out.append(f'<text x="{(L + W - Rm) / 2:.0f}" y="{H - 4}" class="tick" text-anchor="middle">mean bits per proof</text></svg>')
+    return ''.join(out)
+
+
+def _t(c, f):
+    try:
+        v = f(T[c])
+        return '–' if v is None else v
+    except (KeyError, TypeError):
+        return '–'
+
+
+def _lad(c):
+    v = T[c].get('ladder_holds')
+    return f'{pct(v, 1)} of {T[c]["ladder_n"]:,}' if v is not None else '–'
+
+
+terms_rows = [
+    ['Proofs measured'] + [f'{T[c]["proofs"]:,}' for c in TC],
+    ['χ<sub>author</sub><div class="sub">compression the written cuts achieve, laid out optimally</div>'] + [f'{T[c]["chi_author"]:.3f}' for c in TC],
+    ['χ<sub>lb</sub><div class="sub">an explicit layout of the cut-free proof</div>'] + [f'{T[c]["chi_lb"]:.3f}' for c in TC],
+    ['χ<sub>DAG</sub><div class="sub">every repeated subproof shared, names free</div>'] + [f'{T[c]["chi_ub"]:.3f}' for c in TC],
+    ['<b>Realized</b><div class="sub">Σχ<sub>author</sub> ÷ Σχ<sub>lb</sub></div>'] + [f'<b>{pct(T[c]["realized"])}</b>' for c in TC],
+    ['Missed ≥ 1 bit<div class="sub">share of proofs</div>'] + [pct(T[c]['missed_ge1'], 1) for c in TC],
+    ['Cuts of rank ≥ 1<div class="sub">definitions unfolded</div>'] + [_t(c, lambda v: pct(v['cuts_rank_ge1_u'])) for c in TC],
+    ['Created proof redexes<div class="sub">share of proofs</div>'] + [_t(c, lambda v: pct(v['residP_share'], 1)) for c in TC],
+    ['Ladder: redex ⇒ rank ≥ 1 cut'] + [_lad(c) for c in TC],
+    ['χ<sub>DAG</sub> ≤ log₂ max copies'] + [pct(T[c]['ub_le_occmax'], 1) for c in TC],
+    ['κ ≤ Σ log₂ uses'] + [pct(T[c]['kappa_le_prod'], 1) for c in TC],
+    ['κ against its first-order estimate<div class="sub">Spearman, proofs with κ &gt; 0</div>'] + [_t(c, lambda v: f'{v["kappa_est_spearman"]:.2f}') for c in TC],
+]
+
+LAD = T['mathlib']['ladder_u'] if TR else {}
+lad_rows = [[{'-1': 'no shared cut', '0': '0', '1': '1', '2': '2', '3': '3 or more'}[k], f'{v["n"]:,}', f'{v["chi_author"]:.3f}',
+             f'{v["chi_lb"]:.3f}', f'{v["chi_ub"]:.3f}', pct(v['residP'], 1)] for k, v in LAD.items()]
+
+RBS = TR.get('realized_by_size') if TR else None
+size_rows = []
+if RBS:
+    edges = RBS['bins'] + [None]
+    for i, lo in enumerate(RBS['bins']):
+        hi = edges[i + 1]
+        size_rows.append([f'{lo:,}–{hi - 1:,}' if hi else f'{lo:,}+'] +
+                         [(f'{pct(r["realized"])}<div class="sub">{r["n"]:,}</div>' if (r := RBS['corpora'][c][i])['realized'] is not None else '–')
+                          for c in TC if c in RBS['corpora']])
+TOT = TX['totals'] if TX else None
+miss_rows = [[mono(m['n']), f'{m["cutfree"]:,}', f'{m["author"]:,}', f'{m["explicit"]:,}', f'{m["dag"]:,}'] for m in (TX['top_missed'][:6] if TX else [])]
+
+
+def _tm(k):
+    return TR['tests'].get(f'{k}_vs_mathlib', {}).get('realized') if TR else None
+
+
+if TR:
+    ml, oa = T['mathlib'], T.get('openai', {})
+    P['terms'] = (
+        '<p>The cut measures above rank layouts against one another. The question they leave open is how much compression a proof has '
+        'in it at all, whoever laid it out. This pass reads the proof term itself. It eliminates every written cut by substitution, without ever '
+        'building the result. A cut variable is hashed as the proof it stands for, and an ordinary bound variable as its binder. So the same subproof '
+        'is one node wherever it occurs, whether it was written twice, named once and used twice, or substituted from a cut. Three quantities '
+        'come out, all in bits of cut compression against the same cut-free size S:</p><ul>'
+        '<li><b>χ<sub>author</sub></b> = log₂(S ÷ the written cuts in their optimal layout): what the author’s own cuts achieve.</li>'
+        '<li><b>χ<sub>lb</sub></b> = log₂(S ÷ G), where G is the exact size of an explicit layout. It names any repeated subproof that pays for its own name, '
+        'cut or not, and is refined greedily. Any layout is a lower bound on the best, χ*.</li>'
+        '<li><b>χ<sub>DAG</sub></b> = log₂(S ÷ D), where D counts distinct subproofs. That is sharing with no naming cost, an upper bound on χ*.</li></ul>'
+        '<p>So χ<sub>author</sub> ≤ χ* and χ<sub>lb</sub> ≤ χ* ≤ χ<sub>DAG</sub>. The share an author realizes is Σχ<sub>author</sub> ÷ Σχ<sub>lb</sub>, '
+        'a conservative estimate since χ<sub>lb</sub> ≤ χ*. A subproof is shared only with an identical one whose free variables are bound by the '
+        'same binders, so every node G names could be a <code>have</code> at that point. Parametrized lemmas, which abstract over a varying part, are not counted. '
+        'Before it was run on any corpus, the pass was checked on hand-computed theorems (<code>eigen/tests/terms_toy</code>). Its cut-free size agrees '
+        f'with the cut pass’s exact count for {pct(ml["agree"], 1)} of mathlib proofs. The exceptions are proofs with created redexes, which this pass leaves unreduced.</p>'
+        f'<p><b>Authors realize very different shares.</b> mathlib’s cuts realize {pct(ml["realized"])} of the compression the explicit layout finds'
+        + (f', OpenAI’s {pct(oa["realized"])}' if oa else '') + '. '
+        + ' '.join(f'{GL[c]}: {pct(T[c]["realized"])}.' for c in TC if c not in ('mathlib', 'openai')) +
+        ' The gap is not a matter of AI proofs being longer: within each size bin from 30 nodes up, mathlib realizes more (second table below). The AI corpora pay twice. They write cuts that save nothing, the layout redundancy ρ above, and they leave out cuts that would save something. '
+        f'In mathlib the misses are concentrated in a few computational proofs. Across all its proofs of 10 or more steps, the written cuts cut the cut-free size by '
+        f'{pct(TOT["saving_author"]) if TOT else "–"}, the explicit layout by {pct(TOT["saving_explicit"]) if TOT else "–"}, and full sharing by '
+        f'{pct(TOT["saving_dag"]) if TOT else "–"}. The largest gaps are brute-force determinants and coordinate formulas, where tactics emit the same '
+        'subproof many times.</p>'
+        '<p><b>Logical rank.</b> Each cut’s formula gets a rank: the depth of implications nested to the left, with ¬A read as A → ⊥ and definitions unfolded, '
+        f'so <code>s ⊆ t</code> or <code>Monotone f</code> count as implications. In mathlib {pct(ml["cuts_rank_ge1_u"]) if ml.get("cuts_rank_ge1_u") is not None else "–"} '
+        f'of cuts have rank ≥ 1, about double the purely syntactic count ({pct(ml["cuts_rank_ge1"])}). A <em>created redex</em> appears when cut elimination '
+        'substitutes a λ-proof into a position where it is applied to a proof. It is a new cut that complete development does not remove. These occur in '
+        + (f'{pct(ml["residP_share"], 1)} of mathlib proofs' if ml.get('residP_share') is not None else 'few proofs') +
+        (f' and {pct(oa["residP_share"], 1)} of OpenAI’s' if oa.get('residP_share') is not None else '') + '.</p>'
+        + (f'<p><b>Reproducibility.</b> {INV["n"]:,} OpenAI theorems were compiled both in one shared environment and module by module '
+           f'(auxiliary <code>_proof_n</code> lemmas, numbered differently in the two modes, are set aside). {pct(INV["same_S"], 1)} have identical written size, '
+           f'cut-free size and DAG. The {INV["layout_changed"]} that differ do so outside their cuts: written and cut-free size move by the same few nodes, '
+           f'such as an instance found by a different path. So compilation mode never moves the cuts of a proof without changing the proof. '
+           f'That layout does not affect χ* follows from the construction, and is checked on hand-built pairs.</p>' if INV else ''))
+
+    P['theory'] = [
+        ('Copy-count identity', 'Proved; checked on every proof',
+         'Eliminate every written cut. A written step x is copied m(x) times, where m sums, over the uses of each cut whose proof contains x, the copies of '
+         'that use. Then the cut-free size is Σ<sub>x</sub> m(x), less the binder and use nodes that disappear. So κ is log₂ of the <em>average copy count</em> of a written '
+         'step, and one bit of cut compression is a doubling of it. Two corollaries hold for every proof in every corpus. First, κ ≤ Σ<sub>cuts</sub> log₂ uses, since '
+         'm(x) is at most the product of the use counts of the cuts enclosing x. Eliminating outermost cuts first, each step multiplies size by at most its use count. '
+         f'Second, χ<sub>DAG</sub> = log₂ of the average occurrence count of a distinct subproof, which is at most log₂ of the largest. The product bound is loose, '
+         f'reaching a median {ml["tightness_median"]:.2f} of itself in mathlib, because it ignores how large the copied proofs are. The first-order version, '
+         f'Σ log₂(1 + (uses − 1)·|p|/N), exact for a single cut, tracks κ with Spearman {ml["kappa_est_spearman"]:.2f}.'),
+        ('Compression is intrinsic', 'By construction; checked on hand-built pairs',
+         'S, D and χ* depend only on the cut-free proof, so any two layouts of one proof have the same χ*, and κ = χ − ρ separates the proof from its layout. '
+         '<code>have h := p; ⟨h, h⟩</code> and <code>⟨p, p⟩</code> get identical S and D, and compiling ' + (f'{INV["n"]:,}' if INV else 'the OpenAI') + ' theorems two ways reproduces every measure '
+         'except where the proof itself changed. '
+         'Compression becomes a property of the mathematics, and layout a property of the author.'),
+        ('Rank ladder', 'Classical; confirmed on the data',
+         'A created redex that applies a substituted proof to a proof needs a cut whose formula, unfolded, has rank ≥ 1. Rank-0 cuts can only create '
+         'instantiations with data. So with rank-0 cuts, eliminating cuts costs at most the single-exponential product bound above. The tower-of-exponentials '
+         'blowups of cut elimination (Statman; Orevkov) need cuts of positive rank, and the classical upper bound is a tower whose height grows with rank. '
+         + (f'The implication held for {pct(ml["ladder_holds"], 1)} of the {ml["ladder_n"]:,} mathlib proofs with such redexes'
+            if ml.get('ladder_holds') is not None else 'It is checked here on the corpora') +
+         '. Before definitions were unfolded and cuts behind data β-redexes were seen, it seemed to fail for over half. That was a measurement error, '
+         'found by printing a counterexample.'),
+        ('Real proofs sit in the elementary regime', 'Empirical',
+         f'χ<sub>DAG</sub> ≥ 1 bit (sharing could halve the proof) in {pct(ml["ub_ge1"], 1)} of mathlib proofs; created proof redexes are rare; most cuts are rank 0. '
+         'Libraries use cuts to organize proofs, not to compress them: what cut elimination could cost them in theory is not what it costs them in practice. '
+         'The exceptions are computational: certificates and expanded polynomial identities.'),
+    ]
+    P['directions'] = (
+        '<ul>'
+        '<li><b>Is the optimal layout tractable?</b> With only exact, scope-respecting sharing, choosing which subproofs to name is an optimization over the DAG '
+        'with a naming cost. The greedy layout here is sandwiched against the DAG. Is χ* polynomial-time, or hard like the smallest-grammar problem it '
+        'resembles once parametrized lemmas are allowed? The gap χ<sub>DAG</sub> − χ<sub>lb</sub> measured here bounds how much an exact algorithm could gain.</li>'
+        '<li><b>The distribution of copy counts.</b> By the identity, κ and χ<sub>DAG</sub> are log-means of copy counts. Their tails, which are a few proofs with '
+        'enormous multiplicity, decide every corpus mean. A model of where multiplicity comes from (tactics, automation, author habit) would predict compression '
+        'from the proof script alone.</li>'
+        '<li><b>Rank as a resource.</b> Higher-rank cuts are the only route to large speed-ups, yet libraries barely use them. The ladder table above shows how much '
+        'compression proofs gain as their shared cuts rise in rank. Whether higher-rank cuts carry the large compressions in hard proofs is testable on bigger corpora.</li>'
+        '<li><b>A layout optimizer.</b> For AI-written proofs the two inefficiencies are separate and both mechanical. Dropping redundant cuts and naming '
+        'repeated subproofs are term-level rewrites that keep the theorem. The bounds here say how much each could save per corpus before anyone writes one.</li>'
+        '</ul>')
 
 # ------------------------------------------------------------------ page
 FIGS = [
@@ -526,13 +700,25 @@ FIGS = [
     (f'{z_et["auc"]:.2f}', 'AUC', 'compiled energy, once redundant claims are set aside'),
 ]
 
+if TR:
+    P['summary'].append((
+        'Authors realize different shares of the compression their proofs contain.',
+        f'Measured on the proof terms themselves, mathlib’s written cuts realize {pct(T["mathlib"]["realized"])} of the sharing an explicit layout finds'
+        + (f', OpenAI’s {pct(T["openai"]["realized"])}' if 'openai' in T else '') + '. '
+        'Compression is intrinsic to a proof, and κ is exactly the log of the average number of times cut elimination copies a step. In every corpus it is small, '
+        'and the blowup-capable kind of cut, a named implication applied to a proof, is rare.'))
+    ledger.insert(4, ('new', 'Compression is a property of the proof; realizing it is a property of the author.',
+                      f'Realized share: ' + ', '.join(f'{GL[c]} {pct(T[c]["realized"])}' for c in TC) + '.'))
+    ledger.insert(5, ('new', 'Created proof redexes need a cut of rank ≥ 1 (the rank ladder).',
+                      (f'Holds for {pct(T["mathlib"]["ladder_holds"], 1)} of {T["mathlib"]["ladder_n"]:,} mathlib cases after definitions are unfolded.'
+                       if T['mathlib'].get('ladder_holds') is not None else 'Checked on the second pass.')))
 toc = [('summary', 'Summary'), ('ledger', 'What holds'), ('data', 'Corpora'), ('units', 'Units'), ('text', 'Text energy'),
        ('compiled', 'Compiled proofs'), ('cuts', 'Cut compression'), ('eigen', 'Eigenproofs'), ('recheck', 'Layout re-check'),
-       ('ai', 'Other AI corpora'), ('history', 'Revisions'), ('method', 'Method and limits')]
+       ('ai', 'Other AI corpora')] + ([('terms', 'Proof terms'), ('theory', 'What it suggests')] if TR else []) + [('history', 'Revisions'), ('method', 'Method and limits')]
 
 body = []
 body.append(f'''<header class="top">
-  <p class="eyebrow">Research report · 11 October 2026</p>
+  <p class="eyebrow">Research report · 12 October 2026</p>
   <h1>Machine-Written Lean, Measured</h1>
   <p class="dek">{P["dek"]}</p>
   <div class="figs">{''.join(f'<div class="fig"><div class="v">{v}<small> {u}</small></div><div class="l">{l}</div></div>' for v, u, l in FIGS)}</div>
@@ -567,7 +753,25 @@ body.append(f'<section id="ai"><h2>Other AI corpora</h2><div class="prose">{P["a
             table([''] + [GL[c] for c in ai_cols], ai_rows) +
             '<p class="cap">Text energy for OpenAI and human code is from the full text study (524 and 24 projects); for the other corpora it is the median '
             'over their own projects. Null ratios here use ten fresh null draws, so OpenAI’s differs slightly from the figure above. IMO 2025 has too few '
-            'theorems for project-level tests. Erdős 90 and the FLT sample are still compiling.</p></section>')
+            'theorems for project-level tests. Erdős 90 and FLT were not compiled.</p></section>')
+if TR:
+    body.append(f'<section id="terms"><h2>Proof terms</h2><div class="prose">{P["terms"]}</div><figure class="chart">{sandwich_chart()}'
+                '<figcaption>Solid bar: χ<sub>author</sub>, what the written cuts save. Pale extension: what the explicit layout adds. Tick: χ<sub>DAG</sub>, the '
+                'ceiling. The label is the share realized.</figcaption></figure>' +
+                table([''] + [GL[c] for c in TC], terms_rows) +
+                (table(['Cut-free size'] + [GL[c] for c in TC if c in RBS['corpora']], size_rows) +
+                 '<p class="cap">Realized share within bins of cut-free proof size (proofs per cell below). Cells with fewer than 30 proofs are left out.</p>' if size_rows else '') +
+                f'<p class="cap">Means over proofs with at least 10 steps; corpus shares pool proofs. Rank and created-redex rows use the second pass '
+                f'(definitions unfolded), which covers {", ".join(f"{GL[c]} {pct(T[c]["v2_share"])}" for c in TC if T[c].get("v2_share") is not None and T[c]["v2_share"] < 0.995) or "every corpus"}'
+                f'{" of proofs" if any(T[c].get("v2_share", 1) < 0.995 for c in TC) else ""}.</p></section>')
+    body.append('<section id="theory"><h2>What it suggests</h2><div class="prose"><p>The measurements support four statements about proofs in general. '
+                'Two are theorems with short proofs, one is classical, and one is empirical.</p></div><div class="findings">' +
+                ''.join(f'<div class="finding"><h3>{h}</h3><p class="sub">{st}</p><p>{t}</p></div>' for h, st, t in P['theory']) + '</div>'
+                + (table(['Highest rank among shared cuts', 'mathlib proofs', 'χ<sub>author</sub>', 'χ<sub>lb</sub>', 'χ<sub>DAG</sub>', 'Created proof redexes'], lad_rows) +
+                   '<p class="cap">mathlib, second pass. Ranks unfolded; “no shared cut” proofs may still have linear or dead cuts.</p>' if lad_rows else '')
+                + f'<h3 class="sub-h">Directions</h3><div class="prose">{P["directions"]}</div>'
+                + (table(['Largest missed sharing in mathlib', 'Cut-free', 'Author', 'Explicit', 'DAG'], miss_rows) +
+                   '<p class="cap">Sizes in proof-position nodes.</p>' if miss_rows else '') + '</section>')
 body.append('<section id="history"><h2>Revisions</h2><ol class="hist">' +
             ''.join(f'<li><b>{a}.</b> {b}</li>' for a, b in P['history']) + '</ol></section>')
 body.append(f'<section id="method"><h2>Method and limits</h2><div class="prose">{P["method"]}'

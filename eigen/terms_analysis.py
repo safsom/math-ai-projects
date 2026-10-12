@@ -115,6 +115,12 @@ def summarize(M):
         ladder_holds=float(np.mean([m['maxrank_u'] >= 1 for m in M if m['residP']])) if any(m['residP'] for m in M) else None,
         rank_hist_u=np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3).tolist() if any(m['rku'] for m in M) else None,
         ladder_u=ladder(M),
+        v2_share=float(np.mean([m['rku'] is not None for m in M])),
+        residP_share=float(np.mean([bool(m['residP']) for m in M if m['rku'] is not None])) if any(m['rku'] is not None for m in M) else None,
+        cuts_rank_ge1_u=(lambda h: float(h[1:].sum() / h.sum()) if h.sum() else None)(np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3))
+        if any(m['rku'] for m in M) else None,
+        shared_rank_ge1_u=(lambda h: float(h[1:, 2].sum() / h[:, 2].sum()) if h[:, 2].sum() else None)(np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3))
+        if any(m['rku'] for m in M) else None,
         kappa_est_spearman=float(stats.spearmanr([m['kappa'] for m in M if m['kappa'] > 0], [m['kappa_est'] for m in M if m['kappa'] > 0])[0])
         if sum(m['kappa'] > 0 for m in M) > 10 else None,
         kappa_le_est=float(np.mean([m['kappa'] <= m['kappa_est'] + 1e-9 for m in M if m['kappa'] > 0])) if any(m['kappa'] > 0 for m in M) else None,
@@ -167,8 +173,13 @@ def invariance():
             continue
         for line in open(p):
             r = json.loads(line)
+            u = user_name(r['n'])
+            if strip_internal(u) != u or GENERATED.search(u):   # auxiliary proofs are numbered differently in the two modes
+                continue
             if r['n'] in iso and 'tS' in r and not r.get('tt') and not r['sorry'] and r['cN'][0] >= MIN:
-                pairs.append((measures(r), measures(iso[r['n']])))
+                a, b = measures(r), measures(iso[r['n']])
+                a['ncuts'], b['ncuts'] = len(r['cuts']), len(iso[r['n']]['cuts'])
+                pairs.append((a, b))
     if not pairs:
         return None
     same = lambda k: float(np.mean([abs(a[k] - b[k]) < 1e-12 for a, b in pairs]))
@@ -178,6 +189,10 @@ def invariance():
                 layout_changed=len(layout_changed),
                 cutfree_same_given_layout_changed=float(np.mean([a['S'] == b['S'] and a['D'] == b['D'] for a, b in layout_changed]))
                 if layout_changed else None,
+                # a change outside the cuts moves written and cut-free size by the same amount
+                change_outside_cuts=float(np.mean([a['N0'] - b['N0'] == a['S'] - b['S'] and a['ncuts'] == b['ncuts'] for a, b in layout_changed]))
+                if layout_changed else None,
+                changed_median_rel=float(np.median([abs(a['N0'] / b['N0'] - 1) for a, b in layout_changed])) if layout_changed else None,
                 mad_chi_lb=float(np.mean([abs(a['chi_lb'] - b['chi_lb']) for a, b in pairs])),
                 mad_kappa=float(np.mean([abs(a['kappa'] - b['kappa']) for a, b in pairs])))
 
@@ -195,6 +210,16 @@ def main():
             if c != ref and ref in PT and PT[c]:
                 res['tests'][f'{c}_vs_{ref}'] = {k: auc([v[k] for v in PT[c].values()], [v[k] for v in PT[ref].values()])
                                                  for k in ('chi_author', 'chi_lb', 'chi_ub', 'missed', 'realized', 'resid')}
+    # realized share within proof-size bins, so that longer AI proofs are compared with mathlib proofs of the same size
+    bins = [10, 30, 100, 300, 1000, None]
+    res['realized_by_size'] = {'bins': bins[:-1], 'corpora': {}}
+    for c, M in data.items():
+        row = []
+        for lo, hi in zip(bins, bins[1:]):
+            S = [m for m in M if m['S'] >= lo and (hi is None or m['S'] < hi)]
+            lb = sum(m['chi_lb'] for m in S)
+            row.append(dict(n=len(S), realized=sum(m['chi_author'] for m in S) / lb if lb > 0 and len(S) >= 30 else None))
+        res['realized_by_size']['corpora'][c] = row
     res['invariance'] = invariance()
     json.dump(res, open(os.path.join(OT, 'terms_results.json'), 'w'), indent=1)
     import pandas as pd
