@@ -611,7 +611,7 @@ if RBS:
     for i, lo in enumerate(RBS['bins']):
         hi = edges[i + 1]
         size_rows.append([f'{lo:,}–{hi - 1:,}' if hi else f'{lo:,}+'] +
-                         [(f'{pct(r["realized"])}<div class="sub">{r["n"]:,}</div>' if (r := RBS['corpora'][c][i])['realized'] is not None else '–')
+                         [(f'{pct(r["realized"])}<div class="sub">χ<sub>DAG</sub> {r["chi_ub"]:.2f} · {r["n"]:,}</div>' if (r := RBS['corpora'][c][i])['realized'] is not None else '–')
                           for c in TC if c in RBS['corpora']])
 TOT = TX['totals'] if TX else None
 miss_rows = [[mono(m['n']), f'{m["cutfree"]:,}', f'{m["author"]:,}', f'{m["explicit"]:,}', f'{m["dag"]:,}'] for m in (TX['top_missed'][:6] if TX else [])]
@@ -641,7 +641,11 @@ if TR:
         f'<p><b>Authors realize very different shares.</b> mathlib’s cuts realize {pct(ml["realized"])} of the compression the explicit layout finds'
         + (f', OpenAI’s {pct(oa["realized"])}' if oa else '') + '. '
         + ' '.join(f'{GL[c]}: {pct(T[c]["realized"])}.' for c in TC if c not in ('mathlib', 'openai')) +
-        ' The gap is not a matter of AI proofs being longer: within each size bin from 30 nodes up, mathlib realizes more (second table below). The AI corpora pay twice. They write cuts that save nothing, the layout redundancy ρ above, and they leave out cuts that would save something. '
+        ' How much there is to realize depends mostly on proof length. At equal size the corpora have similar χ<sub>DAG</sub>, and AI proofs have more '
+        'in total only because they are longer. The realization gap is not a length effect: in each size bin from 30 nodes up, mathlib realizes more '
+        '(second table below)' + (f'. Across projects, OpenAI against mathlib gives AUC {TR["tests"]["openai_vs_mathlib"]["realized"]["auc"]:.2f} '
+        f'(p = {sci(TR["tests"]["openai_vs_mathlib"]["realized"]["p"])}).' if TR and TR['tests'].get('openai_vs_mathlib', {}).get('realized') else '.') +
+        ' The AI corpora pay twice. They write cuts that save nothing, the layout redundancy ρ above, and they leave out cuts that would save something. '
         f'In mathlib the misses are concentrated in a few computational proofs. Across all its proofs of 10 or more steps, the written cuts cut the cut-free size by '
         f'{pct(TOT["saving_author"]) if TOT else "–"}, the explicit layout by {pct(TOT["saving_explicit"]) if TOT else "–"}, and full sharing by '
         f'{pct(TOT["saving_dag"]) if TOT else "–"}. The largest gaps are brute-force determinants and coordinate formulas, where tactics emit the same '
@@ -657,6 +661,18 @@ if TR:
            f'cut-free size and DAG. The {INV["layout_changed"]} that differ do so outside their cuts: written and cut-free size move by the same few nodes, '
            f'such as an instance found by a different path. So compilation mode never moves the cuts of a proof without changing the proof. '
            f'That layout does not affect χ* follows from the construction, and is checked on hand-built pairs.</p>' if INV else ''))
+
+    def _rank_direction():
+        L = T['mathlib'].get('ladder_u', {})
+        if not all(k in L for k in ('0', '1')):
+            return ''
+        hi = [L[k] for k in ('1', '2', '3') if k in L]
+        up = max(v['chi_ub'] for v in hi) > L['0']['chi_ub']
+        return ('<li><b>Rank as a resource.</b> Only cuts of positive rank allow large speed-ups. In mathlib, though, proofs whose shared cuts reach rank 1 or more '
+                + (f'have more compression available than rank-0 ones' if up else
+                   f'have <em>less</em> compression available than rank-0 ones (χ<sub>DAG</sub> {min(v["chi_ub"] for v in hi):.2f}–{max(v["chi_ub"] for v in hi):.2f} against {L["0"]["chi_ub"]:.2f})')
+                + f'. What rises with rank is created redexes, from {pct(L["0"]["residP"])} to {pct(max(v["residP"] for v in hi))}: a shared implication is a local lemma '
+                'that gets applied, which is abstraction, not repetition. Whether hard proofs in other fields use rank for compression, as the theory allows, can be tested on bigger corpora.</li>')
 
     P['theory'] = [
         ('Copy-count identity', 'Proved; checked on every proof',
@@ -678,6 +694,8 @@ if TR:
          'blowups of cut elimination (Statman; Orevkov) need cuts of positive rank, and the classical upper bound is a tower whose height grows with rank. '
          + (f'The implication held for {pct(ml["ladder_holds"], 1)} of the {ml["ladder_n"]:,} mathlib proofs with such redexes'
             if ml.get('ladder_holds') is not None else 'It is checked here on the corpora') +
+         + (f' (the {round((1 - ml["ladder_holds"]) * ml["ladder_n"])} left are proofs where a hypothesis is a proposition only through a defined family, such as '
+            '<code>R.arrows f</code> for a sieve, which the rank pass then reads as data)' if ml.get('ladder_holds') is not None and ml['ladder_holds'] < 1 else '') +
          '. Before definitions were unfolded and cuts behind data β-redexes were seen, it seemed to fail for over half. That was a measurement error, '
          'found by printing a counterexample.'),
         ('Real proofs sit in the elementary regime', 'Empirical',
@@ -693,8 +711,7 @@ if TR:
         '<li><b>The distribution of copy counts.</b> By the identity, κ and χ<sub>DAG</sub> are log-means of copy counts. Their tails, which are a few proofs with '
         'enormous multiplicity, decide every corpus mean. A model of where multiplicity comes from (tactics, automation, author habit) would predict compression '
         'from the proof script alone.</li>'
-        '<li><b>Rank as a resource.</b> Higher-rank cuts are the only route to large speed-ups, yet libraries barely use them. The ladder table above shows how much '
-        'compression proofs gain as their shared cuts rise in rank. Whether higher-rank cuts carry the large compressions in hard proofs is testable on bigger corpora.</li>'
+        + _rank_direction() +
         '<li><b>A layout optimizer.</b> For AI-written proofs the two inefficiencies are separate and both mechanical. Dropping redundant cuts and naming '
         'repeated subproofs are term-level rewrites that keep the theorem. The bounds here say how much each could save per corpus before anyone writes one.</li>'
         '</ul>')
@@ -767,7 +784,7 @@ if TR:
                 'ceiling. The label is the share realized.</figcaption></figure>' +
                 table([''] + [GL[c] for c in TC], terms_rows) +
                 (table(['Cut-free size'] + [GL[c] for c in TC if c in RBS['corpora']], size_rows) +
-                 '<p class="cap">Realized share within bins of cut-free proof size (proofs per cell below). Cells with fewer than 30 proofs are left out.</p>' if size_rows else '') +
+                 '<p class="cap">Realized share within bins of cut-free proof size; below it, the mean χ<sub>DAG</sub> (what there is to realize) and the number of proofs. Cells with fewer than 30 proofs are left out.</p>' if size_rows else '') +
                 f'<p class="cap">Means over proofs with at least 10 steps; corpus shares pool proofs. Rank and created-redex rows use the second pass '
                 f'(definitions unfolded), which covers {", ".join(f"{GL[c]} {pct(T[c]["v2_share"])}" for c in TC if T[c].get("v2_share") is not None and T[c]["v2_share"] < 0.995) or "every corpus"}'
                 f'{" of proofs" if any(T[c].get("v2_share", 1) < 0.995 for c in TC) else ""}.</p></section>')

@@ -26,6 +26,8 @@ OTA = os.environ.get('OTA', os.path.join(HERE, 'out_terms_ai'))
 OT2 = os.environ.get('OT2', os.path.join(HERE, 'out_terms_v2'))
 OT3 = os.environ.get('OT3', os.path.join(HERE, 'out_terms_v3'))
 OTA3 = os.environ.get('OTA3', os.path.join(HERE, 'out_terms_v3_ai'))
+OTI2 = os.path.join(HERE, 'out_terms_v2_iso')
+OTI3 = os.path.join(HERE, 'out_terms_v3_iso')
 MIN = 10
 lg = math.log2
 
@@ -41,6 +43,12 @@ def files():
         for old, new in ((OT, OT3), (OTA, OTA3), (OT, OT2)):
             q = p.replace(old, new, 1)
             if p.startswith(old) and os.path.exists(q):
+                return q
+        # OpenAI projects recompiled module by module in a later pass: same terms for 99.8% of theorems (see invariance)
+        b = os.path.basename(p)
+        for d in (OTI3, OTI2):
+            q = os.path.join(d, b)
+            if b.startswith('OAI.') and os.path.exists(q) and os.path.getsize(q) > 0:
                 return q
         return p
     out = [(newest(p), c) for p, c in out]
@@ -232,7 +240,9 @@ def main():
         for lo, hi in zip(bins, bins[1:]):
             S = [m for m in M if m['S'] >= lo and (hi is None or m['S'] < hi)]
             lb = sum(m['chi_lb'] for m in S)
-            row.append(dict(n=len(S), realized=sum(m['chi_author'] for m in S) / lb if lb > 0 and len(S) >= 30 else None))
+            row.append(dict(n=len(S), realized=sum(m['chi_author'] for m in S) / lb if lb > 0 and len(S) >= 30 else None,
+                            chi_ub=float(np.mean([m['chi_ub'] for m in S])) if len(S) >= 30 else None,
+                            chi_lb=float(np.mean([m['chi_lb'] for m in S])) if len(S) >= 30 else None))
         res['realized_by_size']['corpora'][c] = row
     res['invariance'] = invariance()
     json.dump(res, open(os.path.join(OT, 'terms_results.json'), 'w'), indent=1)
