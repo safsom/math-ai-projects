@@ -46,3 +46,9 @@ eigen/tests/terms_toy/out/
 *transcript*
 *.chat.*
 CLAUDE.local.md
+
+# superseded (kept locally; see git history and synthesis/report.html)
+proofstudy/
+energy/report.html
+energy/proof-energy.html
+eigen/report/eigenproofs.html
