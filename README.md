@@ -186,6 +186,11 @@ The questions, measures and controls are Safal R. Aryal's. The code was written 
 agent, working at the author's direction, as the paper describes. The corpora analysed are not included here and remain under
 their own licences.
 
+## Licence
+
+The code and result files in this repository are released under the MIT licence (see `LICENSE`). The corpora it
+analyses are not included and remain under their own licences.
+
 ## Citation
 
 ```bibtex
