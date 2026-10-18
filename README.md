@@ -182,7 +182,7 @@ ladder on its own.
 
 ## Authorship
 
-The questions, measures and controls are Safal R. Aryal's. The code was written by Claude Code, Anthropic's coding
+The paper, questions, measures and controls are Safal R. Aryal's. The code was written by Claude Code, Anthropic's coding
 agent, working at the author's direction, as the paper describes. The corpora analysed are not included here and remain under
 their own licences.
 
