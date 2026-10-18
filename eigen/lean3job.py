@@ -1,4 +1,4 @@
-"""Fill a driver job with every field lean3's derived FromJson expects."""
+"""Fill a driver job with every field the driver's derived FromJson expects."""
 import json, sys
 D = dict(mathlibNames='', projects=[], trace=[], isolated=False, oleanDir='', maxModules=1000000, oleanProjects=[],
          maxHeartbeats=0, synthHeartbeats=0, falseOptions=[], natOptions=[], streaming=False)

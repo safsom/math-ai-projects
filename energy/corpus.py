@@ -15,7 +15,7 @@ from multiprocessing import Pool
 
 from lexer import declarations, strip_comments
 
-ROOT = "/Users/safsom/Projects/math-ai-projects"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CAP = 1000
 SEED = 20261009
 

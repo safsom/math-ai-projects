@@ -1,111 +1,198 @@
-# Machine-written Lean, measured
+# Proofs, gestures, and formalization
 
-How do AI-written Lean proofs differ from human-written ones, at scale? We extracted and compiled a large corpus
-on one 8 GB laptop and measured the elaborated proof terms directly, using classical proof-theoretic quantities
-(cuts, cut elimination, sharing, logical rank) as instruments.
+Code, job files, tests and results for the paper *Proofs, gestures, and formalization* by Safal R. Aryal
+([report/report.pdf](report/report.pdf)).
 
-**Corpora.** Baseline: mathlib (commit `d13f23b`), the largest body of human-formalized Lean, with its own
-conventions and quirks. AI-written: OpenAI's `openai/math` (96 randomly drawn projects compiled, 36k theorems),
-and, as independent replications, sphere packing (Math Inc's Gauss), Putnam 2025 (AxiomProver) and IMO 2025
-(Aristotle). Human research code (Carleson, sphere eversion) serves as a second human reference. Projects, not
-theorems, are the unit for group tests (projects with ≥ 20 theorems); per-proof measures use proofs of ≥ 10 steps
-(mathlib 143k, OpenAI 26k).
+The paper compiles 96 projects from OpenAI's library of AI-written mathematics
+([openai/math](https://github.com/openai/math)), three smaller AI-written corpora (sphere packing by Math Inc's Gauss,
+the 2025 Putnam solutions by AxiomProver, and the 2025 IMO solutions by Aristotle) and two human research projects
+(Carleson and sphere eversion) against the same version of mathlib. It then measures the proof terms that Lean's
+kernel checks. The structure of proofs has rarely been measured empirically, let alone at this scale, so much of the
+work is in building measures that can be trusted. Where theorems constrain them, the measures are checked against
+those theorems. They are also checked against how much mathlib differs from itself, and against controls for how the
+corpora were compiled and for the output of automated tactics.
 
-## Approach
+Many of the quantities themselves are not new. Work on improving automated provers already computes the size of proof
+terms, the length of proofs and the steps that do no work, as targets to optimize: for example
+[PACT](https://arxiv.org/abs/2102.06203), [ImProver](https://arxiv.org/abs/2410.04753),
+[ProofOptimizer](https://arxiv.org/abs/2510.15700), [LeanPolish](https://arxiv.org/abs/2609.38384) and
+[Proof-Refactor](https://arxiv.org/abs/2606.03743). The aim here is to turn such quantities into measurements of proofs
+themselves, which can eventually be used to study properties of proofs. The paper's section "What is already
+measured" gives the full list.
 
-1. **Text is not enough.** Under a 5-gram model of mathlib's source, OpenAI text costs 7.00 vs 5.15 bits/token
-   (AUC 0.94), but 76% of the gap is identifiers. Text shows how proofs are *named*, not how they *work*.
-2. **Gestures.** Each elaborated proof term is walked in full and every node abstracted to a *gesture*: the rule
-   applied, names erased, types cut to their head connective (e.g. `core:Eq.trans(=,=)⇒=`), with hypotheses
-   labelled by use count (0 / 1 / ω). Corpora are compared by their gesture mix against a size-matched null.
-3. **Cuts.** A cut is a proof that is named, then used (`have`, a proof `let`, a β-redex). Each proof is normalized
-   with exact tree sizes: as written, cut-free, and in its optimal layout. Cut compression splits as
-   κ = χ − ρ: χ is what sharing *could* save, ρ is pure layout redundancy.
-4. **Proof terms.** Every cut is eliminated by substitution under hash-consing (the blowup is never built). This
-   brackets the best achievable sharing χ* between an explicit layout (χ_lb) and the full DAG (χ_DAG).
+## Findings
 
-## Main findings
+Three results hold up under the controls in the paper.
 
-**1. AI provers write redundant intermediate claims, and it is not because there is more to share.**
+| | OpenAI | mathlib |
+|---|---|---|
+| distance of the gesture mix from mathlib, as a multiple of a size-matched null | 5.8 | (reference) |
+| ... with each call to automation collapsed into one step | 3.4 to 3.9 | (reference) |
+| proofs that are larger with their intermediate claims than without them | 40% | 13% |
+| realized share of the available compression | 31% | 73% |
+| ... on proofs that call no automation | 55% | 86% |
 
-| | mathlib | human | OpenAI | sphere packing | Putnam 2025 |
-|---|---|---|---|---|---|
-| proofs with a cut | 17% | 33% | 47% | 53% | 73% |
-| χ, compressibility (bits/proof) | 0.029 | 0.063 | 0.035 | 0.021 | 0.056 |
-| ρ, layout redundancy (bits/proof) | 0.015 | 0.028 | **0.071** | **0.189** | **0.174** |
-| proofs larger *with* their cuts | 13% | 26% | 40% | 49% | 67% |
+- **Gestures.** The mix of proof steps in OpenAI's proofs is 5.8 times as far from mathlib's as random sets of
+  mathlib projects are from the rest of mathlib. About a third of this comes from the certificates that tactics such
+  as `ring` and `omega` write into proof terms. The rest survives when those certificates are collapsed into single
+  steps, and when only proofs in their optimal layout are kept. The gesture study does not control for subject matter.
+- **Redundant claims.** OpenAI's proofs state many intermediate claims (cuts) that do no work. Its layout redundancy
+  is higher than mathlib's in almost every project (AUC 0.95), and this does not change on proofs that call no
+  automation (AUC 0.94).
+- **Realized compression.** OpenAI's proofs realize less of the compression available to them, meaning the amount
+  by which a proof could be shortened by proving each repeated piece once and reusing it. They also write cuts that
+  save nothing. Both hold on proofs that call no automation, though the realized gap is smaller there (AUC 0.36
+  against 0.25).
 
-OpenAI vs mathlib projects: ρ AUC 0.95 (p = 2·10⁻⁴⁴); vs human code AUC 0.85 (p = 4·10⁻⁵). χ is not higher.
-All three other AI systems show the same signature.
+Two first impressions did not hold up. OpenAI's proofs are longer mostly because they call more automation. Its
+slight excess in compressibility comes entirely from automation: on proofs without it, OpenAI is no more compressible
+than mathlib (p = 0.14).
 
-**2. Authors realize very different shares of the compression their proofs contain.** Realized share
-= Σχ_author / Σχ_lb, a conservative estimate. mathlib **73%**, human research 61%, OpenAI **31%**, Putnam 30%,
-sphere packing 14%. This is not a length effect. Within cut-free size bins (mathlib / OpenAI):
+## What is measured
 
-| size (nodes) | 30–99 | 100–299 | 300–999 | 1000+ |
-|---|---|---|---|---|
-| mathlib | 63% | 77% | 71% | 75% |
-| OpenAI | 49% | 39% | 23% | 30% |
+- **Text energy** (`energy/`): bits per token of each project's source under a 5-gram Kneser–Ney model of mathlib.
+  This mostly measures naming: 76% of OpenAI's gap to mathlib is carried by identifiers.
+- **Gestures and eigenproofs** (`eigen/`): every node of a proof term with names erased, types cut to their head
+  connective, and hypotheses labelled by use (never, once, more than once). Corpora are compared by the
+  Kullback–Leibler divergence of their projects' gesture mixes. This divergence splits into directions, called
+  *eigenproofs*, and is judged against a null of random mathlib projects of the same number.
+- **Cuts** (`eigen/cuts_exact.py`): for each proof, the exact sizes of the proof as written, its cut-free form and
+  its optimal layout, computed by hash-consing without building the cut-free form. From these come the cut
+  compression κ, the compressibility χ and the layout redundancy ρ, in bits.
+- **Realized compression** (`eigen/terms_analysis.py`): a second pass that eliminates every cut by substitution and
+  finds repeated subproofs by canonical hashing. The realized share is what the author's cuts achieve, out of what an
+  explicit layout of the cut-free proof could achieve.
+- **Checks against theorems.** Two bounds on κ and χ_DAG follow from how cut elimination copies steps. The *rank
+  ladder* also follows: a created proof redex needs a cut of logical rank at least one. All three hold on every proof
+  in every corpus. The ladder first failed, which is how two errors in the instrument were found, and later three
+  more (see "Checking the instruments" in the paper).
 
-Across projects, OpenAI vs mathlib: AUC 0.25, p = 6·10⁻¹⁵.
+## Repository layout
 
-**3. AI proofs use a different mix of inferences, beyond layout.** OpenAI's gesture mix is 280 bits (Gaussian KL)
-from mathlib's, against 49 bits for random mathlib project sets of the same size: **5.8× the null** (human research
-code: 1.9×). Under each layout control it stays well above the null: proofs only 5.5×, optimal-layout proofs only 4.6×,
-cut-free proofs only 4.8×.
+| path | contents |
+|---|---|
+| `report/` | the paper (`report.tex`, `references.bib`, `report.pdf`) and `figures/make_figures.py`, which draws every figure from the result files below |
+| `energy/` | the text study: lexer, Kneser–Ney model, corpus sampling, scoring, project statistics, and `data/out/` with its results. `data/mathlib_env.tsv.gz` is the elaborated mathlib environment the premise statistics resolve names against |
+| `eigen/driver/` | the Lean program (Lean 4.34.1) that elaborates each file and writes the gestures, cut sizes and proof-term measures of every theorem |
+| `eigen/jobs/` | the exact jobs behind the paper. Stage 1 (`isolated_*`) compiles the human projects and nine OpenAI projects module by module. Stage 2 (`terms_*`) is the final pass over every corpus. Paths are written as `@ROOT@` (see `localize_jobs.py`) |
+| `eigen/tests/terms_toy/` | regression test: small theorems whose sizes, ranks and redex counts were worked out by hand |
+| `eigen/*.py` | the analyses (listed in `run_analyses.sh`, in order) |
+| `eigen/out_final/`, `out_cut/`, `out_terms/`, `out_ai_ready/` | the result files behind every table and figure in the paper |
+| `eigen/mathlib_thm_names.txt` | the 254,147 mathlib theorems extracted |
 
-**4. The instruments behave as theory predicts.**
-- κ ≤ Σ log₂(uses) and χ_DAG ≤ log₂(max copies) hold for **100%** of proofs in every corpus.
-- Rank ladder: a created proof redex needs a cut of logical rank ≥ 1 (the source of Statman/Orevkov-type
-  blowups). It holds for **99.6%** of 1,100 mathlib cases, with definitions unfolded.
-- Real libraries sit in the elementary regime: sharing could halve a proof in 2.1% of mathlib proofs, and created
-  redexes appear in 0.8%.
+## Quick start
 
-## Controls
+These steps need no corpora and no mathlib build.
 
-- **Size-matched nulls:** each divergence is compared with random mathlib project sets of the same size.
-- **Layout controls:** every compiled analysis is rerun on proofs in optimal layout and on proofs with no cuts.
-- **Size bins** for the realized share.
-- **Replication** across three independent AI systems.
-- **Two independent passes:** the cut pass (normalization) and the term pass (hashing) agree on exact cut-free
-  size for 98.5% of mathlib. The exceptions are a predicted class (created redexes).
-- **Reproducibility across compilation modes:** OpenAI theorems compiled two ways (one shared environment and module by module)
-  give identical term measures for 99.8% of 2,879 and identical gesture multisets for 97.2% of 4,089.
-- **Split-half recovery** of the leading divergence direction: 0.95.
-- **Hand-computed regression test:** `eigen/tests/terms_toy`.
-- **Manual checking:** a sample of proofs was checked by hand.
+```sh
+pip install numpy pandas scipy statsmodels matplotlib
 
-## Limitations
+# redraw the figures from the result files, and rebuild the paper
+python3 report/figures/make_figures.py
+cd report && latexmk -pdf report.tex && cd ..
 
-- **OpenAI coverage:** the compiled sample is 96 of 524 projects. Rank figures cover 12% of its proofs.
-- **Version drift:** the AI corpora were written for older Lean versions, and 11–20% of Putnam and sphere-packing
-  theorems fail under this mathlib, which biases towards shorter proofs. IMO 2025 (29 proofs) is too small to report.
-- **Hidden propositions:** statements that are propositions only after unfolding are read as data
-  (0.13 per 100 cuts).
-- **No pre-registration:** analysis choices were made on this data.
+# build the driver (elan installs Lean 4.34.1 from lean-toolchain) and run the regression test
+cd eigen/driver && lake build && cd ..
+python3 tests/terms_toy/check.py        # prints "ok"
+```
 
-## Layout
+## Full reproduction
 
-- `eigen/`: Lean 4 extraction (`lean3/`: gestures, exact cut normal forms, proof-term pass), job files, run logs,
-  analyses and result JSONs.
-- `energy/`: text model (motivation).
-- `synthesis/`: `build.py` renders `report.html`, the full lab notebook, including exploratory and revised results
-  not listed above.
-- `references.bib`: related work, every entry checked against doi.org, the arXiv API or the source repository.
+The extraction takes about a day on a laptop (the OpenAI pass alone takes two hours, and building mathlib takes
+longer). It was run on a MacBook Air with 8 GB of memory. The scripts assume zsh, which is the default on macOS.
 
-Corpora are not included and remain under their own licences (sources and commits in `references.bib`).
-Lean 4.34.1.
+### 1. Sources
+
+Clone mathlib at OpenAI's pinned commit into `mathlib4/` and build it:
+
+```sh
+git clone https://github.com/leanprover-community/mathlib4 mathlib4
+cd mathlib4 && git checkout d13f23b723b8a846827a245b89c10fc7d3f11612 && lake exe cache get && lake build && cd ..
+```
+
+Then clone each corpus at the commit used:
+
+| path | repository | commit | used by |
+|---|---|---|---|
+| `corpora/openai_math` | [openai/math](https://github.com/openai/math) | `fd4aeeb2ee4f` | text, compiled |
+| `corpora/ai/Sphere-Packing-Lean` | [math-inc/Sphere-Packing-Lean](https://github.com/math-inc/Sphere-Packing-Lean) | `1e98fb493088` | text, compiled |
+| `corpora/ai/Putnam2025` | [AxiomMath/Putnam2025](https://github.com/AxiomMath/Putnam2025) | `2653cded72f5` | text, compiled |
+| `corpora/ai/IMO2025` | [harmonic-ai/IMO2025](https://github.com/harmonic-ai/IMO2025) | `72b62405a176` | text, compiled |
+| `eigen/human/carleson` | [fpvandoorn/carleson](https://github.com/fpvandoorn/carleson) | `306ae5b29300` | compiled |
+| `eigen/human/SphereEversion` | [leanprover-community/sphere-eversion](https://github.com/leanprover-community/sphere-eversion) | `9c53f91e2a28` | compiled |
+| `corpora/fpvandoorn_carleson` | [fpvandoorn/carleson](https://github.com/fpvandoorn/carleson) | `8972acdfd953` | text |
+| `corpora/leanprover-community_sphere-eversion` | [leanprover-community/sphere-eversion](https://github.com/leanprover-community/sphere-eversion) | `df3e74a3fbe1` | text |
+| `corpora/ImperialCollegeLondon_FLT` | [ImperialCollegeLondon/FLT](https://github.com/ImperialCollegeLondon/FLT) | `f6c6a2fe9796` | text |
+| `corpora/teorth_pfr` | [teorth/pfr](https://github.com/teorth/pfr) | `ce7ac95e620a` | text |
+| `corpora/math-inc_strongpnt` | [math-inc/strongpnt](https://github.com/math-inc/strongpnt) | `2f5835c32231` | text |
+| `corpora/openai_ten-proofs` | [openai/ten-proofs](https://github.com/openai/ten-proofs) | `94bc0feb6a9f` | text |
+
+The human projects were compiled at a later commit than the one their text was read from.
+
+### 2. Text study
+
+```sh
+cd energy
+python3 corpus.py mathlib openai tenproofs carleson flt pfr sphere strongpnt    # sample declarations
+python3 order_select.py                                                        # optional: n-gram order by held-out cross-entropy
+python3 score_text.py                                                          # text energy (mathlib by held-out fold)
+gunzip -k data/mathlib_env.tsv.gz && python3 premise.py
+python3 analysis.py && python3 decomp.py                                       # project statistics; the 76% split
+cd ..
+```
+
+`python3 corpus.py ai_spherepacking ai_putnam2025 ai_imo2025 && python3 score_ai.py ai_spherepacking ai_putnam2025 ai_imo2025`
+adds the text energy of the other AI corpora.
+
+### 3. Extraction
+
+```sh
+cd eigen
+python3 localize_jobs.py      # writes jobs/local/ with this checkout's path
+./run_all.sh                  # stage 1, then the final pass; progress in out_terms_v4/chain.log
+```
+
+`run_all.sh` sets `GESTURE_CUTS=1 GESTURE_TERMS=1`, without which the driver writes gestures only. A module that
+stalls is skipped after a time limit and recorded. The streaming runs (`run_stream.py`) and the module-by-module runs
+(`run_isolated.py`) restart the driver when it stalls or runs out of memory.
+
+### 4. Analyses and figures
+
+```sh
+./run_analyses.sh             # about an hour; needs energy/data/text_energy.pkl from step 2
+```
+
+This links the final pass's records into the directories the analyses read (`link_outputs.py`). It then runs every
+analysis in the paper and redraws the figures. `python3 chk_ladder.py out_terms_v4/mathlib.jsonl` reports the rank
+ladder on its own.
+
+## How the results were checked
+
+- The regression test in `eigen/tests/terms_toy` was written before the proof-term pass was run on any corpus.
+- The proof-term pass went through four versions, described in the paper. Every corpus was run with the fourth, which
+  is the driver in `eigen/driver`. The gesture and cut records it writes are identical to those of the earlier
+  drivers on every one of the 311,674 mathlib and OpenAI records.
+- Starting from the final pass's records, `run_analyses.sh` was run on a fresh copy of this repository. It reproduces
+  every result file here, and so every number in the paper, up to floating-point noise. The only other differences are
+  the example proofs the result files quote, which need the corpora's source checked out.
+- `eigen/out_ai_ready/failures.json` (the share of sphere packing, Putnam and IMO theorems that no longer compile) was
+  tallied during the runs. No script here regenerates it.
+- Compiling nine OpenAI projects module by module instead of in one shared environment leaves the gestures of 97.2%
+  of 4,089 theorems unchanged (`compare_iso.py`), and the proof-term sizes of 99.8% of 2,879 proofs.
+
+## Authorship
+
+The questions, measures and controls are Safal R. Aryal's. The code was written by Claude Code, Anthropic's coding
+agent, working at the author's direction, as the paper describes. The corpora analysed are not included here and remain under
+their own licences.
 
 ## Citation
 
 ```bibtex
-@misc{aryal2026machinelean,
-  author       = {Aryal, Safal},
-  title        = {Machine-Written {L}ean, Measured: Layout, Compression and Inference Mix in {AI}-Written Proofs},
-  year         = {2026},
-  howpublished = {\url{https://github.com/safsom/math-ai-projects}},
-  note         = {Code and analyses written with Claude (Anthropic)}
+@software{aryal2026code,
+  author = {Aryal, Safal R.},
+  title  = {math-ai-projects: Code and results for ``Proofs, gestures, and formalization''},
+  url    = {https://github.com/safsom/math-ai-projects},
+  year   = {2026}
 }
 ```
-
-Ideas and research direction: Safal Aryal. Code and analyses: Claude (Anthropic), at Safal's direction (see `AUTHORS`).

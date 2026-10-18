@@ -15,7 +15,7 @@ sys.path.insert(0, HERE)
 from terms_analysis import measures, MIN  # noqa: E402
 from analyze import user_name, strip_internal, GENERATED  # noqa: E402
 
-path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'out_terms', 'mathlib.jsonl')
+path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'out_terms_v4', 'mathlib.jsonl')
 name = os.path.basename(path)[:-6]
 lg = math.log2
 

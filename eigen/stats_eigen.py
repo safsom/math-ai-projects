@@ -14,7 +14,8 @@ import numpy as np
 import pandas as pd
 from scipy import linalg, stats
 
-sys.path.insert(0, '/Users/safsom/Projects/math-ai-projects/energy')
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, 'energy'))
 from lexer import declarations, strip_comments  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -49,7 +50,7 @@ for c in fam_cols:
     P['share:' + c[4:]] = P[c] / P.nodes
 P = P[P.n >= MIN_THM].copy()
 
-text = pd.read_csv('/Users/safsom/Projects/math-ai-projects/energy/data/out/projects.csv')[['project', 'e_tok', 'e_prem']]
+text = pd.read_csv(os.path.join(ROOT, 'energy', 'data', 'out', 'projects.csv'))[['project', 'e_tok', 'e_prem']]
 P = P.merge(text, on='project', how='left')
 P.to_csv(os.path.join(RES, 'projects.csv'), index=False)
 
@@ -204,8 +205,8 @@ from gloss import describe  # noqa: E402
 
 
 # source text for exemplars
-SRC_ROOTS = {'mathlib': '/Users/safsom/Projects/math-ai-projects/mathlib4',
-             'openai': '/Users/safsom/Projects/math-ai-projects/corpora/openai_math/lean'}
+SRC_ROOTS = {'mathlib': os.path.join(ROOT, 'mathlib4'),
+             'openai': os.path.join(ROOT, 'corpora', 'openai_math', 'lean')}
 _src_cache = {}
 
 
@@ -370,13 +371,15 @@ for md, k in zip(modes, range(8)):
     w = Wv[:, k] * (1 if delta[k] >= 0 else -1)
     proj_scores[f'ep{k + 1}'] = (X - muM) @ w
 PS = proj_scores.groupby(['group', 'project']).mean().reset_index()
-old = pd.read_csv('/Users/safsom/Projects/math-ai-projects/proofstudy/results/project_metrics.csv')
+# correlations with an earlier, text-only study of the same projects (not part of this repository; skipped if absent)
+OLD = os.path.join(ROOT, 'proofstudy', 'results', 'project_metrics.csv')
+old = pd.read_csv(OLD) if os.path.exists(OLD) else pd.DataFrame(columns=['group', 'project'])
 old = old[old.group == 'openai_math'].copy()
 old['project'] = 'OAI/' + old.project
 OLDK = ['concepts_per_100_thm', 'live_concept_share', 'single_use_lemma_share', 'cert_token_share', 'casebash_token_share',
         'auto_per_1k', 'struct_per_1k', 'numbered_share', 'uninformative_share', 'grounding', 'propagation',
         'skel_dup_share', 'library_ref_share', 'proof_to_statement']
-J = PS[PS.group == 'openai'].merge(old[['project'] + OLDK], on='project').merge(P[['project', 'e_ir', 'e_tok']], on='project', how='left')
+J = PS[PS.group == 'openai'].merge(old.reindex(columns=['project'] + OLDK), on='project').merge(P[['project', 'e_ir', 'e_tok']], on='project', how='left')
 old_corr = {}
 for k in range(8):
     row = {}
@@ -388,7 +391,7 @@ for k in range(8):
     old_corr[f'ep{k + 1}'] = row
 
 # per-declaration join of text energy and compiled energy
-TE = pd.read_pickle('/Users/safsom/Projects/math-ai-projects/energy/data/text_energy.pkl')
+TE = pd.read_pickle(os.path.join(ROOT, 'energy', 'data', 'text_energy.pkl'))
 TE = TE[TE.kind.isin(['theorem', 'lemma'])][['corpus', 'project', 'full', 'E_struct', 'n_tok', 'E_n', 'n_n', 'E_o', 'n_o']]
 TE['project'] = TE.project.str.replace('Carleson', 'Carleson').str.replace('SphereEversion', 'SphereEversion')
 TE = TE.drop_duplicates(['corpus', 'full'])

@@ -4,12 +4,16 @@ Per theorem (auxiliary _proof_N/_simp_N lemmas folded into their parent, as in a
 Pooled: Jensen-Shannon divergence of the coarse gesture mix between the two compilations.
 """
 import collections, glob, json, math, os, sys
-from make_job import project_of
 os.environ.setdefault('MERGE_ARITH', '1')
 from analyze import coarse, user_name, strip_internal, GENERATED
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ISO = sys.argv[1] if len(sys.argv) > 1 else f'{HERE}/out_iso'
+
+
+def project_of(m):
+    p = m.split('.')
+    return '.'.join(p[:3]) if len(p) > 3 else '.'.join(p[:2]) + '._root'
 
 
 def records(path):
@@ -32,11 +36,13 @@ iso = {}
 for p in glob.glob(f'{ISO}/OAI.*.jsonl'):
     if not p.endswith(('.log.jsonl', '.trace.jsonl')):
         iso.update(records(p))
-projs = sorted({k[0] for k in iso})
+# projects that stalled in the shared run were recovered from this isolated run, so they are not a comparison
+RECOVERED = {p['name'] for p in json.load(open(f'{HERE}/jobs/isolated_openai_retry.json'))['projects']}
+projs = sorted({k[0] for k in iso} - RECOVERED)
 rows, pool_s, pool_i = [], collections.Counter(), collections.Counter()
 diffs = collections.Counter()
 for proj in projs:
-    shared = records(f'{HERE}/out/{proj}.jsonl')
+    shared = records(f'{HERE}/out_final/{proj}.jsonl')
     keys_i = {k for k in iso if k[0] == proj}
     keys_s = {k for k in shared if k[0] == proj}
     both = keys_i & keys_s

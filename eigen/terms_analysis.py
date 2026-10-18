@@ -20,14 +20,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from analyze import user_name, strip_internal, GENERATED, project_and_group, HUMAN_REACH  # noqa: E402
 
-OT = os.environ.get('OT', os.path.join(HERE, 'out_terms'))
-OTI = os.environ.get('OTI', os.path.join(HERE, 'out_terms_iso'))
-OTA = os.environ.get('OTA', os.path.join(HERE, 'out_terms_ai'))
-OT2 = os.environ.get('OT2', os.path.join(HERE, 'out_terms_v2'))
-OT3 = os.environ.get('OT3', os.path.join(HERE, 'out_terms_v3'))
-OTA3 = os.environ.get('OTA3', os.path.join(HERE, 'out_terms_v3_ai'))
-OTI2 = os.path.join(HERE, 'out_terms_v2_iso')
-OTI3 = os.path.join(HERE, 'out_terms_v3_iso')
+# the final pass (run_all.sh): mathlib, OpenAI and human records; the OpenAI projects compiled module by module;
+# the other AI corpora. Results are written to out_terms/.
+OT = os.environ.get('OT', os.path.join(HERE, 'out_terms_v4'))
+OTI = os.environ.get('OTI', os.path.join(HERE, 'out_terms_v4_iso'))
+OTA = os.environ.get('OTA', os.path.join(HERE, 'out_terms_v4_ai'))
+RES = os.path.join(HERE, 'out_terms')
 MIN = 10
 lg = math.log2
 
@@ -37,21 +35,6 @@ def files():
     out += [(p, 'openai') for p in sorted(glob.glob(os.path.join(OT, 'OAI.*.jsonl')))]
     out += [(p, 'human') for p in sorted(glob.glob(os.path.join(OT, 'human.*.jsonl')))]
     out += [(os.path.join(OTA, c, c + '.jsonl'), c) for c in ('spherepacking', 'putnam2025', 'imo2025')]
-    # later passes replace earlier ones where they exist: v2 unfolded ranks and proof-applied redexes,
-    # v3 a Prop test that unfolds definitions and the count of hidden-proposition cuts
-    def newest(p):
-        for old, new in ((OT, OT3), (OTA, OTA3), (OT, OT2)):
-            q = p.replace(old, new, 1)
-            if p.startswith(old) and os.path.exists(q):
-                return q
-        # OpenAI projects recompiled module by module in a later pass: same terms for 99.8% of theorems (see invariance)
-        b = os.path.basename(p)
-        for d in (OTI3, OTI2):
-            q = os.path.join(d, b)
-            if b.startswith('OAI.') and os.path.exists(q) and os.path.getsize(q) > 0:
-                return q
-        return p
-    out = [(newest(p), c) for p, c in out]
     return [(p, c) for p, c in out if os.path.exists(p) and not p.endswith(('.log.jsonl', '.trace.jsonl'))]
 
 
@@ -69,8 +52,10 @@ def measures(r):
                 ub_raw=ub, missed=lb - ca, resid=r['tResid'], occmax=lg(max(r['tOccMax'], 1)),
                 prod_bound=sum(lg(max(u, 1)) for u in uses), named=r['tNamed'], shared=r['tShared'],
                 rk=rk, agree=abs(S - N3) <= 0.01 * N3 + 1,
+                # share of the proof's gestures that are automation certificates (tac:*)
+                auto=sum(v for k, v in r.get('u', {}).items() if k.startswith('tac:')) / max(1, sum(r.get('u', {}).values())),
                 # second pass only: rank with definitions unfolded, and created redexes applied to a proof
-                hidden=r.get('tHidden'), ver=3 if 'tHidden' in r else 2 if rku is not None else 1,
+                hidden=r.get('tHidden'), ver=r.get('tVer', 3) if 'tHidden' in r else 2 if rku is not None else 1,
                 rku=rku, residP=r.get('tResidP'), maxrank_u=maxr(rku) if rku else None,
                 maxrank_u_shared=max((i for i in range(4) if rku[3 * i + 2]), default=-1) if rku else None,
                 # first-order estimate of kappa: each cut copies its proof (uses - 1) more times
@@ -122,6 +107,10 @@ def summarize(M):
         proofs=len(M), agree=float(a('agree').mean()),
         chi_author=float(ca.mean()), chi_lb=float(lb.mean()), chi_ub=float(ub.mean()),
         realized=float(ca.sum() / lb.sum()) if lb.sum() else None,
+        # proofs that call no automation: certificates hold compression no author can name
+        auto_share=float((a('auto') > 0).mean()),
+        realized_noauto=(lambda z: float(ca[z].sum() / lb[z].sum()) if lb[z].sum() else None)(a('auto') == 0),
+        realized_auto=(lambda z: float(ca[z].sum() / lb[z].sum()) if lb[z].sum() else None)(a('auto') > 0),
         missed=float((lb - ca).mean()), missed_ge1=float(((lb - ca) >= 1).mean()),
         lb_ge1=float((lb >= 1).mean()), ub_ge1=float((ub >= 1).mean()),
         resid_share=float((a('resid') > 0).mean()), resid_per_proof=float(a('resid').mean()),
@@ -134,10 +123,11 @@ def summarize(M):
         rank_hist_u=np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3).tolist() if any(m['rku'] for m in M) else None,
         ladder_u=ladder(M),
         v2_share=float(np.mean([m['rku'] is not None for m in M])),
-        v3_share=float(np.mean([m['ver'] == 3 for m in M])),
-        hidden_share=float(np.mean([m['hidden'] > 0 for m in M if m['ver'] == 3])) if any(m['ver'] == 3 for m in M) else None,
-        hidden_per_cut=float(sum(m['hidden'] for m in M if m['ver'] == 3) / max(1, sum(sum(m['rku']) for m in M if m['ver'] == 3)))
-        if any(m['ver'] == 3 for m in M) else None,
+        v3_share=float(np.mean([m['ver'] >= 3 for m in M])),
+        v4_share=float(np.mean([m['ver'] == 4 for m in M])),
+        hidden_share=float(np.mean([m['hidden'] > 0 for m in M if m['ver'] >= 3])) if any(m['ver'] >= 3 for m in M) else None,
+        hidden_per_cut=float(sum(m['hidden'] for m in M if m['ver'] >= 3) / max(1, sum(sum(m['rku']) for m in M if m['ver'] >= 3)))
+        if any(m['ver'] >= 3 for m in M) else None,
         residP_share=float(np.mean([bool(m['residP']) for m in M if m['rku'] is not None])) if any(m['rku'] is not None for m in M) else None,
         cuts_rank_ge1_u=(lambda h: float(h[1:].sum() / h.sum()) if h.sum() else None)(np.array([m['rku'] for m in M if m['rku']]).sum(0).reshape(4, 3))
         if any(m['rku'] for m in M) else None,
@@ -232,6 +222,9 @@ def main():
             if c != ref and ref in PT and PT[c]:
                 res['tests'][f'{c}_vs_{ref}'] = {k: auc([v[k] for v in PT[c].values()], [v[k] for v in PT[ref].values()])
                                                  for k in ('chi_author', 'chi_lb', 'chi_ub', 'missed', 'realized', 'resid')}
+    PZ = {c: project_table([m for m in M if m['auto'] == 0]) for c, M in data.items()}
+    res['tests_noauto'] = {f'{c}_vs_{ref}': auc([v['realized'] for v in PZ[c].values()], [v['realized'] for v in PZ[ref].values()])
+                           for c in PZ for ref in ('mathlib', 'human') if c != ref and PZ[c] and PZ.get(ref)}
     # realized share within proof-size bins, so that longer AI proofs are compared with mathlib proofs of the same size
     bins = [10, 30, 100, 300, 1000, None]
     res['realized_by_size'] = {'bins': bins[:-1], 'corpora': {}}
@@ -245,7 +238,7 @@ def main():
                             chi_lb=float(np.mean([m['chi_lb'] for m in S])) if len(S) >= 30 else None))
         res['realized_by_size']['corpora'][c] = row
     res['invariance'] = invariance()
-    json.dump(res, open(os.path.join(OT, 'terms_results.json'), 'w'), indent=1)
+    json.dump(res, open(os.path.join(RES, 'terms_results.json'), 'w'), indent=1)
     import pandas as pd
     print(pd.DataFrame(res['corpora']).T.drop(columns=['rank_hist', 'rank_hist_u']).round(3).T.to_string())
     print(json.dumps(res['project_median'], indent=0))

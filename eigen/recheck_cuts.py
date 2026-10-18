@@ -2,6 +2,7 @@
 
 Joins each theorem's cut measures (cuts_exact.proof_measures) to analysis_merged/decls.pkl and writes
 subset analysis directories for stats_eigen.py:
+  analysis_proofs - theorems with cut measures, that is, proofs (definitions left out)
   analysis_rho0  - theorems already in optimal cut layout (rho = 0: written = profitable-cuts-only form)
   analysis_nocut - theorems with no cut at all
 Also writes analysis_merged/cutjoin.pkl (per-theorem rho, chi, kappa, ncuts, k1).
@@ -28,7 +29,7 @@ J = D[['group', 'name']].reset_index().merge(C, on=['group', 'name'], how='left'
 J.to_pickle(os.path.join(BASE, 'cutjoin.pkl'))
 print('joined share by group:', J.groupby('group').rho.apply(lambda s: s.notna().mean()).round(3).to_dict())
 blob = pickle.load(open(os.path.join(BASE, 'unigrams.pkl'), 'rb'))
-for name, mask in [('analysis_rho0', J.N0.eq(J.N4) | (J.rho.abs() < 1e-12)), ('analysis_nocut', J.ncuts.eq(0))]:
+for name, mask in [('analysis_proofs', J.rho.notna()), ('analysis_rho0', J.N0.eq(J.N4) | (J.rho.abs() < 1e-12)), ('analysis_nocut', J.ncuts.eq(0))]:
     mask = mask.fillna(False).to_numpy()
     out = os.path.join(HERE, 'out_final', name)
     os.makedirs(out, exist_ok=True)

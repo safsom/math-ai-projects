@@ -33,7 +33,7 @@ job = lean3job.fill({'out': out, 'imports': ['Init'], 'mathlibNames': '', 'trace
                      'projects': [{'name': 'OAI.Toy.T', 'modules': [{'mod': 'OAI.Toy.T', 'path': os.path.join(HERE, 'Toy.lean')}]}]})
 json.dump(job, open(os.path.join(out, 'job.json'), 'w'))
 env = dict(os.environ, GESTURE_CUTS='1', GESTURE_TERMS='1')
-subprocess.run([os.path.join(EIGEN, os.environ.get('DRIVER', 'run_driver3.sh')), os.path.join(out, 'job.json'), os.path.join(out, 'run.log')], env=env, check=True)
+subprocess.run([os.path.join(EIGEN, os.environ.get('DRIVER', 'run_driver.sh')), os.path.join(out, 'job.json'), os.path.join(out, 'run.log')], env=env, check=True)
 got = {}
 for line in open(os.path.join(out, 'OAI.Toy.T.jsonl')):
     r = json.loads(line)

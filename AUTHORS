@@ -1,10 +1,6 @@
-Ideas, research direction and questions: Safal Aryal.
+Paper, questions, measures and controls: Safal R. Aryal.
 
-Code, analyses and reports: written by Claude (Anthropic), working at Safal's
-direction. The first study in proofstudy/ was written in a claude.ai chat; the
-energy, eigenproof, cut-compression and synthesis work (energy/, eigen/,
-synthesis/) was written with Claude Code.
+Code: written by Claude Code (Anthropic), working at Safal R. Aryal's direction.
 
-Analysed third-party corpora (mathlib, openai/math, Carleson, FLT, PFR, sphere
-eversion, and the AI-written corpora) are not included and remain under their
-own licences.
+The analysed corpora (mathlib, openai/math, Carleson, sphere eversion, FLT, PFR, and the AI-written corpora) are not
+included and remain under their own licences.

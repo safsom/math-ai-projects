@@ -1,0 +1,21 @@
+{
+ "projects": [
+  "OAI.AlgebraicTopology.Cubical",
+  "OAI.AlgebraicTopology.Simplicial",
+  "OAI.Analysis.RecursivePotentials",
+  "OAI.Computability.DeterministicSum",
+  "OAI.GroupTheory.RightAngledArtin",
+  "OAI.ModelTheory.Categoricity",
+  "OAI.Probability.Honeycomb",
+  "OAI.RepresentationTheory.GraphModels",
+  "OAI.RepresentationTheory.SpinAngle"
+ ],
+ "n": 4089,
+ "same_u": 3973,
+ "same_b": 3969,
+ "sorry_iso": 0,
+ "sorry_shared": 0,
+ "js_bits": 0.00043365006056310905,
+ "nodes_shared": 395085,
+ "nodes_iso": 393315
+}

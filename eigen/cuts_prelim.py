@@ -42,7 +42,7 @@ def corpus_records():
             continue
         add('mathlib', project_and_group('mathlib', r['m'])[0], r['parent'], r)
     paths = [(p, 'openai') for p in glob.glob(os.path.join(OUT, 'OAI.*.jsonl'))]
-    paths += [(p, 'human') for p in glob.glob(os.path.join(HERE, 'out_h2', 'human.*.jsonl'))]
+    paths += [(p, 'human') for p in glob.glob(os.path.join(os.environ.get('HOUT', OUT), 'human.*.jsonl'))]
     for path, corpus in paths:
         base = os.path.basename(path)[:-6]
         if base.endswith(('.log', '.trace')):

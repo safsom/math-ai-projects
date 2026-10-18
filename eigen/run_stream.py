@@ -48,7 +48,7 @@ for attempt in range(1000):
     json.dump(dict(job, projects=[dict(name=P['name'], modules=mods)]), open(jp, 'w'))
     runlog = os.path.join(out, f'run_{attempt}.log')
     print(time.strftime('%H:%M:%S'), f'attempt {attempt}: {len(rest)} to extract, {len(mods) - len(rest)} to replay', flush=True)
-    proc = subprocess.Popen([os.path.join(HERE, 'run_driver3.sh'), jp, runlog], start_new_session=True)
+    proc = subprocess.Popen([os.path.join(HERE, os.environ.get('DRIVER', 'run_driver.sh')), jp, runlog], start_new_session=True)
     last_size, last_t = -1, time.time()
     while proc.poll() is None:
         time.sleep(15)

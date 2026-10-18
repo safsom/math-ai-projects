@@ -24,7 +24,7 @@ from cuts_prelim import auc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CUT = os.path.join(HERE, 'out_cut')
-RES = os.environ.get('CUTS_RES', os.path.join(CUT, 'results.json'))
+RES = os.environ.get('CUTS_RES', os.path.join(CUT, 'results_ai.json'))
 MIN = 10  # proofs with at least this many nodes as written
 
 
@@ -239,7 +239,7 @@ def main():
     pmed = {c: v for c, v in res['project_median'].items()}
     json.dump(dict(columns=cols, per_proof={c: dict(with_cut=v['with_cut']) for c, v in res['per_proof'].items()},
                    pooled=res['pooled'], project_median=pmed, auc=res['auc'], p=res.get('p', {}), cut_k=res['cut_k']),
-              open(os.environ.get('CUTS_REPORT', os.path.join(CUT, 'report_cuts.json')), 'w'), indent=1, default=float)
+              open(os.environ.get('CUTS_REPORT', os.path.join(CUT, 'report_cuts_ai.json')), 'w'), indent=1, default=float)
     import pandas as pd
     for stat in ('mean', 'pos'):
         print(stat, pd.DataFrame({c: {k: v.get(stat) for k, v in d.items() if isinstance(v, dict) and 'n' in v} for c, d in res['per_proof'].items()}).round(3), sep='\n')

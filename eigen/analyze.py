@@ -12,12 +12,14 @@ import pickle
 import random
 import re
 import sys
+import zlib
 
 import numpy as np
 import pandas as pd
 from scipy import linalg, stats
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
 OUT = os.environ.get('GOUT', os.path.join(HERE, 'out'))
 RES = os.path.join(OUT, os.environ.get('RESNAME', 'analysis'))
 MERGE_ARITH = os.environ.get('MERGE_ARITH') == '1'
@@ -124,7 +126,7 @@ def load():
             recs.append(r)
     seen = set()
     paths = [(p, None) for p in sorted(glob.glob(os.path.join(OUT, '*.jsonl')))]
-    paths += [(p, None) for p in sorted(glob.glob(os.path.join(os.environ.get('HOUT', os.path.join(HERE, 'out_h2')), 'human.*.jsonl')))]
+    paths += [(p, None) for p in sorted(glob.glob(os.path.join(os.environ.get('HOUT', OUT), 'human.*.jsonl')))]
     if os.environ.get('WITH_AI') == '1':  # other AI corpora (streaming runs, one directory each)
         paths += [(os.path.join(AI_OUT, c, c + '.jsonl'), c) for c in AI_CORPORA
                   if os.path.exists(os.path.join(AI_OUT, c, c + '.jsonl'))]
@@ -295,12 +297,13 @@ def main():
     BG = [r['b'] for r in recs]
 
     # ---- IR energy: mathlib held out by project fold (same split as the text channel)
-    tp = sorted(set(pd.read_pickle('/Users/safsom/Projects/math-ai-projects/energy/data/text_energy.pkl')
+    tp = sorted(set(pd.read_pickle(os.path.join(ROOT, 'energy', 'data', 'text_energy.pkl'))
                     .query("corpus == 'mathlib'").project))
     r7 = random.Random(7)
     r7.shuffle(tp)
     fold_of = {p: i % 5 for i, p in enumerate(tp)}
-    D['fold'] = [fold_of.get(p, hash(p) % 5) if c == 'mathlib' else -1 for c, p in zip(D.corpus, D.project)]
+    # projects outside the text study get a fold from a stable hash of their name
+    D['fold'] = [fold_of.get(p, zlib.crc32(p.encode()) % 5) if c == 'mathlib' else -1 for c, p in zip(D.corpus, D.project)]
     E = np.zeros(len(D))
     S = np.zeros(len(D))
     folds = D.fold.to_numpy()
