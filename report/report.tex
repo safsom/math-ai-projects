@@ -621,13 +621,13 @@ compresses proofs by finding the cuts they lack \textit{\parencite{hetzl2014quan
 realized compression below is a crude relative of it.
 
 What these share is an aim: a shorter proof, a faster check, a better prover. My debt to these prior pieces of work is large because
-they shaped a core intuition I had guiding the work in this paper--that AI generated proofs are somehow large in an ``unnatural''
+they shaped a core intuition I had guiding the work in this paper--that AI-generated proofs are somehow large in an ``unnatural''
 way (at least for humans), and that it was possible to measure the size of a proof term or the number of its wasted steps as formalized 
 in Lean in a rigorous way. What I try to add is a way of using such
 quantities as \textit{measurements} of proofs rather than as targets to optimize them against. That means comparing them against how much a reference
 library differs from itself, or against the proof's own cut-free form; checking them against theorems they must obey;
 and controlling for how the proofs were compiled and for the tactics that wrote them. The hope is that, made reliable
-in this way, they can eventually be used to study properties of formal proofs proofs themselves at scale.
+in this way, they can eventually be used to study properties of formal proofs themselves at scale.
 
 \subsection{Preparing the corpora}
 Every number in this section depends on how the corpora were read, cleaned, and compiled, so I describe this in some
