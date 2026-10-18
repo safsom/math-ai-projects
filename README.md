@@ -1,6 +1,6 @@
-# An empirical method for studying AI-generated mathematics
+# Studying proof data with proof theory: the case of AI-generated mathematics
 
-Code, job files, tests and results for the paper *An empirical method for studying AI-generated mathematics* by Safal R. Aryal
+Code, job files, tests and results for the paper *Studying proof data with proof theory: the case of AI-generated mathematics* by Safal R. Aryal
 ([report/report.pdf](report/report.pdf)).
 
 The paper compiles 96 projects from OpenAI's library of AI-written mathematics
@@ -196,7 +196,7 @@ analyses are not included and remain under their own licences.
 ```bibtex
 @software{aryal2026code,
   author = {Aryal, Safal R.},
-  title  = {math-ai-projects: Code and results for ``An empirical method for studying AI-generated mathematics''},
+  title  = {math-ai-projects: Code and results for ``Studying proof data with proof theory: the case of AI-generated mathematics''},
   url    = {https://github.com/safsom/math-ai-projects},
   year   = {2026}
 }
